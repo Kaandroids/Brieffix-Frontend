@@ -1,8 +1,8 @@
 <div class="home-content">
 
   <div class="welcome-section">
-    <h1>Welcome back, <span class="name">{{ userService.me()?.fullName ?? '' }}</span></h1>
-    <p class="subtitle">Here's a quick overview of your recent activity.</p>
+    <h1>Willkommen, <span class="name">{{ userService.me()?.fullName ?? '' }}</span></h1>
+    <p class="subtitle">Hier ist eine kurze Übersicht Ihrer letzten Aktivitäten.</p>
   </div>
 
   <div class="overview-grid">
@@ -10,8 +10,8 @@
     <!-- Recent Letters -->
     <div class="panel">
       <div class="panel-header">
-        <h2>Recent Letters</h2>
-        <a routerLink="/dashboard/letters" class="panel-link">View all</a>
+        <h2>Letzte Briefe</h2>
+        <a routerLink="/dashboard/letters" class="panel-link">Alle anzeigen</a>
       </div>
 
       @if (recentLetters().length === 0) {
@@ -20,7 +20,7 @@
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
           </svg>
-          <p>No letters yet. <a routerLink="/dashboard/letters">Create your first one.</a></p>
+          <p>Noch keine Briefe. <a routerLink="/dashboard/letters">Ersten Brief erstellen.</a></p>
         </div>
       } @else {
         <ul class="letter-list">
@@ -36,7 +36,7 @@
               </div>
               <div class="letter-info">
                 <span class="letter-title">{{ letter.title }}</span>
-                <span class="letter-meta">To: {{ recipientName(letter) }}</span>
+                <span class="letter-meta">An: {{ recipientName(letter) }}</span>
               </div>
               <span class="letter-date">{{ letter.letterDate | date:'dd.MM.yyyy' }}</span>
             </li>
@@ -48,8 +48,8 @@
     <!-- Default Profiles -->
     <div class="panel">
       <div class="panel-header">
-        <h2>Default Profiles</h2>
-        <a routerLink="/dashboard/profiles" class="panel-link">View all</a>
+        <h2>Standardprofile</h2>
+        <a routerLink="/dashboard/profiles" class="panel-link">Alle anzeigen</a>
       </div>
 
       @if (defaultProfiles().length === 0) {
@@ -58,7 +58,7 @@
             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
             <circle cx="12" cy="7" r="4"/>
           </svg>
-          <p>No default profiles. <a routerLink="/dashboard/profiles">Set one up.</a></p>
+          <p>Keine Standardprofile. <a routerLink="/dashboard/profiles">Jetzt einrichten.</a></p>
         </div>
       } @else {
         <ul class="profile-list">
@@ -72,7 +72,7 @@
                 <span class="profile-meta">{{ profileName(profile) }}</span>
               </div>
               <span class="profile-type-badge" [class.badge--org]="profile.type === 'ORGANIZATION'">
-                {{ profile.type === 'ORGANIZATION' ? 'Org' : 'Individual' }}
+                {{ profile.type === 'ORGANIZATION' ? 'Organisation' : 'Privatperson' }}
               </span>
             </li>
           }

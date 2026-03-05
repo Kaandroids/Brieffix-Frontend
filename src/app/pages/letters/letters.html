@@ -2,14 +2,14 @@
 <div class="letters-page" *ngIf="!formOpen()">
   <div class="page-header">
     <div>
-      <h1>Letters</h1>
-      <p class="subtitle">Generate professional PDF letters from your profiles and contacts.</p>
+      <h1>Briefe</h1>
+      <p class="subtitle">Erstellen Sie professionelle PDF-Briefe aus Ihren Profilen und Kontakten.</p>
     </div>
     <button class="btn-primary" (click)="openCreate()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
       </svg>
-      New Letter
+      Neuer Brief
     </button>
   </div>
 
@@ -23,13 +23,13 @@
           </svg>
         </div>
         <div class="card-actions">
-          <button class="btn-icon" (click)="downloadPdf(l)" title="Download PDF">
+          <button class="btn-icon" (click)="downloadPdf(l)" title="PDF herunterladen">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
           </button>
-          <button class="btn-icon btn-icon--danger" (click)="deleteLetter(l.id)" title="Delete">
+          <button class="btn-icon btn-icon--danger" (click)="deleteLetter(l.id)" title="Löschen">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="3 6 5 6 21 6"/>
               <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
@@ -56,8 +56,8 @@
         <line x1="16" y1="13" x2="8" y2="13"/>
         <line x1="16" y1="17" x2="8" y2="17"/>
       </svg>
-      <p>No letters yet.</p>
-      <button class="btn-primary" (click)="openCreate()">Create your first letter</button>
+      <p>Noch keine Briefe vorhanden.</p>
+      <button class="btn-primary" (click)="openCreate()">Ersten Brief erstellen</button>
     </div>
   </ng-template>
 </div>
@@ -69,9 +69,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <polyline points="15 18 9 12 15 6"/>
       </svg>
-      Back to Letters
+      Zurück zu Briefen
     </button>
-    <h1>New Letter</h1>
+    <h1>Neuer Brief</h1>
   </div>
 
   <!-- No profiles warning -->
@@ -80,7 +80,7 @@
       <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
       <line x1="12" y1="16" x2="12.01" y2="16"/>
     </svg>
-    <span>You need to create a <strong>Profile</strong> before generating a letter. The profile is used as the sender.</span>
+    <span>Sie müssen zuerst ein <strong>Profil</strong> anlegen, bevor Sie einen Brief erstellen können. Das Profil wird als Absender verwendet.</span>
   </div>
 
   <div class="letter-layout" [formGroup]="form">
@@ -90,11 +90,11 @@
 
       <!-- 1. Sender profile -->
       <section class="form-section">
-        <h3 class="section-title">Sender — Your Profile</h3>
+        <h3 class="section-title">Absender — Ihr Profil</h3>
         <div class="form-group">
-          <label>Profile <span class="required">*</span></label>
+          <label>Profil <span class="required">*</span></label>
           <select formControlName="profileId" [disabled]="!hasProfiles()">
-            <option value="">— select a profile —</option>
+            <option value="">— Profil auswählen —</option>
             <option *ngFor="let p of profiles()" [value]="p.id">
               {{ p.profileLabel }}
               ({{ p.type === 'INDIVIDUAL'
@@ -118,24 +118,24 @@
 
       <!-- 2. Recipient -->
       <section class="form-section">
-        <h3 class="section-title">Recipient</h3>
+        <h3 class="section-title">Empfänger</h3>
         <div class="recipient-toggle">
           <button type="button"
             class="toggle-btn" [class.toggle-btn--active]="!isManual"
             (click)="form.get('recipientType')?.setValue('contact')">
-            From contacts
+            Aus Kontakten
           </button>
           <button type="button"
             class="toggle-btn" [class.toggle-btn--active]="isManual"
             (click)="form.get('recipientType')?.setValue('manual')">
-            Enter manually
+            Manuell eingeben
           </button>
         </div>
 
         <div *ngIf="!isManual" class="form-group" style="margin-top:12px">
-          <label>Contact</label>
+          <label>Kontakt</label>
           <select formControlName="contactId">
-            <option value="">— select a contact —</option>
+            <option value="">— Kontakt auswählen —</option>
             <option *ngFor="let c of contacts()" [value]="c.id">
               {{ contactDisplayName(c) }}
             </option>
@@ -149,27 +149,27 @@
             <button type="button"
               class="toggle-btn" [class.toggle-btn--active]="!isOrganization"
               (click)="form.get('recipientEntityType')?.setValue('INDIVIDUAL')">
-              Individual
+              Privatperson
             </button>
             <button type="button"
               class="toggle-btn" [class.toggle-btn--active]="isOrganization"
               (click)="form.get('recipientEntityType')?.setValue('ORGANIZATION')">
-              Organization
+              Organisation
             </button>
           </div>
 
           <!-- Individual fields -->
           <div *ngIf="!isOrganization" class="form-row" style="margin-top:12px">
             <div class="form-group form-group--narrow">
-              <label>Salutation</label>
-              <input type="text" formControlName="recipientSalutation" placeholder="Mr., Ms., …"/>
+              <label>Anrede</label>
+              <input type="text" formControlName="recipientSalutation" placeholder="Herr, Frau, …"/>
             </div>
             <div class="form-group form-group--grow">
-              <label>First Name</label>
+              <label>Vorname</label>
               <input type="text" formControlName="recipientFirstName"/>
             </div>
             <div class="form-group form-group--grow">
-              <label>Last Name</label>
+              <label>Nachname</label>
               <input type="text" formControlName="recipientLastName"/>
             </div>
           </div>
@@ -177,15 +177,15 @@
           <!-- Organization fields -->
           <div *ngIf="isOrganization" class="form-row" style="margin-top:12px">
             <div class="form-group form-group--grow">
-              <label>Company Name</label>
+              <label>Firmenname</label>
               <input type="text" formControlName="recipientCompany"/>
             </div>
             <div class="form-group form-group--narrow">
-              <label>Salutation</label>
-              <input type="text" formControlName="recipientSalutation" placeholder="Mr., Ms., …"/>
+              <label>Anrede</label>
+              <input type="text" formControlName="recipientSalutation" placeholder="Herr, Frau, …"/>
             </div>
             <div class="form-group form-group--grow">
-              <label>Contact Person</label>
+              <label>Ansprechpartner</label>
               <input type="text" formControlName="recipientContactPerson"/>
             </div>
           </div>
@@ -193,23 +193,23 @@
           <!-- Address (shared) -->
           <div class="form-row">
             <div class="form-group form-group--grow">
-              <label>Street</label>
+              <label>Straße</label>
               <input type="text" formControlName="recipientStreet"/>
             </div>
             <div class="form-group form-group--narrow">
-              <label>No.</label>
+              <label>Nr.</label>
               <input type="text" formControlName="recipientStreetNumber"/>
             </div>
             <div class="form-group form-group--narrow">
-              <label>Postal Code</label>
+              <label>PLZ</label>
               <input type="text" formControlName="recipientPostalCode"/>
             </div>
             <div class="form-group form-group--grow">
-              <label>City</label>
+              <label>Stadt</label>
               <input type="text" formControlName="recipientCity"/>
             </div>
             <div class="form-group form-group--grow">
-              <label>Country</label>
+              <label>Land</label>
               <input type="text" formControlName="recipientCountry"/>
             </div>
           </div>
@@ -218,27 +218,27 @@
 
       <!-- 3. Letter content -->
       <section class="form-section">
-        <h3 class="section-title">Letter</h3>
+        <h3 class="section-title">Brief</h3>
         <div class="form-row">
           <div class="form-group form-group--grow">
-            <label>Subject / Title <span class="required">*</span></label>
-            <input type="text" formControlName="title" placeholder="e.g. Invoice No. 2024-001"/>
+            <label>Betreff / Titel <span class="required">*</span></label>
+            <input type="text" formControlName="title" placeholder="z. B. Rechnung Nr. 2024-001"/>
           </div>
           <div class="form-group form-group--date">
-            <label>Date</label>
+            <label>Datum</label>
             <input type="date" formControlName="letterDate"/>
           </div>
         </div>
         <div class="form-group">
-          <label>Body <span class="required">*</span></label>
+          <label>Inhalt <span class="required">*</span></label>
           <textarea formControlName="body" rows="16"
-            placeholder="Write the body of your letter here…&#10;&#10;Dear Sir or Madam,&#10;&#10;…"></textarea>
+            placeholder="Schreiben Sie hier den Briefinhalt…&#10;&#10;Sehr geehrte Damen und Herren,&#10;&#10;…"></textarea>
         </div>
       </section>
 
       <!-- 4. Template -->
       <section class="form-section">
-        <h3 class="section-title">Template</h3>
+        <h3 class="section-title">Vorlage</h3>
         <div class="template-picker">
           <button *ngFor="let t of templates"
             type="button"
@@ -265,14 +265,14 @@
 
       <!-- Actions -->
       <div class="form-actions">
-        <button type="button" class="btn-secondary" (click)="closeForm()">Cancel</button>
+        <button type="button" class="btn-secondary" (click)="closeForm()">Abbrechen</button>
         <button type="button" class="btn-outline" (click)="onPreview()"
           [disabled]="form.invalid || previewLoading() || !hasProfiles()">
-          {{ previewLoading() ? 'Generating…' : 'Preview PDF' }}
+          {{ previewLoading() ? 'Wird erstellt…' : 'PDF-Vorschau' }}
         </button>
         <button type="button" class="btn-primary" (click)="onSave()"
           [disabled]="form.invalid || loading() || !hasProfiles()">
-          {{ loading() ? 'Saving…' : 'Save Letter' }}
+          {{ loading() ? 'Wird gespeichert…' : 'Brief speichern' }}
         </button>
       </div>
     </div>
@@ -284,13 +284,13 @@
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
           <polyline points="14 2 14 8 20 8"/>
         </svg>
-        PDF Preview
+        PDF-Vorschau
       </div>
       <div class="preview-spinner" *ngIf="previewLoading()">
         <div class="spinner"></div>
-        <span>Rendering PDF…</span>
+        <span>PDF wird gerendert…</span>
       </div>
-      <iframe *ngIf="previewUrl()" [src]="previewUrl()" class="preview-iframe" title="Letter Preview"></iframe>
+      <iframe *ngIf="previewUrl()" [src]="previewUrl()" class="preview-iframe" title="Briefvorschau"></iframe>
     </div>
 
   </div>
