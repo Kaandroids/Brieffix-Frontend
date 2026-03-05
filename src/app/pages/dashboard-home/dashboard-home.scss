@@ -1,0 +1,259 @@
+$text-primary: #f1f5f9;
+$text-secondary: #94a3b8;
+$bg-card: rgba(255, 255, 255, 0.04);
+$border: rgba(255, 255, 255, 0.08);
+$primary: #6366f1;
+$primary-light: #818cf8;
+
+.home-content {
+  padding: 2.5rem;
+  max-width: 1100px;
+}
+
+// ─── Welcome ──────────────────────────────────────────────────────────────────
+.welcome-section {
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.4rem;
+  }
+
+  .name {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: $text-secondary;
+    font-size: 0.95rem;
+  }
+}
+
+// ─── Grid ─────────────────────────────────────────────────────────────────────
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+// ─── Panel ────────────────────────────────────────────────────────────────────
+.panel {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: 650;
+    color: $text-primary;
+    margin: 0;
+  }
+}
+
+.panel-link {
+  font-size: 0.8rem;
+  color: $primary-light;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover { text-decoration: underline; }
+}
+
+// ─── Empty state ──────────────────────────────────────────────────────────────
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 2.5rem 1rem;
+  color: $text-secondary;
+
+  svg {
+    width: 36px;
+    height: 36px;
+    opacity: 0.4;
+  }
+
+  p {
+    font-size: 0.875rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  a {
+    color: $primary-light;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+  }
+}
+
+// ─── Letter List ──────────────────────────────────────────────────────────────
+.letter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.letter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  transition: background 0.15s;
+
+  &:hover { background: rgba(255, 255, 255, 0.04); }
+}
+
+.letter-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $primary-light;
+  }
+}
+
+.letter-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.letter-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $text-primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.letter-meta {
+  font-size: 0.775rem;
+  color: $text-secondary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.letter-date {
+  font-size: 0.775rem;
+  color: $text-secondary;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+// ─── Profile List ─────────────────────────────────────────────────────────────
+.profile-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  transition: background 0.15s;
+
+  &:hover { background: rgba(255, 255, 255, 0.04); }
+}
+
+.profile-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $primary-light;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.profile-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $text-primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-meta {
+  font-size: 0.775rem;
+  color: $text-secondary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-type-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 2rem;
+  background: rgba(6, 182, 212, 0.12);
+  color: #22d3ee;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  flex-shrink: 0;
+
+  &.badge--org {
+    background: rgba(139, 92, 246, 0.12);
+    color: #a78bfa;
+    border-color: rgba(139, 92, 246, 0.2);
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 800px) {
+  .overview-grid { grid-template-columns: 1fr; }
+  .home-content { padding: 1.5rem; }
+}

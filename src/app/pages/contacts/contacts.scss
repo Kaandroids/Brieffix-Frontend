@@ -1,0 +1,349 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+$primary-start: #6366f1;
+$primary-end: #8b5cf6;
+$bg-card: rgba(255, 255, 255, 0.04);
+$border: rgba(255, 255, 255, 0.08);
+$text-primary: #f1f5f9;
+$text-secondary: #94a3b8;
+
+// ─── Shared Buttons ───────────────────────────────────────────────────────────
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, $primary-start, $primary-end);
+  border: none;
+  border-radius: 0.75rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  white-space: nowrap;
+
+  svg { width: 16px; height: 16px; }
+  &:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid $border;
+  border-radius: 0.75rem;
+  color: $text-secondary;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  &:hover { background: rgba(255, 255, 255, 0.09); color: $text-primary; }
+}
+
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  background: transparent;
+  border: 1px solid $border;
+  border-radius: 0.5rem;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  svg { width: 14px; height: 14px; }
+  &:hover { background: rgba(255, 255, 255, 0.07); color: $text-primary; }
+  &--danger:hover {
+    background: rgba(248, 113, 113, 0.12);
+    border-color: rgba(248, 113, 113, 0.3);
+    color: #f87171;
+  }
+}
+
+// ─── List View ────────────────────────────────────────────────────────────────
+.contacts-page {
+  padding: 2.5rem;
+  max-width: 960px;
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+  .subtitle { color: $text-secondary; font-size: 0.875rem; }
+}
+
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.contact-card {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 1.25rem;
+  backdrop-filter: blur(16px);
+  transition: border-color 0.2s, transform 0.2s;
+  &:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.25rem 0.75rem;
+}
+
+.card-avatar {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(99, 102, 241, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #818cf8;
+
+  svg { width: 22px; height: 22px; }
+
+  &--org {
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+  }
+}
+
+.card-actions { display: flex; gap: 0.35rem; }
+
+.card-body {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  margin-bottom: 0.5rem;
+
+  &--org {
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+  }
+}
+
+.card-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: 0.5rem;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: $text-secondary;
+  margin-bottom: 0.25rem;
+
+  svg { width: 13px; height: 13px; flex-shrink: 0; opacity: 0.6; }
+}
+
+.card-address {
+  font-size: 0.78rem;
+  color: rgba($text-secondary, 0.7);
+  margin-top: 0.35rem;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 5rem 2rem;
+  color: $text-secondary;
+  text-align: center;
+  svg { width: 56px; height: 56px; opacity: 0.4; }
+  p { font-size: 1rem; margin: 0; }
+}
+
+// ─── Form View ────────────────────────────────────────────────────────────────
+.form-page {
+  padding: 2.5rem;
+  max-width: 800px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.form-page-header {
+  margin-bottom: 2rem;
+
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: none;
+    border: none;
+    color: $text-secondary;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 0.75rem;
+    transition: color 0.2s;
+    svg { width: 14px; height: 14px; }
+    &:hover { color: $text-primary; }
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.03em;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── Type Picker ──────────────────────────────────────────────────────────────
+.type-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.type-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: $bg-card;
+  border: 2px solid $border;
+  border-radius: 1.25rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover { border-color: rgba($primary-start, 0.4); background: rgba($primary-start, 0.05); }
+  &--active { border-color: $primary-start; background: rgba($primary-start, 0.08); }
+}
+
+.type-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  svg { width: 24px; height: 24px; color: $text-secondary; }
+  .type-card--active & { background: rgba($primary-start, 0.15); svg { color: #818cf8; } }
+}
+
+.type-card-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.type-card-title { font-size: 0.975rem; font-weight: 600; color: $text-primary; }
+.type-card-desc  { font-size: 0.78rem; color: $text-secondary; line-height: 1.4; }
+
+.type-card-check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: $primary-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  svg { width: 12px; height: 12px; color: #fff; }
+}
+
+// ─── Form Sections ────────────────────────────────────────────────────────────
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-section {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $text-secondary;
+  margin-bottom: 1.25rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 160px;
+
+  label { font-size: 0.8rem; font-weight: 500; color: $text-secondary; }
+
+  input[type="text"] {
+    padding: 0.6rem 0.875rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid $border;
+    border-radius: 0.625rem;
+    color: $text-primary;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    &::placeholder { color: rgba($text-secondary, 0.5); }
+    &:focus { border-color: rgba($primary-start, 0.5); }
+  }
+
+  &--narrow { flex: 0 0 120px; min-width: 0; }
+  &--grow   { flex: 2; }
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}

@@ -1,0 +1,302 @@
+<!-- ─── List View ──────────────────────────────────────────────────────────── -->
+<div class="profiles-page" *ngIf="!panelOpen()">
+  <div class="page-header">
+    <div>
+      <h1>Profiles</h1>
+      <p class="subtitle">Manage your sender and recipient identities.</p>
+    </div>
+    <button class="btn-primary" (click)="openCreate()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="5" x2="12" y2="19"/>
+        <line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      New Profile
+    </button>
+  </div>
+
+  <div class="profiles-grid" *ngIf="profiles().length > 0; else empty">
+    <div class="profile-card" *ngFor="let p of profiles()">
+      <div class="card-header">
+        <div class="card-avatar" [class.card-avatar--org]="p.type === 'ORGANIZATION'">
+          <svg *ngIf="p.type === 'INDIVIDUAL'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <svg *ngIf="p.type === 'ORGANIZATION'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="7" width="20" height="15" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+          </svg>
+        </div>
+        <div class="card-actions">
+          <button class="btn-icon" (click)="openEdit(p)" title="Edit">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+          <button class="btn-icon btn-icon--danger" (click)="deleteProfile(p.id)" title="Delete">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+              <path d="M10 11v6"/><path d="M14 11v6"/>
+              <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-type-row">
+          <span class="type-badge" [class.type-badge--org]="p.type === 'ORGANIZATION'">
+            {{ p.type === 'INDIVIDUAL' ? 'Individual' : 'Organization' }}
+          </span>
+          <span class="type-badge type-badge--default" *ngIf="p.isDefault">Default</span>
+        </div>
+        <div class="card-name">{{ p.profileLabel }}</div>
+        <div class="card-meta" *ngIf="p.type === 'INDIVIDUAL' && (p.firstName || p.lastName)">
+          {{ p.firstName }} {{ p.lastName }}
+        </div>
+        <div class="card-meta" *ngIf="p.type === 'ORGANIZATION' && p.companyName">
+          {{ p.companyName }}
+        </div>
+        <div class="card-address" *ngIf="p.city || p.country">
+          {{ formatAddress(p) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #empty>
+    <div class="empty-state">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <p>No profiles yet.</p>
+      <button class="btn-primary" (click)="openCreate()">Create your first profile</button>
+    </div>
+  </ng-template>
+</div>
+
+<!-- ─── Form View ──────────────────────────────────────────────────────────── -->
+<div class="form-page" *ngIf="panelOpen()">
+  <div class="form-page-header">
+    <button class="btn-back" (click)="closePanel()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Back to Profiles
+    </button>
+    <h1>{{ editingProfile() ? 'Edit Profile' : 'New Profile' }}</h1>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="profile-form">
+
+    <!-- Type Picker -->
+    <div class="type-picker">
+      <button type="button" class="type-card" [class.type-card--active]="!isOrganization" (click)="setType('INDIVIDUAL')">
+        <div class="type-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </div>
+        <div class="type-card-text">
+          <span class="type-card-title">Individual</span>
+          <span class="type-card-desc">A person — freelancer, sole trader, or private contact</span>
+        </div>
+        <div class="type-card-check" *ngIf="!isOrganization">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </button>
+
+      <button type="button" class="type-card" [class.type-card--active]="isOrganization" (click)="setType('ORGANIZATION')">
+        <div class="type-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="7" width="20" height="15" rx="2"/>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            <line x1="12" y1="12" x2="12" y2="16"/>
+            <line x1="10" y1="14" x2="14" y2="14"/>
+          </svg>
+        </div>
+        <div class="type-card-text">
+          <span class="type-card-title">Organization</span>
+          <span class="type-card-desc">A company, agency, or any legal entity</span>
+        </div>
+        <div class="type-card-check" *ngIf="isOrganization">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+      </button>
+    </div>
+
+    <div class="form-grid">
+
+      <section class="form-section">
+        <h3 class="section-title">General</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Profile Label *</label>
+            <input type="text" formControlName="profileLabel" placeholder="e.g. My Business"/>
+          </div>
+          <div class="form-group form-group--checkbox">
+            <label class="checkbox-label">
+              <input type="checkbox" formControlName="isDefault"/>
+              <span>Set as default profile</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Personal Info (Individual) -->
+      <section class="form-section" *ngIf="!isOrganization">
+        <h3 class="section-title">Personal Info</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Salutation</label>
+            <input type="text" formControlName="salutation" placeholder="e.g. Mr., Ms."/>
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" formControlName="title" placeholder="e.g. Dr."/>
+          </div>
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" formControlName="firstName"/>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" formControlName="lastName"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Company Info (Organization) -->
+      <section class="form-section" *ngIf="isOrganization">
+        <h3 class="section-title">Company Info</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Company Name</label>
+            <input type="text" formControlName="companyName"/>
+          </div>
+          <div class="form-group">
+            <label>Department</label>
+            <input type="text" formControlName="department"/>
+          </div>
+          <div class="form-group">
+            <label>Managing Director</label>
+            <input type="text" formControlName="managingDirector"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Register Court</label>
+            <input type="text" formControlName="registerCourt"/>
+          </div>
+          <div class="form-group">
+            <label>Register Number</label>
+            <input type="text" formControlName="registerNumber"/>
+          </div>
+          <div class="form-group">
+            <label>VAT ID</label>
+            <input type="text" formControlName="vatId"/>
+          </div>
+          <div class="form-group">
+            <label>Tax Number</label>
+            <input type="text" formControlName="taxNumber"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Address -->
+      <section class="form-section">
+        <h3 class="section-title">Address</h3>
+        <div class="form-row">
+          <div class="form-group form-group--grow">
+            <label>Street</label>
+            <input type="text" formControlName="street"/>
+          </div>
+          <div class="form-group form-group--narrow">
+            <label>No.</label>
+            <input type="text" formControlName="streetNumber"/>
+          </div>
+          <div class="form-group form-group--narrow">
+            <label>Postal Code</label>
+            <input type="text" formControlName="postalCode"/>
+          </div>
+          <div class="form-group form-group--grow">
+            <label>City</label>
+            <input type="text" formControlName="city"/>
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" formControlName="country"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section class="form-section">
+        <h3 class="section-title">Contact</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" formControlName="email" placeholder="contact@example.com"/>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="text" formControlName="phone" placeholder="+49 30 123456"/>
+          </div>
+          <div class="form-group">
+            <label>Fax</label>
+            <input type="text" formControlName="fax" placeholder="+49 30 654321"/>
+          </div>
+          <div class="form-group">
+            <label>Website</label>
+            <input type="text" formControlName="website" placeholder="https://example.com"/>
+          </div>
+        </div>
+        <div class="form-row" *ngIf="isOrganization">
+          <div class="form-group form-group--narrow">
+            <label>Salutation</label>
+            <input type="text" formControlName="salutation" placeholder="e.g. Mr., Ms."/>
+          </div>
+          <div class="form-group form-group--grow">
+            <label>Contact Person</label>
+            <input type="text" formControlName="contactPerson" placeholder="Full name of the contact person"/>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banking -->
+      <section class="form-section">
+        <h3 class="section-title">Banking</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Bank Name</label>
+            <input type="text" formControlName="bankName"/>
+          </div>
+          <div class="form-group">
+            <label>IBAN</label>
+            <input type="text" formControlName="iban"/>
+          </div>
+          <div class="form-group">
+            <label>BIC</label>
+            <input type="text" formControlName="bic"/>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /form-grid -->
+
+    <div class="form-actions">
+      <button type="button" class="btn-secondary" (click)="closePanel()">Cancel</button>
+      <button type="submit" class="btn-primary" [disabled]="form.invalid || loading()">
+        {{ loading() ? 'Saving…' : (editingProfile() ? 'Update Profile' : 'Create Profile') }}
+      </button>
+    </div>
+
+  </form>
+</div>
