@@ -88,6 +88,7 @@ export interface ProfileDto {
   email?: string;
   contactPerson?: string;
   createdAt?: string;
+  hasLogo?: boolean;
 }
 
 /**
@@ -205,6 +206,47 @@ export class ProfileService {
   delete(id: string): Observable<void> {
     return this.http.delete<void>(`${this.base}/${id}`).pipe(
       tap(() => this.profiles.update(list => list.filter(p => p.id !== id)))
+    );
+  }
+
+  /**
+   * Uploads a logo image for the given profile.
+   *
+   * @param id   - UUID of the target profile.
+   * @param file - The image file to upload (PNG, JPEG, ICO, or SVG; max 2 MB).
+   * @returns Observable that completes without emitting on success.
+   */
+  uploadLogo(id: string, file: File): Observable<void> {
+    const form = new FormData();
+    form.append('file', file);
+    return this.http.post<void>(`${this.base}/${id}/logo`, form).pipe(
+      tap(() => this.profiles.update(list =>
+        list.map(p => p.id === id ? { ...p, hasLogo: true } : p)
+      ))
+    );
+  }
+
+  /**
+   * Fetches the logo of the given profile as a Blob.
+   *
+   * @param id - UUID of the profile whose logo should be fetched.
+   * @returns Observable emitting the logo Blob.
+   */
+  getLogo(id: string): Observable<Blob> {
+    return this.http.get(`${this.base}/${id}/logo`, { responseType: 'blob' });
+  }
+
+  /**
+   * Removes the logo from the given profile.
+   *
+   * @param id - UUID of the profile.
+   * @returns Observable that completes without emitting on success.
+   */
+  deleteLogo(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.base}/${id}/logo`).pipe(
+      tap(() => this.profiles.update(list =>
+        list.map(p => p.id === id ? { ...p, hasLogo: false } : p)
+      ))
     );
   }
 }

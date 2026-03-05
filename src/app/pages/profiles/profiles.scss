@@ -403,3 +403,70 @@ $text-secondary: #94a3b8;
   gap: 0.75rem;
   justify-content: flex-end;
 }
+
+// ─── Logo Upload ───────────────────────────────────────────────────────────────
+.type-badge--logo {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.logo-upload-area {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.logo-preview {
+  position: relative;
+  flex-shrink: 0;
+
+  .logo-preview-img {
+    display: block;
+    max-height: 80px;
+    max-width: 180px;
+    border-radius: 0.625rem;
+    border: 1px solid $border;
+    background: rgba(255, 255, 255, 0.03);
+    object-fit: contain;
+  }
+
+  .logo-delete-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+  }
+}
+
+.logo-upload-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1.25rem 2rem;
+  border: 1.5px dashed $border;
+  border-radius: 0.875rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  min-width: 180px;
+  text-align: center;
+
+  svg { width: 22px; height: 22px; color: $text-secondary; }
+
+  span { font-size: 0.875rem; font-weight: 500; color: $text-secondary; }
+
+  .logo-hint {
+    font-size: 0.72rem;
+    color: rgba($text-secondary, 0.6);
+    font-weight: 400;
+  }
+
+  &:hover:not(.logo-upload-label--loading) {
+    border-color: rgba($primary-start, 0.5);
+    background: rgba($primary-start, 0.04);
+    svg, span { color: $text-primary; }
+  }
+
+  &--loading { opacity: 0.6; cursor: not-allowed; }
+}

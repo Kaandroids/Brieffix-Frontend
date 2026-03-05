@@ -16,7 +16,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl, Title } from '@angular/platform-browser';
 import { ProfileDto, ProfileService } from '../../services/profile';
 
 /**
@@ -37,6 +37,7 @@ export class Profiles implements OnInit {
   private profileService = inject(ProfileService);
   private fb = inject(FormBuilder);
   private title = inject(Title);
+  private sanitizer = inject(DomSanitizer);
 
   /** Direct reference to the `ProfileService` reactive signal; binds the template to live data. */
   profiles = this.profileService.profiles;
@@ -53,6 +54,12 @@ export class Profiles implements OnInit {
 
   /** Tracks whether a save request is in flight; used to disable the submit button. */
   loading = signal(false);
+
+  /** Tracks whether a logo upload/delete request is in flight. */
+  logoLoading = signal(false);
+
+  /** Holds a sanitized blob URL for the currently editing profile's logo preview. */
+  logoPreviewUrl = signal<SafeUrl | null>(null);
 
   /**
    * Shared reactive form used for both creating and editing profiles.
@@ -139,7 +146,14 @@ export class Profiles implements OnInit {
    * @param profile - The `ProfileDto` to load into the form for editing.
    */
   openEdit(profile: ProfileDto): void {
+    this.logoPreviewUrl.set(null);
     this.editingProfile.set(profile);
+    if (profile.hasLogo) {
+      this.profileService.getLogo(profile.id).subscribe(blob => {
+        const url = URL.createObjectURL(blob);
+        this.logoPreviewUrl.set(this.sanitizer.bypassSecurityTrustUrl(url));
+      });
+    }
     this.form.patchValue({
       profileLabel: profile.profileLabel,
       isDefault: profile.isDefault,
@@ -179,6 +193,7 @@ export class Profiles implements OnInit {
   closePanel(): void {
     this.panelOpen.set(false);
     this.editingProfile.set(null);
+    this.logoPreviewUrl.set(null);
     this.form.reset({ type: 'INDIVIDUAL', isDefault: false, country: 'Deutschland' });
   }
 
@@ -224,6 +239,43 @@ export class Profiles implements OnInit {
    */
   deleteProfile(id: string): void {
     this.profileService.delete(id).subscribe();
+  }
+
+  /**
+   * Handles file input change for logo upload.
+   * Uploads the selected file and refreshes the preview on success.
+   *
+   * @param event - The DOM change event from the file input.
+   */
+  onLogoSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    const id = this.editingProfile()?.id;
+    if (!file || !id) return;
+    this.logoLoading.set(true);
+    this.profileService.uploadLogo(id, file).subscribe({
+      next: () => {
+        this.logoLoading.set(false);
+        const url = URL.createObjectURL(file);
+        this.logoPreviewUrl.set(this.sanitizer.bypassSecurityTrustUrl(url));
+      },
+      error: () => this.logoLoading.set(false)
+    });
+  }
+
+  /**
+   * Deletes the logo of the currently edited profile.
+   */
+  onDeleteLogo(): void {
+    const id = this.editingProfile()?.id;
+    if (!id) return;
+    this.logoLoading.set(true);
+    this.profileService.deleteLogo(id).subscribe({
+      next: () => {
+        this.logoLoading.set(false);
+        this.logoPreviewUrl.set(null);
+      },
+      error: () => this.logoLoading.set(false)
+    });
   }
 
   /**

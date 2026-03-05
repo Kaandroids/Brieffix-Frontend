@@ -50,6 +50,7 @@
             {{ p.type === 'INDIVIDUAL' ? 'Privatperson' : 'Organisation' }}
           </span>
           <span class="type-badge type-badge--default" *ngIf="p.isDefault">Standard</span>
+          <span class="type-badge type-badge--logo" *ngIf="p.hasLogo">Logo</span>
         </div>
         <div class="card-name">{{ p.profileLabel }}</div>
         <div class="card-meta" *ngIf="p.type === 'INDIVIDUAL' && (p.firstName || p.lastName)">
@@ -286,6 +287,36 @@
             <label>BIC</label>
             <input type="text" formControlName="bic"/>
           </div>
+        </div>
+      </section>
+
+      <!-- Logo (edit mode only) -->
+      <section class="form-section" *ngIf="editingProfile()">
+        <h3 class="section-title">Logo</h3>
+        <div class="logo-upload-area">
+          <div class="logo-preview" *ngIf="logoPreviewUrl()">
+            <img [src]="logoPreviewUrl()" alt="Logo-Vorschau" class="logo-preview-img" />
+            <button type="button" class="btn-icon btn-icon--danger logo-delete-btn"
+                    [disabled]="logoLoading()" (click)="onDeleteLogo()" title="Logo entfernen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                <path d="M10 11v6"/><path d="M14 11v6"/>
+                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+              </svg>
+            </button>
+          </div>
+          <label class="logo-upload-label" [class.logo-upload-label--loading]="logoLoading()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <span>{{ logoLoading() ? 'Wird hochgeladen…' : (logoPreviewUrl() ? 'Logo ersetzen' : 'Logo hochladen') }}</span>
+            <span class="logo-hint">PNG, JPEG, SVG oder ICO · max. 2 MB</span>
+            <input type="file" accept="image/png,image/jpeg,image/svg+xml,image/x-icon"
+                   (change)="onLogoSelected($event)" [disabled]="logoLoading()" hidden />
+          </label>
         </div>
       </section>
 
