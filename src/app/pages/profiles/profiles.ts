@@ -221,9 +221,14 @@ export class Profiles implements OnInit {
       : this.profileService.create(val);
 
     obs.subscribe({
-      next: () => {
+      next: (saved) => {
         this.loading.set(false);
-        this.closePanel();
+        if (!editing) {
+          // After creation, switch to edit mode so the user can upload a logo immediately.
+          this.openEdit(saved);
+        } else {
+          this.closePanel();
+        }
       },
       error: () => {
         this.loading.set(false);
