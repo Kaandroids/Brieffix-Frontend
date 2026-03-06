@@ -9,12 +9,15 @@
  * request is in flight.
  */
 
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth';
+
+const GOOGLE_CLIENT_ID = '919868109325-309ch5gbdf10onbpatqabulqbc7gc22a.apps.googleusercontent.com';
 
 /**
  * Standalone page component responsible for authenticating an existing user.
@@ -34,9 +37,35 @@ export class Login implements OnInit {
   private router = inject(Router);
   private authService = inject(AuthService);
   private title = inject(Title);
+  private platformId = inject(PLATFORM_ID);
+
+  googleError = signal('');
 
   ngOnInit(): void {
     this.title.setTitle('Login — Brief-Fix');
+    if (isPlatformBrowser(this.platformId)) {
+      this.initGoogleSignIn();
+    }
+  }
+
+  private initGoogleSignIn(): void {
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: (response) => this.handleGoogleCredential(response.credential),
+      auto_select: false
+    });
+  }
+
+  signInWithGoogle(): void {
+    google.accounts.id.prompt();
+  }
+
+  private handleGoogleCredential(idToken: string): void {
+    this.googleError.set('');
+    this.authService.loginWithGoogle(idToken).subscribe({
+      next: () => this.router.navigate(['/dashboard']),
+      error: (err) => this.googleError.set(err.error?.detail ?? 'Google-Anmeldung fehlgeschlagen.')
+    });
   }
 
   /** Tracks whether an authentication request is currently in progress; prevents re-submission. */

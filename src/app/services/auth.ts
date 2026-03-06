@@ -130,6 +130,12 @@ export class AuthService {
     return this.http.post<void>(`${this.base}/register`, payload, { responseType: 'text' as 'json' });
   }
 
+  loginWithGoogle(idToken: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.base}/google`, { idToken }).pipe(
+      tap(res => this.storeTokens(res))
+    );
+  }
+
   verifyEmail(token: string): Observable<void> {
     return this.http.get<void>(`${this.base}/verify`, { params: { token }, responseType: 'text' as 'json' });
   }
