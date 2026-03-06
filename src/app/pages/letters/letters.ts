@@ -258,6 +258,10 @@ export class Letters implements OnInit {
     });
   }
 
+  closePreview(): void {
+    this.clearPreview();
+  }
+
   /**
    * Persists the current letter to the API and closes the form on success.
    *

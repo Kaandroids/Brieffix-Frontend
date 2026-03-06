@@ -85,10 +85,10 @@
 
   <div class="letter-layout" [formGroup]="form">
 
-    <!-- ── Left: Form ── -->
-    <div class="form-main">
+    <!-- ── Left column ── -->
+    <div class="letter-left">
 
-      <!-- 1. Sender profile -->
+      <!-- Sender -->
       <section class="form-section">
         <h3 class="section-title">Absender — Ihr Profil</h3>
         <div class="form-group">
@@ -116,7 +116,7 @@
         </div>
       </section>
 
-      <!-- 2. Recipient -->
+      <!-- Recipient -->
       <section class="form-section">
         <h3 class="section-title">Empfänger</h3>
         <div class="recipient-toggle">
@@ -143,8 +143,6 @@
         </div>
 
         <div *ngIf="isManual" class="manual-recipient">
-
-          <!-- Entity type toggle -->
           <div class="recipient-toggle" style="margin-top:12px">
             <button type="button"
               class="toggle-btn" [class.toggle-btn--active]="!isOrganization"
@@ -158,25 +156,23 @@
             </button>
           </div>
 
-          <!-- Individual fields -->
           <div *ngIf="!isOrganization" class="form-row" style="margin-top:12px">
             <div class="form-group form-group--narrow">
               <label>Anrede</label>
               <input type="text" formControlName="recipientSalutation" placeholder="Herr, Frau, …"/>
             </div>
-            <div class="form-group form-group--grow">
+            <div class="form-group">
               <label>Vorname</label>
               <input type="text" formControlName="recipientFirstName"/>
             </div>
-            <div class="form-group form-group--grow">
+            <div class="form-group">
               <label>Nachname</label>
               <input type="text" formControlName="recipientLastName"/>
             </div>
           </div>
 
-          <!-- Organization fields -->
           <div *ngIf="isOrganization" class="form-row" style="margin-top:12px">
-            <div class="form-group form-group--grow">
+            <div class="form-group">
               <label>Firmenname</label>
               <input type="text" formControlName="recipientCompany"/>
             </div>
@@ -184,13 +180,12 @@
               <label>Anrede</label>
               <input type="text" formControlName="recipientSalutation" placeholder="Herr, Frau, …"/>
             </div>
-            <div class="form-group form-group--grow">
+            <div class="form-group">
               <label>Ansprechpartner</label>
               <input type="text" formControlName="recipientContactPerson"/>
             </div>
           </div>
 
-          <!-- Address (shared) -->
           <div class="form-row">
             <div class="form-group form-group--grow">
               <label>Straße</label>
@@ -208,7 +203,7 @@
               <label>Stadt</label>
               <input type="text" formControlName="recipientCity"/>
             </div>
-            <div class="form-group form-group--grow">
+            <div class="form-group">
               <label>Land</label>
               <input type="text" formControlName="recipientCountry"/>
             </div>
@@ -216,27 +211,7 @@
         </div>
       </section>
 
-      <!-- 3. Letter content -->
-      <section class="form-section">
-        <h3 class="section-title">Brief</h3>
-        <div class="form-row">
-          <div class="form-group form-group--grow">
-            <label>Betreff / Titel <span class="required">*</span></label>
-            <input type="text" formControlName="title" placeholder="z. B. Rechnung Nr. 2024-001"/>
-          </div>
-          <div class="form-group form-group--date">
-            <label>Datum</label>
-            <input type="date" formControlName="letterDate"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Inhalt <span class="required">*</span></label>
-          <textarea formControlName="body" rows="16"
-            placeholder="Schreiben Sie hier den Briefinhalt…&#10;&#10;Sehr geehrte Damen und Herren,&#10;&#10;…"></textarea>
-        </div>
-      </section>
-
-      <!-- 4. Template -->
+      <!-- Template -->
       <section class="form-section">
         <h3 class="section-title">Vorlage</h3>
         <div class="template-picker">
@@ -263,28 +238,59 @@
         </div>
       </section>
 
-      <!-- Actions -->
-      <div class="form-actions">
-        <button type="button" class="btn-secondary" (click)="closeForm()">Abbrechen</button>
-        <button type="button" class="btn-outline" (click)="onPreview()"
-          [disabled]="form.invalid || previewLoading() || !hasProfiles()">
-          {{ previewLoading() ? 'Wird erstellt…' : 'PDF-Vorschau' }}
-        </button>
-        <button type="button" class="btn-primary" (click)="onSave()"
-          [disabled]="form.invalid || loading() || !hasProfiles()">
-          {{ loading() ? 'Wird gespeichert…' : 'Brief speichern' }}
-        </button>
-      </div>
     </div>
 
-    <!-- ── Right: PDF Preview ── -->
-    <div class="preview-panel" *ngIf="previewUrl() || previewLoading()">
-      <div class="preview-header">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-        </svg>
-        PDF-Vorschau
+    <!-- ── Right column: Content ── -->
+    <section class="form-section letter-right">
+      <h3 class="section-title">Brief</h3>
+      <div class="form-row">
+        <div class="form-group form-group--grow">
+          <label>Betreff / Titel <span class="required">*</span></label>
+          <input type="text" formControlName="title" placeholder="z. B. Rechnung Nr. 2024-001"/>
+        </div>
+        <div class="form-group form-group--date">
+          <label>Datum</label>
+          <input type="date" formControlName="letterDate"/>
+        </div>
+      </div>
+      <div class="form-group form-group--textarea">
+        <label>Inhalt <span class="required">*</span></label>
+        <textarea formControlName="body"
+          placeholder="Schreiben Sie hier den Briefinhalt…&#10;&#10;Sehr geehrte Damen und Herren,&#10;&#10;…"></textarea>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ── Actions ── -->
+  <div class="form-actions">
+    <button type="button" class="btn-secondary" (click)="closeForm()">Abbrechen</button>
+    <button type="button" class="btn-outline" (click)="onPreview()"
+      [disabled]="form.invalid || previewLoading() || !hasProfiles()">
+      {{ previewLoading() ? 'Wird erstellt…' : 'PDF-Vorschau' }}
+    </button>
+    <button type="button" class="btn-primary" (click)="onSave()"
+      [disabled]="form.invalid || loading() || !hasProfiles()">
+      {{ loading() ? 'Wird gespeichert…' : 'Brief speichern' }}
+    </button>
+  </div>
+
+  <!-- ── Preview Modal ── -->
+  <div class="preview-modal" *ngIf="previewUrl() || previewLoading()" (click)="closePreview()">
+    <div class="preview-modal-box" (click)="$event.stopPropagation()">
+      <div class="preview-modal-header">
+        <div class="preview-modal-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          PDF-Vorschau
+        </div>
+        <button class="preview-modal-close" (click)="closePreview()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
       </div>
       <div class="preview-spinner" *ngIf="previewLoading()">
         <div class="spinner"></div>
@@ -292,6 +298,5 @@
       </div>
       <iframe *ngIf="previewUrl()" [src]="previewUrl()" class="preview-iframe" title="Briefvorschau"></iframe>
     </div>
-
   </div>
 </div>

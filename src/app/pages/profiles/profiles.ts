@@ -61,6 +61,9 @@ export class Profiles implements OnInit {
   /** Holds a sanitized blob URL for the currently editing profile's logo preview. */
   logoPreviewUrl = signal<SafeUrl | null>(null);
 
+  /** Holds a logo file selected during create mode, to be uploaded after the profile is saved. */
+  pendingLogo = signal<File | null>(null);
+
   /**
    * Shared reactive form used for both creating and editing profiles.
    *
@@ -134,6 +137,8 @@ export class Profiles implements OnInit {
    */
   openCreate(): void {
     this.editingProfile.set(null);
+    this.pendingLogo.set(null);
+    this.logoPreviewUrl.set(null);
     this.form.reset({ type: 'INDIVIDUAL', isDefault: false, country: 'Deutschland' });
     this.panelOpen.set(true);
   }
@@ -193,6 +198,7 @@ export class Profiles implements OnInit {
   closePanel(): void {
     this.panelOpen.set(false);
     this.editingProfile.set(null);
+    this.pendingLogo.set(null);
     this.logoPreviewUrl.set(null);
     this.form.reset({ type: 'INDIVIDUAL', isDefault: false, country: 'Deutschland' });
   }
@@ -222,11 +228,15 @@ export class Profiles implements OnInit {
 
     obs.subscribe({
       next: (saved) => {
-        this.loading.set(false);
-        if (!editing) {
-          // After creation, switch to edit mode so the user can upload a logo immediately.
-          this.openEdit(saved);
+        const pending = this.pendingLogo();
+        if (!editing && pending) {
+          // Upload the logo selected during create mode, then close.
+          this.profileService.uploadLogo(saved.id, pending).subscribe({
+            next: () => { this.loading.set(false); this.closePanel(); },
+            error: () => { this.loading.set(false); this.closePanel(); }
+          });
         } else {
+          this.loading.set(false);
           this.closePanel();
         }
       },
@@ -254,25 +264,39 @@ export class Profiles implements OnInit {
    */
   onLogoSelected(event: Event): void {
     const file = (event.target as HTMLInputElement).files?.[0];
+    if (!file) return;
     const id = this.editingProfile()?.id;
-    if (!file || !id) return;
-    this.logoLoading.set(true);
-    this.profileService.uploadLogo(id, file).subscribe({
-      next: () => {
-        this.logoLoading.set(false);
-        const url = URL.createObjectURL(file);
-        this.logoPreviewUrl.set(this.sanitizer.bypassSecurityTrustUrl(url));
-      },
-      error: () => this.logoLoading.set(false)
-    });
+    if (id) {
+      // Edit mode: upload immediately.
+      this.logoLoading.set(true);
+      this.profileService.uploadLogo(id, file).subscribe({
+        next: () => {
+          this.logoLoading.set(false);
+          const url = URL.createObjectURL(file);
+          this.logoPreviewUrl.set(this.sanitizer.bypassSecurityTrustUrl(url));
+        },
+        error: () => this.logoLoading.set(false)
+      });
+    } else {
+      // Create mode: store for upload after the profile is saved.
+      this.pendingLogo.set(file);
+      const url = URL.createObjectURL(file);
+      this.logoPreviewUrl.set(this.sanitizer.bypassSecurityTrustUrl(url));
+    }
   }
 
   /**
-   * Deletes the logo of the currently edited profile.
+   * Deletes the logo of the currently edited profile, or clears the pending logo
+   * if the profile has not yet been saved.
    */
   onDeleteLogo(): void {
     const id = this.editingProfile()?.id;
-    if (!id) return;
+    if (!id) {
+      // Create mode: just clear the pending selection.
+      this.pendingLogo.set(null);
+      this.logoPreviewUrl.set(null);
+      return;
+    }
     this.logoLoading.set(true);
     this.profileService.deleteLogo(id).subscribe({
       next: () => {

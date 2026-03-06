@@ -31,12 +31,11 @@ import { AuthService } from '../../services/auth';
 export class Dashboard {
   private authService = inject(AuthService);
 
-  /**
-   * Terminates the current user session and redirects to the login page.
-   *
-   * Delegates entirely to `AuthService.logout`, which clears stored tokens and
-   * handles navigation, keeping this component free of direct routing concerns.
-   */
+  menuOpen = false;
+
+  toggleMenu(): void { this.menuOpen = !this.menuOpen; }
+  closeMenu(): void  { this.menuOpen = false; }
+
   logout(): void {
     this.authService.logout();
   }
