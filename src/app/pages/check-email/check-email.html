@@ -1,0 +1,51 @@
+<div class="auth-page">
+  <div class="bg-orbs">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="orb orb--3"></div>
+  </div>
+
+  <div class="auth-card">
+    <div class="card-header">
+      <div class="logo">
+        <span class="logo-icon">B</span>
+        <span class="logo-text">Brief-Fix</span>
+      </div>
+
+      <div class="envelope-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+
+      <h1>E-Mail bestätigen</h1>
+      <p class="subtitle">
+        Wir haben eine Bestätigungs-E-Mail an<br>
+        <strong>{{ email() || 'Ihre E-Mail-Adresse' }}</strong> gesendet.
+      </p>
+      <p class="hint">Bitte klicken Sie auf den Link in der E-Mail, um Ihr Konto zu aktivieren.</p>
+    </div>
+
+    @if (resendSuccess()) {
+      <div class="success-msg">E-Mail wurde erneut gesendet. Bitte prüfen Sie auch Ihren Spam-Ordner.</div>
+    }
+
+    @if (resendError()) {
+      <div class="server-error">{{ resendError() }}</div>
+    }
+
+    <button class="btn-primary" (click)="resend()" [disabled]="resendLoading() || resendSuccess()">
+      @if (resendLoading()) {
+        <span class="spinner"></span>
+        <span>Wird gesendet…</span>
+      } @else {
+        <span>E-Mail erneut senden</span>
+      }
+    </button>
+
+    <p class="switch-link">
+      Zurück zur <a routerLink="/login">Anmeldung</a>
+    </p>
+  </div>
+</div>

@@ -126,11 +126,10 @@ export class Register implements OnInit {
       email: this.email.value!,
       password: this.password.value!
     }).subscribe({
-      next: () => this.router.navigate(['/login']),
+      next: () => this.router.navigate(['/check-email'], { queryParams: { email: this.email.value } }),
       error: (err) => {
         this.loading.set(false);
-        // Prefer the server's error message; fall back to a generic string if absent.
-        this.errorMessage.set(err.error?.message ?? 'Registration failed. Please try again.');
+        this.errorMessage.set(err.error?.detail ?? err.error?.message ?? 'Registration failed. Please try again.');
       }
     });
   }

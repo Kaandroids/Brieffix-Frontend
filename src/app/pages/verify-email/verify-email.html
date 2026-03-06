@@ -1,0 +1,45 @@
+<div class="auth-page">
+  <div class="bg-orbs">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+    <div class="orb orb--3"></div>
+  </div>
+
+  <div class="auth-card">
+    <div class="logo">
+      <span class="logo-icon">B</span>
+      <span class="logo-text">Brief-Fix</span>
+    </div>
+
+    @if (status() === 'loading') {
+      <div class="status-icon loading">
+        <span class="spinner-large"></span>
+      </div>
+      <h1>Wird bestätigt…</h1>
+      <p class="subtitle">Bitte warten Sie einen Moment.</p>
+    }
+
+    @if (status() === 'success') {
+      <div class="status-icon success">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <h1>E-Mail bestätigt!</h1>
+      <p class="subtitle">Ihr Konto wurde erfolgreich aktiviert. Sie können sich jetzt anmelden.</p>
+      <a routerLink="/login" class="btn-primary">Zur Anmeldung</a>
+    }
+
+    @if (status() === 'error') {
+      <div class="status-icon error">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </div>
+      <h1>Link ungültig</h1>
+      <p class="subtitle">Der Bestätigungslink ist abgelaufen oder ungültig. Bitte fordern Sie einen neuen Link an.</p>
+      <a routerLink="/login" class="btn-primary">Zur Anmeldung</a>
+    }
+  </div>
+</div>

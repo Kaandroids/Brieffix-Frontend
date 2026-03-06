@@ -126,10 +126,16 @@ export class AuthService {
    * @param payload - Registration details for the new account.
    * @returns Observable that emits the server-issued token pair on success.
    */
-  register(payload: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.base}/register`, payload).pipe(
-      tap(res => this.storeTokens(res))
-    );
+  register(payload: RegisterRequest): Observable<void> {
+    return this.http.post<void>(`${this.base}/register`, payload, { responseType: 'text' as 'json' });
+  }
+
+  verifyEmail(token: string): Observable<void> {
+    return this.http.get<void>(`${this.base}/verify`, { params: { token }, responseType: 'text' as 'json' });
+  }
+
+  resendVerification(email: string): Observable<void> {
+    return this.http.post<void>(`${this.base}/resend-verification`, { email }, { responseType: 'text' as 'json' });
   }
 
   /**

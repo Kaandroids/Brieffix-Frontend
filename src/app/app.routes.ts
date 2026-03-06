@@ -44,6 +44,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/register/register').then(m => m.Register)
   },
   {
+    path: 'check-email',
+    loadComponent: () => import('./pages/check-email/check-email').then(m => m.CheckEmail)
+  },
+  {
+    path: 'verify-email',
+    loadComponent: () => import('./pages/verify-email/verify-email').then(m => m.VerifyEmail)
+  },
+  {
     path: 'dashboard',
     loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard),
     /** Prevents access to the dashboard subtree for unauthenticated users. */

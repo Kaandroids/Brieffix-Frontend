@@ -92,8 +92,11 @@ export class Login implements OnInit {
       next: () => this.router.navigate(['/dashboard']),
       error: (err) => {
         this.loading.set(false);
-        // Prefer the server's error message; fall back to a generic string if absent.
-        this.errorMessage.set(err.error?.message ?? 'Invalid email or password.');
+        if (err.status === 403) {
+          this.router.navigate(['/check-email'], { queryParams: { email: this.email.value } });
+        } else {
+          this.errorMessage.set(err.error?.detail ?? 'Ungültige E-Mail oder Passwort.');
+        }
       }
     });
   }
