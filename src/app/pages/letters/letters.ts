@@ -93,6 +93,9 @@ export class Letters implements OnInit {
   /** Tracks whether a preview generation request is in flight. */
   previewLoading = signal(false);
 
+  /** True when the viewport is phone-sized; iframes are unreliable on mobile browsers. */
+  readonly isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   /**
    * Static list of available letter templates with plan-gate metadata.
    *
@@ -260,6 +263,27 @@ export class Letters implements OnInit {
 
   closePreview(): void {
     this.clearPreview();
+  }
+
+  /**
+   * Mobile alternative to `onPreview`: generates the PDF and immediately triggers
+   * a file download instead of showing it in an iframe (which is blocked on iOS/Android).
+   */
+  onPreviewDownload(): void {
+    if (this.form.invalid) return;
+    this.previewLoading.set(true);
+    this.letterService.preview(this.buildRequest()).subscribe({
+      next: blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${this.form.get('title')?.value || 'brief'}.pdf`;
+        a.click();
+        URL.revokeObjectURL(url);
+        this.previewLoading.set(false);
+      },
+      error: () => this.previewLoading.set(false)
+    });
   }
 
   /**
