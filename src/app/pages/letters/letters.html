@@ -71,7 +71,15 @@
       </svg>
       Zurück zu Briefen
     </button>
-    <h1>Neuer Brief</h1>
+    <div class="form-page-header-row">
+      <h1>Neuer Brief</h1>
+      <button type="button" class="btn-ai" (click)="openAiModal()" [disabled]="!hasProfiles()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+        Mit KI erstellen
+      </button>
+    </div>
   </div>
 
   <!-- No profiles warning -->
@@ -277,6 +285,60 @@
       [disabled]="form.invalid || loading() || !hasProfiles()">
       {{ loading() ? 'Wird gespeichert…' : 'Brief speichern' }}
     </button>
+  </div>
+
+  <!-- ── AI Modal ── -->
+  <div class="ai-modal" *ngIf="aiModalOpen()" (click)="closeAiModal()">
+    <div class="ai-modal-box" (click)="$event.stopPropagation()">
+      <div class="ai-modal-header">
+        <div class="ai-modal-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          Brief mit KI erstellen
+        </div>
+        <button class="preview-modal-close" (click)="closeAiModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="ai-modal-body">
+        <label class="ai-label">Beschreiben Sie Ihren Brief</label>
+        <p class="ai-hint-text">Was möchten Sie schreiben? Beschreiben Sie das Thema, den Zweck oder den Inhalt.</p>
+        <div class="ai-input-row">
+          <textarea
+            class="ai-textarea"
+            [value]="aiDescription()"
+            (input)="aiDescription.set($any($event.target).value)"
+            placeholder="z. B. Kündigung meines Internetvertrags zum nächstmöglichen Termin, Kundennummer 123456…"
+            rows="5">
+          </textarea>
+          <button *ngIf="speechSupported" type="button"
+            class="btn-mic" [class.btn-mic--active]="isRecording()"
+            (click)="toggleVoice()" [title]="isRecording() ? 'Aufnahme stoppen' : 'Spracheingabe starten'">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="2" width="6" height="11" rx="3"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+            </svg>
+          </button>
+        </div>
+        <p class="ai-error" *ngIf="aiError()">{{ aiError() }}</p>
+        <p class="ai-recording-hint" *ngIf="isRecording()">Aufnahme läuft… Sprechen Sie jetzt.</p>
+      </div>
+      <div class="ai-modal-footer">
+        <button type="button" class="btn-secondary" (click)="closeAiModal()">Abbrechen</button>
+        <button type="button" class="btn-primary" (click)="onAiGenerate()"
+          [disabled]="!aiDescription().trim() || aiLoading()">
+          <svg *ngIf="!aiLoading()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          {{ aiLoading() ? 'Wird generiert…' : 'Brief generieren' }}
+        </button>
+      </div>
+    </div>
   </div>
 
   <!-- ── Preview Modal ── -->

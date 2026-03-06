@@ -28,6 +28,7 @@ import { LetterService, LetterDto, LetterTemplate } from '../../services/letter'
 import { ProfileService, ProfileDto } from '../../services/profile';
 import { ContactService } from '../../services/contact';
 import { UserService } from '../../services/user';
+import { AiService } from '../../services/ai';
 
 /**
  * Standalone page component that provides the full letter lifecycle UI:
@@ -49,6 +50,7 @@ export class Letters implements OnInit {
   private profileService = inject(ProfileService);
   private contactService = inject(ContactService);
   private userService = inject(UserService);
+  private aiService = inject(AiService);
   private sanitizer = inject(DomSanitizer);
   private fb = inject(FormBuilder);
   private title = inject(Title);
@@ -95,6 +97,17 @@ export class Letters implements OnInit {
 
   /** True when the viewport is phone-sized; iframes are unreliable on mobile browsers. */
   readonly isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
+  // ── AI modal state ──────────────────────────────────────────────────────────
+  aiModalOpen   = signal(false);
+  aiLoading     = signal(false);
+  aiDescription = signal('');
+  isRecording   = signal(false);
+  aiError       = signal<string | null>(null);
+  speechSupported = typeof window !== 'undefined' &&
+    !!((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition);
+
+  private recognition: any = null;
 
   /**
    * Static list of available letter templates with plan-gate metadata.
@@ -263,6 +276,74 @@ export class Letters implements OnInit {
 
   closePreview(): void {
     this.clearPreview();
+  }
+
+  // ── AI modal ────────────────────────────────────────────────────────────────
+
+  openAiModal(): void {
+    this.aiDescription.set('');
+    this.aiError.set(null);
+    this.aiModalOpen.set(true);
+  }
+
+  closeAiModal(): void {
+    if (this.isRecording()) this.stopRecording();
+    this.aiModalOpen.set(false);
+  }
+
+  onAiGenerate(): void {
+    const desc = this.aiDescription().trim();
+    if (!desc) return;
+    this.aiError.set(null);
+    this.aiLoading.set(true);
+    const profileId = this.form.get('profileId')?.value || null;
+    const contactId = this.form.get('contactId')?.value || null;
+    this.aiService.generateLetter(desc, profileId, contactId).subscribe({
+      next: res => {
+        this.aiLoading.set(false);
+        if (!res.success || !res.title || !res.content) {
+          this.aiError.set('Die Beschreibung war zu unklar. Bitte beschreiben Sie den Brief genauer.');
+          return;
+        }
+        this.form.patchValue({ title: res.title, body: res.content });
+        this.closeAiModal();
+      },
+      error: () => {
+        this.aiLoading.set(false);
+        this.aiError.set('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.');
+      }
+    });
+  }
+
+  toggleVoice(): void {
+    if (this.isRecording()) {
+      this.stopRecording();
+    } else {
+      this.startRecording();
+    }
+  }
+
+  private startRecording(): void {
+    const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (!SR) return;
+    this.recognition = new SR();
+    this.recognition.lang = 'de-DE';
+    this.recognition.continuous = true;
+    this.recognition.interimResults = false;
+    this.recognition.onresult = (e: any) => {
+      const transcript = Array.from(e.results as any[])
+        .map((r: any) => r[0].transcript)
+        .join(' ');
+      this.aiDescription.update(d => (d + ' ' + transcript).trim());
+    };
+    this.recognition.onend = () => this.isRecording.set(false);
+    this.recognition.start();
+    this.isRecording.set(true);
+  }
+
+  private stopRecording(): void {
+    this.recognition?.stop();
+    this.isRecording.set(false);
   }
 
   /**
