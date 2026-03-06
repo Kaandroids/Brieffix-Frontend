@@ -71,15 +71,7 @@
       </svg>
       Zurück zu Briefen
     </button>
-    <div class="form-page-header-row">
-      <h1>Neuer Brief</h1>
-      <button type="button" class="btn-ai" (click)="openAiModal()" [disabled]="!hasProfiles()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
-        </svg>
-        Mit KI erstellen
-      </button>
-    </div>
+    <h1>Neuer Brief</h1>
   </div>
 
   <!-- No profiles warning -->
@@ -250,7 +242,15 @@
 
     <!-- ── Right column: Content ── -->
     <section class="form-section letter-right">
-      <h3 class="section-title">Brief</h3>
+      <div class="section-title-row">
+        <h3 class="section-title">Brief</h3>
+        <button type="button" class="btn-ai" (click)="openAiModal()" [disabled]="!hasProfiles()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          Mit KI erstellen
+        </button>
+      </div>
       <div class="form-row">
         <div class="form-group form-group--grow">
           <label>Betreff / Titel <span class="required">*</span></label>

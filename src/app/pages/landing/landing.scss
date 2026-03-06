@@ -199,7 +199,9 @@ $text-secondary: #94a3b8;
 }
 
 .hero-badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
   padding: 0.35rem 1rem;
   background: rgba(99, 102, 241, 0.15);
   border: 1px solid rgba(99, 102, 241, 0.3);
@@ -209,6 +211,8 @@ $text-secondary: #94a3b8;
   font-weight: 500;
   letter-spacing: 0.02em;
   margin-bottom: 2rem;
+
+  svg { width: 13px; height: 13px; flex-shrink: 0; }
 }
 
 .hero-title {
@@ -321,6 +325,185 @@ $text-secondary: #94a3b8;
   }
 }
 
+// ─── AI Spotlight ─────────────────────────────────────────────────────────────
+.ai-spotlight {
+  position: relative;
+  z-index: 1;
+  padding: 0 2.5rem 5rem;
+}
+
+.ai-spotlight-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(139, 92, 246, 0.06));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 1.75rem;
+  padding: 3.5rem;
+  text-align: center;
+}
+
+.spotlight-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 1rem;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 2rem;
+  color: #a5b4fc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+
+  svg { width: 14px; height: 14px; }
+}
+
+.spotlight-title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: $text-primary;
+  margin-bottom: 0.75rem;
+}
+
+.spotlight-sub {
+  font-size: 1rem;
+  color: $text-secondary;
+  max-width: 560px;
+  margin: 0 auto 3rem;
+  line-height: 1.65;
+}
+
+.spotlight-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.spotlight-step {
+  flex: 1;
+  min-width: 200px;
+  max-width: 260px;
+  text-align: center;
+
+  h4 {
+    font-size: 1rem;
+    font-weight: 650;
+    color: $text-primary;
+    margin: 0.5rem 0 0.4rem;
+  }
+
+  p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+.spotlight-step-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #818cf8;
+  margin-bottom: 0.75rem;
+}
+
+.spotlight-step-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem;
+
+  svg { width: 24px; height: 24px; }
+
+  &--mic {
+    background: rgba(6, 182, 212, 0.12);
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    color: #22d3ee;
+  }
+
+  &--ai {
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: #818cf8;
+  }
+
+  &--pdf {
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    color: #a78bfa;
+  }
+}
+
+.spotlight-arrow {
+  display: flex;
+  align-items: center;
+  padding-top: 1.5rem;
+  color: rgba(255, 255, 255, 0.2);
+
+  svg { width: 20px; height: 20px; }
+}
+
+// ─── Feature card variants ─────────────────────────────────────────────────────
+.feature-card--highlight {
+  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(99, 102, 241, 0.06);
+  position: relative;
+
+  &:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(99, 102, 241, 0.1);
+  }
+}
+
+.feature-new-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  background: linear-gradient(135deg, $primary-start, $primary-end);
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.feature-icon--ai {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+  svg { color: #818cf8; }
+}
+
+.feature-icon--voice {
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.3);
+  svg { color: #22d3ee; }
+}
+
+// ─── CTA Banner badge ─────────────────────────────────────────────────────────
+.cta-banner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.9rem;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 2rem;
+  color: #a5b4fc;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+
+  svg { width: 13px; height: 13px; }
+}
+
 // ─── CTA Banner ───────────────────────────────────────────────────────────────
 .cta-banner {
   position: relative;
@@ -405,6 +588,11 @@ $text-secondary: #94a3b8;
   }
   .hero { padding: 5rem 1.25rem 4rem; }
   .features { padding: 3rem 1.25rem 4rem; }
+  .ai-spotlight { padding: 0 1.25rem 3.5rem; }
+  .ai-spotlight-inner { padding: 2rem 1.25rem; }
+  .spotlight-steps { flex-direction: column; align-items: center; }
+  .spotlight-arrow { padding-top: 0; transform: rotate(90deg); }
+  .spotlight-step { max-width: 100%; }
   .cta-banner { padding: 1rem 1.25rem; }
   .cta-banner-inner { padding: 2rem 1.5rem; }
   .footer-inner { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.25rem; }

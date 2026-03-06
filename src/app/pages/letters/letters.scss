@@ -167,7 +167,12 @@ $text-secondary:#94a3b8;
 
 .section-title {
   font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-  letter-spacing: 0.06em; color: $text-secondary; margin: 0 0 1.25rem;
+  letter-spacing: 0.06em; color: $text-secondary; margin: 0;
+}
+
+.section-title-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem;
 }
 
 .required { color: #f87171; }

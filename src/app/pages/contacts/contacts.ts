@@ -91,6 +91,12 @@ export class Contacts implements OnInit {
    */
   setType(type: 'INDIVIDUAL' | 'ORGANIZATION'): void {
     this.form.get('type')?.setValue(type);
+    // Clear fields that belong to the other type to prevent ghost data in the address
+    if (type === 'ORGANIZATION') {
+      this.form.patchValue({ salutation: '', firstName: '', lastName: '' });
+    } else {
+      this.form.patchValue({ companyName: '', contactPerson: '', contactPersonSalutation: '', department: '' });
+    }
   }
 
   /**

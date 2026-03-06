@@ -1,6 +1,6 @@
 <div class="landing">
 
-  <!-- Background -->
+  <!-- Background orbs -->
   <div class="bg-orbs">
     <div class="orb orb--1"></div>
     <div class="orb orb--2"></div>
@@ -23,17 +23,89 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">Brieferstellung für DIN-A4-Fensterbriefumschläge</div>
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+      </svg>
+      KI-gestützte Brieferstellung · Spracheingabe · DIN 5008
+    </div>
     <h1 class="hero-title">
       Professionelle Briefe,<br />
-      <span class="gradient-text">versandfertig in Minuten</span>
+      <span class="gradient-text">in Sekunden mit KI</span>
     </h1>
     <p class="hero-subtitle">
-      Brief-Fix ermöglicht die Erstellung perfekt formatierter Briefe für DIN-A4-Fensterbriefumschläge — mit präziser Adressplatzierung, jedes Mal. Verwalten Sie Kontakte, Absenderprofile und Korrespondenzverlauf an einem Ort.
+      Beschreiben Sie Ihr Anliegen — per Text oder Sprache — und Brief-Fix generiert einen vollständigen, formellen Brief nach DIN 5008. Passend für Fensterbriefumschläge, druckfertig als PDF.
     </p>
     <div class="hero-cta">
       <a routerLink="/register" class="btn-primary btn-lg">Kostenlos starten</a>
       <a routerLink="/login" class="btn-ghost btn-lg">Anmelden</a>
+    </div>
+  </section>
+
+  <!-- AI Spotlight section -->
+  <section class="ai-spotlight">
+    <div class="ai-spotlight-inner">
+      <div class="spotlight-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+        Neu: KI-Briefgenerierung
+      </div>
+      <h2 class="spotlight-title">Brief beschreiben — KI erledigt den Rest</h2>
+      <p class="spotlight-sub">Kein langes Formulieren mehr. Sagen oder tippen Sie einfach, was Sie schreiben möchten — Brief-Fix erstellt Betreff und Inhalt automatisch.</p>
+      <div class="spotlight-steps">
+        <!-- Step 1 -->
+        <div class="spotlight-step">
+          <div class="spotlight-step-icon spotlight-step-icon--mic">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <rect x="9" y="2" width="6" height="11" rx="3"/>
+              <path d="M5 10a7 7 0 0 0 14 0"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+            </svg>
+          </div>
+          <div class="spotlight-step-num">01</div>
+          <h4>Beschreiben</h4>
+          <p>Tippen oder sprechen Sie das Anliegen — z. B. „Kündigung meines Handyvertrags zum nächstmöglichen Termin"</p>
+        </div>
+        <div class="spotlight-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <!-- Step 2 -->
+        <div class="spotlight-step">
+          <div class="spotlight-step-icon spotlight-step-icon--ai">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+            </svg>
+          </div>
+          <div class="spotlight-step-num">02</div>
+          <h4>KI generiert</h4>
+          <p>Unsere KI erstellt Betreff und vollständigen Brieftext — professionell formuliert, auf Knopfdruck</p>
+        </div>
+        <div class="spotlight-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <!-- Step 3 -->
+        <div class="spotlight-step">
+          <div class="spotlight-step-icon spotlight-step-icon--pdf">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <div class="spotlight-step-num">03</div>
+          <h4>Fertig</h4>
+          <p>Brief prüfen, als druckfertiges PDF exportieren und direkt versenden</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -42,6 +114,33 @@
     <div class="section-label">Funktionen</div>
     <h2 class="section-title">Entwickelt für professionelle Briefkorrespondenz</h2>
     <div class="features-grid">
+
+      <!-- AI generation feature card -->
+      <div class="feature-card feature-card--highlight">
+        <div class="feature-icon feature-icon--ai">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+        </div>
+        <div class="feature-new-badge">Neu</div>
+        <h3>KI-Briefgenerierung</h3>
+        <p>Beschreiben Sie Ihr Anliegen in ein paar Worten — Brief-Fix generiert Betreff und vollständigen Briefinhalt mit KI. Professionell, schnell und direkt einsatzbereit.</p>
+      </div>
+
+      <!-- Voice input feature card -->
+      <div class="feature-card feature-card--highlight">
+        <div class="feature-icon feature-icon--voice">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="9" y="2" width="6" height="11" rx="3"/>
+            <path d="M5 10a7 7 0 0 0 14 0"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+          </svg>
+        </div>
+        <div class="feature-new-badge">Neu</div>
+        <h3>Spracheingabe</h3>
+        <p>Sprechen Sie Ihr Anliegen einfach aus — Brief-Fix erkennt Ihre Sprache und übergibt den Text direkt an die KI. Schneller als Tippen, so einfach wie ein Telefonat.</p>
+      </div>
 
       <div class="feature-card">
         <div class="feature-icon">
@@ -123,8 +222,14 @@
   <!-- CTA Banner -->
   <section class="cta-banner">
     <div class="cta-banner-inner">
-      <h2>Schreiben Sie noch heute bessere Briefe.</h2>
-      <p>Jetzt bei Brief-Fix registrieren und druckfertige DIN-A4-Briefe im richtigen Format erstellen.</p>
+      <div class="cta-banner-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+        </svg>
+        KI-gestützt & kostenlos
+      </div>
+      <h2>Schreiben Sie bessere Briefe — in Sekunden.</h2>
+      <p>Jetzt bei Brief-Fix registrieren und professionelle DIN-A4-Briefe per Sprache oder Text mit KI erstellen.</p>
       <a routerLink="/register" class="btn-primary btn-lg">Kostenloses Konto erstellen</a>
     </div>
   </section>
