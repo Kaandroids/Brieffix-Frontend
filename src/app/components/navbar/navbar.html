@@ -16,17 +16,75 @@
       <a routerLink="/register" class="btn-primary">Jetzt starten</a>
     </div>
     <button class="burger" (click)="toggleMenu()" aria-label="Menü öffnen">
-      <span></span><span></span><span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        @if (menuOpen()) {
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        } @else {
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        }
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer backdrop -->
+@if (menuOpen()) {
+  <div class="drawer-backdrop" (click)="closeMenu()"></div>
+}
+
+<!-- Mobile drawer -->
+<div class="mobile-drawer" [class.mobile-drawer--open]="menuOpen()">
+  <div class="drawer-header">
+    <div class="logo">
+      <span class="logo-icon">B</span>
+      <span class="logo-text">Brief-Fix</span>
+    </div>
+    <button class="drawer-close" (click)="closeMenu()" aria-label="Schließen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
     </button>
   </div>
 
-  @if (menuOpen()) {
-    <div class="mobile-menu">
-      <a routerLink="/" class="mobile-link" (click)="closeMenu()">Home</a>
-      <a routerLink="/erstellen" class="mobile-link" (click)="closeMenu()">Brief erstellen</a>
-      <a routerLink="/ueber-uns" class="mobile-link" (click)="closeMenu()">Über uns</a>
-      <a routerLink="/login" class="mobile-link" (click)="closeMenu()">Anmelden</a>
-      <a routerLink="/register" class="btn-primary mobile-cta" (click)="closeMenu()">Jetzt starten</a>
-    </div>
-  }
-</nav>
+  <ul class="drawer-links">
+    <li>
+      <a routerLink="/" routerLinkActive="drawer-link--active" [routerLinkActiveOptions]="{exact: true}" class="drawer-link" (click)="closeMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Home</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/erstellen" routerLinkActive="drawer-link--active" class="drawer-link" (click)="closeMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="18" x2="12" y2="12"/>
+          <line x1="9" y1="15" x2="15" y2="15"/>
+        </svg>
+        <span>Brief erstellen</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/ueber-uns" routerLinkActive="drawer-link--active" class="drawer-link" (click)="closeMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span>Über uns</span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="drawer-footer">
+    <a routerLink="/login" class="btn-ghost drawer-btn" (click)="closeMenu()">Anmelden</a>
+    <a routerLink="/register" class="btn-primary drawer-btn" (click)="closeMenu()">Jetzt starten</a>
+  </div>
+</div>

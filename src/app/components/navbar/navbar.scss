@@ -5,6 +5,7 @@ $border:        rgba(15, 23, 42, 0.1);
 $text-primary:  #0f172a;
 $text-secondary:#64748b;
 
+// ─── Navbar ───────────────────────────────────────────────────────────────────
 .nav {
   position: sticky; top: 0; z-index: 100;
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -56,23 +57,76 @@ $text-secondary:#64748b;
 }
 
 .burger {
-  display: none; flex-direction: column; justify-content: center; gap: 4px;
+  display: none; align-items: center; justify-content: center;
   width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
-  span { display: block; height: 2px; background: $text-primary; border-radius: 2px; transition: 0.2s; }
+  color: $text-primary;
+  svg { width: 22px; height: 22px; }
 }
-.mobile-menu {
-  border-top: 1px solid $border; padding: 1rem 1.25rem 1.25rem;
-  display: flex; flex-direction: column; gap: 0.25rem;
-  background: rgba(248,250,252,0.98);
-}
-.mobile-link {
-  padding: 0.65rem 0.75rem; border-radius: 0.65rem; font-size: 0.95rem;
-  font-weight: 500; color: $text-secondary; text-decoration: none;
-  transition: color 0.2s, background 0.2s;
-  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
-}
-.mobile-cta { margin-top: 0.5rem; text-align: center; }
 
+// ─── Mobile Drawer ────────────────────────────────────────────────────────────
+.drawer-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(2px);
+}
+
+.mobile-drawer {
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 201;
+  width: 270px; background: $bg;
+  border-right: 1px solid $border;
+  padding: 1.25rem 1rem;
+  display: flex; flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &--open { transform: translateX(0); }
+}
+
+.drawer-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.75rem; padding-bottom: 1rem;
+  border-bottom: 1px solid $border;
+}
+
+.drawer-close {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border: none; background: none; cursor: pointer;
+  color: $text-secondary; border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+  svg { width: 18px; height: 18px; }
+  &:hover { background: rgba(15,23,42,0.06); color: $text-primary; }
+}
+
+.drawer-links {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 0.25rem;
+  flex: 1;
+}
+
+.drawer-link {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.7rem 0.875rem; border-radius: 0.75rem;
+  font-size: 0.95rem; font-weight: 500; color: $text-secondary; text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  svg { width: 20px; height: 20px; flex-shrink: 0; }
+  &:hover { background: rgba(15,23,42,0.05); color: $text-primary; }
+  &--active {
+    background: rgba(99,102,241,0.1);
+    color: $primary-start;
+    font-weight: 600;
+  }
+}
+
+.drawer-footer {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  padding-top: 1rem; border-top: 1px solid $border;
+}
+
+.drawer-btn {
+  width: 100%; justify-content: center;
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
 @media (max-width: 768px) {
   .nav-links, .nav-right { display: none; }
   .burger { display: flex; }

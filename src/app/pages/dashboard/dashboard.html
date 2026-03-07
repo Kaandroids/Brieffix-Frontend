@@ -39,6 +39,18 @@
     <div class="mobile-menu-backdrop" (click)="closeMenu()"></div>
   }
   <nav class="mobile-drawer" [class.mobile-drawer--open]="menuOpen">
+    <div class="mobile-drawer-logo">
+      <div class="mobile-drawer-logo-inner">
+        <span class="logo-icon">B</span>
+        <span class="logo-text">Brief-Fix</span>
+      </div>
+      <button class="mobile-drawer-close" (click)="closeMenu()" aria-label="Schließen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
     <ul class="nav-list">
       <li>
         <a class="nav-link" routerLink="/dashboard" routerLinkActive="nav-link--active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">
