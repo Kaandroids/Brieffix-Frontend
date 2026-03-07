@@ -11,18 +11,12 @@
 
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { Navbar } from '../../components/navbar/navbar';
 
-/**
- * Presentational component for the application's public landing page.
- *
- * Contains no business logic; its class body is intentionally empty because the
- * page is entirely template-driven. `RouterLink` is imported to enable anchor
- * navigation to `/login` and `/register` without a full page reload.
- */
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, Navbar],
   templateUrl: './landing.html',
   styleUrl: './landing.scss'
 })

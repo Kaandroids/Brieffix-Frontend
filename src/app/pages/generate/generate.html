@@ -1,0 +1,371 @@
+<div class="gen-page">
+
+  <!-- Background orbs -->
+  <div class="bg-orbs">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <app-navbar />
+
+  <!-- Form -->
+  <div class="gen-content">
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+      <!-- Alerts -->
+      @if (rateLimited()) {
+        <div class="alert alert--limit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <div>
+            <strong>Tageslimit erreicht.</strong>
+            Sie haben heute 3 Briefe erstellt. Bitte morgen erneut versuchen oder
+            <a routerLink="/register">kostenloses Konto erstellen</a>.
+          </div>
+        </div>
+      }
+      @if (error()) {
+        <div class="alert alert--error">{{ error() }}</div>
+      }
+      @if (success()) {
+        <div class="alert alert--success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          Brief wurde als PDF heruntergeladen!
+        </div>
+      }
+
+      <!-- 2-column grid -->
+      <div class="gen-grid">
+
+        <!-- ── Absender ────────────────────────────────────────── -->
+        <div class="gen-absender">
+          <div class="form-section">
+            <h3 class="section-title">Absender</h3>
+
+            <!-- Type picker -->
+            <div class="type-picker">
+              <button type="button" class="type-card" [class.type-card--active]="senderType() === 'INDIVIDUAL'" (click)="setSenderType('INDIVIDUAL')">
+                <div class="type-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </div>
+                <div class="type-card-text">
+                  <span class="type-card-title">Privatperson</span>
+                </div>
+                @if (senderType() === 'INDIVIDUAL') {
+                  <div class="type-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                }
+              </button>
+              <button type="button" class="type-card" [class.type-card--active]="senderType() === 'ORGANIZATION'" (click)="setSenderType('ORGANIZATION')">
+                <div class="type-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+                </div>
+                <div class="type-card-text">
+                  <span class="type-card-title">Organisation</span>
+                </div>
+                @if (senderType() === 'ORGANIZATION') {
+                  <div class="type-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                }
+              </button>
+            </div>
+
+            <!-- Individual fields -->
+            @if (senderType() === 'INDIVIDUAL') {
+              <div class="form-row">
+                <div class="form-group form-group--narrow">
+                  <label>Anrede</label>
+                  <input type="text" formControlName="senderSalutation" placeholder="Herr, Frau, …"/>
+                </div>
+                <div class="form-group form-group--narrow">
+                  <label>Titel</label>
+                  <input type="text" formControlName="senderTitle" placeholder="Dr."/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Vorname</label>
+                  <input type="text" formControlName="senderFirstName"/>
+                </div>
+                <div class="form-group">
+                  <label>Nachname</label>
+                  <input type="text" formControlName="senderLastName"/>
+                </div>
+              </div>
+            }
+
+            <!-- Organization fields -->
+            @if (senderType() === 'ORGANIZATION') {
+              <div class="form-row">
+                <div class="form-group form-group--grow">
+                  <label>Firmenname</label>
+                  <input type="text" formControlName="senderCompanyName"/>
+                </div>
+                <div class="form-group">
+                  <label>Abteilung</label>
+                  <input type="text" formControlName="senderDepartment"/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group form-group--narrow">
+                  <label>Anrede</label>
+                  <input type="text" formControlName="senderSalutation" placeholder="Herr, Frau, …"/>
+                </div>
+                <div class="form-group form-group--grow">
+                  <label>Ansprechpartner</label>
+                  <input type="text" formControlName="senderContactPerson" placeholder="Vollständiger Name"/>
+                </div>
+              </div>
+            }
+
+            <!-- Address -->
+            <div class="form-row address-grid">
+              <div class="form-group">
+                <label>Straße</label>
+                <input type="text" formControlName="senderStreet"/>
+              </div>
+              <div class="form-group form-group--narrow">
+                <label>Nr.</label>
+                <input type="text" formControlName="senderStreetNumber"/>
+              </div>
+              <div class="form-group form-group--narrow">
+                <label>PLZ <span class="req">*</span></label>
+                <input type="text" formControlName="senderPostalCode" [class.invalid]="f['senderPostalCode'].invalid && f['senderPostalCode'].touched"/>
+              </div>
+              <div class="form-group">
+                <label>Stadt <span class="req">*</span></label>
+                <input type="text" formControlName="senderCity" [class.invalid]="f['senderCity'].invalid && f['senderCity'].touched"/>
+              </div>
+              <div class="form-group address-grid__land">
+                <label>Land</label>
+                <input type="text" formControlName="senderCountry"/>
+              </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="form-row">
+              <div class="form-group">
+                <label>E-Mail</label>
+                <input type="text" formControlName="senderEmail" placeholder="ich@beispiel.de"/>
+              </div>
+              <div class="form-group">
+                <label>Telefon</label>
+                <input type="text" formControlName="senderPhone" placeholder="+49 30 …"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Empfänger ───────────────────────────────────────── -->
+        <div class="gen-empfaenger">
+          <div class="form-section">
+            <h3 class="section-title">Empfänger</h3>
+
+            <!-- Type picker -->
+            <div class="type-picker">
+              <button type="button" class="type-card" [class.type-card--active]="recipientType() === 'INDIVIDUAL'" (click)="setRecipientType('INDIVIDUAL')">
+                <div class="type-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                </div>
+                <div class="type-card-text"><span class="type-card-title">Privatperson</span></div>
+                @if (recipientType() === 'INDIVIDUAL') {
+                  <div class="type-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                }
+              </button>
+              <button type="button" class="type-card" [class.type-card--active]="recipientType() === 'ORGANIZATION'" (click)="setRecipientType('ORGANIZATION')">
+                <div class="type-card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+                </div>
+                <div class="type-card-text"><span class="type-card-title">Organisation</span></div>
+                @if (recipientType() === 'ORGANIZATION') {
+                  <div class="type-card-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+                }
+              </button>
+            </div>
+
+            <!-- Individual fields -->
+            @if (recipientType() === 'INDIVIDUAL') {
+              <div class="form-row">
+                <div class="form-group form-group--narrow">
+                  <label>Anrede</label>
+                  <input type="text" formControlName="recipientSalutation" placeholder="Herr, Frau, …"/>
+                </div>
+                <div class="form-group">
+                  <label>Vorname</label>
+                  <input type="text" formControlName="recipientFirstName"/>
+                </div>
+                <div class="form-group">
+                  <label>Nachname</label>
+                  <input type="text" formControlName="recipientLastName"/>
+                </div>
+              </div>
+            }
+
+            <!-- Organization fields -->
+            @if (recipientType() === 'ORGANIZATION') {
+              <div class="form-row">
+                <div class="form-group form-group--grow">
+                  <label>Firmenname</label>
+                  <input type="text" formControlName="recipientCompany"/>
+                </div>
+                <div class="form-group">
+                  <label>Abteilung</label>
+                  <input type="text" formControlName="recipientDepartment"/>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group form-group--narrow">
+                  <label>Anrede</label>
+                  <input type="text" formControlName="recipientContactPersonSalutation" placeholder="Herr, Frau, …"/>
+                </div>
+                <div class="form-group form-group--grow">
+                  <label>Ansprechpartner</label>
+                  <input type="text" formControlName="recipientContactPerson" placeholder="Vollständiger Name"/>
+                </div>
+              </div>
+            }
+
+            <!-- Address -->
+            <div class="form-row address-grid">
+              <div class="form-group">
+                <label>Straße</label>
+                <input type="text" formControlName="recipientStreet"/>
+              </div>
+              <div class="form-group form-group--narrow">
+                <label>Nr.</label>
+                <input type="text" formControlName="recipientStreetNumber"/>
+              </div>
+              <div class="form-group form-group--narrow">
+                <label>PLZ</label>
+                <input type="text" formControlName="recipientPostalCode"/>
+              </div>
+              <div class="form-group">
+                <label>Stadt</label>
+                <input type="text" formControlName="recipientCity"/>
+              </div>
+              <div class="form-group address-grid__land">
+                <label>Land</label>
+                <input type="text" formControlName="recipientCountry"/>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Briefinhalt (spans both rows on desktop) ───────── -->
+        <div class="gen-briefinhalt">
+          <div class="form-section form-section--brief">
+            <h3 class="section-title">Briefinhalt</h3>
+
+            <div class="form-row">
+              <div class="form-group form-group--grow">
+                <label>Betreff <span class="req">*</span></label>
+                <input type="text" formControlName="title" placeholder="z. B. Kündigung Vertrag Nr. 123456"
+                       [class.invalid]="f['title'].invalid && f['title'].touched"/>
+                @if (f['title'].invalid && f['title'].touched) {
+                  <span class="field-error">Pflichtfeld</span>
+                }
+              </div>
+              <div class="form-group form-group--date">
+                <label>Datum</label>
+                <input type="date" formControlName="letterDate"/>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Brieftext <span class="req">*</span></label>
+              <textarea formControlName="body" class="brief-textarea"
+                        placeholder="Sehr geehrte Damen und Herren,
+
+hiermit kündige ich …
+
+Mit freundlichen Grüßen"
+                        [class.invalid]="f['body'].invalid && f['body'].touched"></textarea>
+              @if (f['body'].invalid && f['body'].touched) {
+                <span class="field-error">Pflichtfeld</span>
+              }
+            </div>
+
+            <!-- Template badge -->
+            <div class="template-row">
+              <div class="template-chip">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Vorlage: Klassisch
+              </div>
+              <span class="template-hint">
+                Weitere Vorlagen mit <a routerLink="/register">Konto</a>
+              </span>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="brief-actions">
+              <button type="button" class="btn-secondary" (click)="openPreviewModal()" [disabled]="previewLoading()">
+                @if (previewLoading()) {
+                  <span class="spinner"></span> Vorschau…
+                } @else {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  PDF-Vorschau
+                }
+              </button>
+              <button type="submit" class="btn-primary" [disabled]="loading()">
+                @if (loading()) {
+                  <span class="spinner"></span> Wird erstellt…
+                } @else {
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                  PDF herunterladen
+                }
+              </button>
+            </div>
+
+            <!-- Guest info -->
+            <div class="guest-info">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span>Gäste: max. 3 Briefe/Tag. <a routerLink="/register">Kostenlos registrieren</a> für KI-Generierung &amp; unlimitierte Nutzung.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <!-- PDF preview modal -->
+  @if (previewUrl() || previewLoading()) {
+    <div class="preview-modal" (click)="closePreview()">
+      <div class="preview-modal-box" (click)="$event.stopPropagation()">
+        <div class="preview-modal-header">
+          <div class="preview-modal-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            PDF-Vorschau
+          </div>
+          <button class="preview-modal-close" (click)="closePreview()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        @if (previewLoading()) {
+          <div class="preview-spinner">
+            <div class="spinner spinner--modal"></div>
+            <span>PDF wird gerendert…</span>
+          </div>
+        }
+        @if (previewUrl()) {
+          <iframe [src]="previewUrl()" class="preview-iframe" title="Briefvorschau"></iframe>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="logo">
+        <span class="logo-icon logo-icon--sm">B</span>
+        <span class="logo-text">Brief-Fix</span>
+      </div>
+      <p class="footer-copy">&copy; 2026 Brief-Fix. Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a routerLink="/ueber-uns">Über uns</a>
+        <a routerLink="/login">Anmelden</a>
+        <a routerLink="/register">Registrieren</a>
+      </div>
+    </div>
+  </footer>
+
+</div>

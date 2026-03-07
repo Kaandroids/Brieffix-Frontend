@@ -1,10 +1,10 @@
 // ─── Variables ────────────────────────────────────────────────────────────────
 $primary-start: #6366f1;
 $primary-end: #8b5cf6;
-$bg-card: rgba(255, 255, 255, 0.04);
-$border: rgba(255, 255, 255, 0.08);
-$text-primary: #f1f5f9;
-$text-secondary: #94a3b8;
+$bg-card: #ffffff;
+$border: rgba(15, 23, 42, 0.1);
+$text-primary: #0f172a;
+$text-secondary: #64748b;
 
 // ─── Shared Buttons ───────────────────────────────────────────────────────────
 .btn-primary {
@@ -32,7 +32,7 @@ $text-secondary: #94a3b8;
   display: inline-flex;
   align-items: center;
   padding: 0.6rem 1.25rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.04);
   border: 1px solid $border;
   border-radius: 0.75rem;
   color: $text-secondary;
@@ -41,7 +41,7 @@ $text-secondary: #94a3b8;
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 
-  &:hover { background: rgba(255, 255, 255, 0.09); color: $text-primary; }
+  &:hover { background: rgba(15, 23, 42, 0.07); color: $text-primary; }
 }
 
 .btn-icon {
@@ -58,12 +58,12 @@ $text-secondary: #94a3b8;
 
   svg { width: 14px; height: 14px; }
 
-  &:hover { background: rgba(255, 255, 255, 0.07); color: $text-primary; }
+  &:hover { background: rgba(15, 23, 42, 0.06); color: $text-primary; }
 
   &--danger:hover {
     background: rgba(248, 113, 113, 0.12);
     border-color: rgba(248, 113, 113, 0.3);
-    color: #f87171;
+    color: #ef4444;
   }
 }
 
@@ -103,7 +103,7 @@ $text-secondary: #94a3b8;
   backdrop-filter: blur(16px);
   transition: border-color 0.2s, transform 0.2s;
 
-  &:hover { border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  &:hover { border-color: rgba(15,23,42,0.14); transform: translateY(-2px); }
 }
 
 .card-header {
@@ -120,9 +120,9 @@ $text-secondary: #94a3b8;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #818cf8;
+  color: #6366f1;
   svg { width: 22px; height: 22px; }
-  &--org { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+  &--org { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
 }
 
 .card-actions { display: flex; gap: 0.35rem; }
@@ -139,9 +139,9 @@ $text-secondary: #94a3b8;
   font-weight: 600;
   letter-spacing: 0.03em;
   background: rgba(99, 102, 241, 0.15);
-  color: #818cf8;
-  &--org     { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
-  &--default { background: rgba(6, 182, 212, 0.15);  color: #22d3ee; }
+  color: #6366f1;
+  &--org     { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+  &--default { background: rgba(6, 182, 212, 0.15);  color: #0891b2; }
 }
 
 .card-name {
@@ -259,7 +259,7 @@ $text-secondary: #94a3b8;
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -273,7 +273,7 @@ $text-secondary: #94a3b8;
 
   .type-card--active & {
     background: rgba($primary-start, 0.15);
-    svg { color: #818cf8; }
+    svg { color: #6366f1; }
   }
 }
 
@@ -342,6 +342,12 @@ $text-secondary: #94a3b8;
   flex-wrap: wrap;
 }
 
+.address-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  &__land { grid-column: 1 / -1; }
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -358,7 +364,7 @@ $text-secondary: #94a3b8;
   input[type="text"],
   select {
     padding: 0.6rem 0.875rem;
-    background: rgba(255,255,255,0.05);
+    background: rgba(15,23,42,0.04);
     border: 1px solid $border;
     border-radius: 0.625rem;
     color: $text-primary;
@@ -370,7 +376,7 @@ $text-secondary: #94a3b8;
     &::placeholder { color: rgba($text-secondary, 0.5); }
     &:focus { border-color: rgba($primary-start, 0.5); }
 
-    option { background: #1a1a2e; }
+    option { background: #ffffff; }
   }
 
   &--narrow { flex: 0 0 120px; min-width: 0; }
@@ -421,6 +427,9 @@ $text-secondary: #94a3b8;
     &--grow   { flex: 1 1 100%; }
   }
 
+  .address-grid { grid-template-columns: 1fr; }
+  .address-grid__land { grid-column: 1; }
+
   .form-actions { flex-direction: column-reverse; }
 }
 
@@ -447,7 +456,7 @@ $text-secondary: #94a3b8;
     max-width: 180px;
     border-radius: 0.625rem;
     border: 1px solid $border;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(15, 23, 42, 0.02);
     object-fit: contain;
   }
 

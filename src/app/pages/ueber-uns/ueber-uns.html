@@ -1,0 +1,117 @@
+<div class="public-page">
+
+  <!-- Background orbs -->
+  <div class="bg-orbs">
+    <div class="orb orb--1"></div>
+    <div class="orb orb--2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <app-navbar />
+
+  <!-- Page content -->
+  <div class="page-content">
+
+    <!-- Header -->
+    <div class="page-header">
+      <div class="section-label">Über uns</div>
+      <h1>Brief-Fix — Professionelle Briefe,<br /><span class="gradient-text">einfach gemacht.</span></h1>
+      <p class="page-intro">
+        Wir glauben, dass jeder das Recht hat, sich klar und professionell auszudrücken — ganz gleich, ob Privatperson oder Unternehmen, Erstanwender oder Schreibprofi.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="content-grid">
+
+      <!-- Mission — full width, alone in its row -->
+      <div class="content-card content-card--featured">
+        <div class="card-icon card-icon--mission">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+        </div>
+        <h2>Unsere Mission</h2>
+        <p>
+          Deutsche Bürokratie und formelle Briefkorrespondenz können überwältigend sein. DIN-Normen, Fensterbriefumschlag-Maße, Absenderprofile — viele Menschen scheuen sich, formelle Briefe selbst zu schreiben.
+        </p>
+        <p>
+          Brief-Fix macht Schluss damit. Beschreiben Sie einfach Ihr Anliegen — per Text oder Sprache — und unsere KI formuliert einen vollständigen, DIN 5008 konformen Brief. Druckfertig als PDF, passend für jeden Fensterbriefumschlag.
+        </p>
+      </div>
+
+      <!-- Das Produkt -->
+      <div class="content-card">
+        <div class="card-icon card-icon--product">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h2>Das Produkt</h2>
+        <p>
+          Brief-Fix ist eine moderne Webanwendung zur Erstellung professioneller Geschäfts- und Privatbriefe nach DIN 5008. Nutzer können Absenderprofile und Empfängerkontakte anlegen, Briefe mit KI-Unterstützung verfassen und als druckfertige PDFs exportieren.
+        </p>
+        <p>
+          Für Nutzer ohne Konto bieten wir außerdem ein kostenloses Brieferstellungswerkzeug — ohne Anmeldung, direkt im Browser.
+        </p>
+      </div>
+
+      <!-- Technologie -->
+      <div class="content-card">
+        <div class="card-icon card-icon--tech">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h2>Technologie</h2>
+        <p>
+          Brief-Fix wird von <strong>Google Gemini</strong> angetrieben — einem der leistungsfähigsten KI-Modelle der Welt. Die Spracherkennung nutzt die native <strong>Web Speech API</strong> des Browsers, sodass keine Audiodaten unsere Server erreichen.
+        </p>
+        <p>
+          PDFs werden serverseitig nach DIN 5008 gerendert und sind sofort druckfertig — ohne zusätzliche Software oder Browser-Erweiterungen.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-inner">
+        <div class="cta-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+          </svg>
+          KI-gestützt & kostenlos
+        </div>
+        <h2>Bereit, Ihren nächsten Brief zu schreiben?</h2>
+        <p>Jetzt kostenlos registrieren und Brief-Fix ausprobieren.</p>
+        <div class="cta-actions">
+          <a routerLink="/register" class="btn-primary btn-lg">Kostenloses Konto erstellen</a>
+          <a routerLink="/erstellen" class="btn-ghost btn-lg">Brief ohne Konto erstellen</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="logo">
+        <span class="logo-icon logo-icon--sm">B</span>
+        <span class="logo-text">Brief-Fix</span>
+      </div>
+      <p class="footer-copy">&copy; 2026 Brief-Fix. Alle Rechte vorbehalten.</p>
+      <div class="footer-links">
+        <a routerLink="/ueber-uns">Über uns</a>
+        <a routerLink="/login">Anmelden</a>
+        <a routerLink="/register">Registrieren</a>
+      </div>
+    </div>
+  </footer>
+
+</div>

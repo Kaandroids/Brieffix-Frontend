@@ -171,39 +171,47 @@
             </div>
           </div>
 
-          <div *ngIf="isOrganization" class="form-row" style="margin-top:12px">
-            <div class="form-group">
-              <label>Firmenname</label>
-              <input type="text" formControlName="recipientCompany"/>
+          <div *ngIf="isOrganization" style="margin-top:12px">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Firmenname</label>
+                <input type="text" formControlName="recipientCompany"/>
+              </div>
+              <div class="form-group">
+                <label>Abteilung</label>
+                <input type="text" formControlName="recipientDepartment" placeholder="z. B. Buchhaltung"/>
+              </div>
             </div>
-            <div class="form-group form-group--narrow">
-              <label>Anrede</label>
-              <input type="text" formControlName="recipientSalutation" placeholder="Herr, Frau, …"/>
-            </div>
-            <div class="form-group">
-              <label>Ansprechpartner</label>
-              <input type="text" formControlName="recipientContactPerson"/>
+            <div class="form-row">
+              <div class="form-group form-group--narrow">
+                <label>Anrede</label>
+                <input type="text" formControlName="recipientSalutation" placeholder="Herr, Frau, …"/>
+              </div>
+              <div class="form-group">
+                <label>Ansprechpartner</label>
+                <input type="text" formControlName="recipientContactPerson"/>
+              </div>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group form-group--grow">
+          <div class="form-row address-grid">
+            <div class="form-group">
               <label>Straße</label>
               <input type="text" formControlName="recipientStreet"/>
             </div>
-            <div class="form-group form-group--narrow">
+            <div class="form-group">
               <label>Nr.</label>
               <input type="text" formControlName="recipientStreetNumber"/>
             </div>
-            <div class="form-group form-group--narrow">
+            <div class="form-group">
               <label>PLZ</label>
               <input type="text" formControlName="recipientPostalCode"/>
             </div>
-            <div class="form-group form-group--grow">
+            <div class="form-group">
               <label>Stadt</label>
               <input type="text" formControlName="recipientCity"/>
             </div>
-            <div class="form-group">
+            <div class="form-group address-grid__land">
               <label>Land</label>
               <input type="text" formControlName="recipientCountry"/>
             </div>

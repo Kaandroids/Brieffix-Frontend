@@ -1,0 +1,357 @@
+// ─── Variables (matching profiles/contacts design system) ──────────────────────
+$primary-start: #6366f1;
+$primary-end:   #8b5cf6;
+$bg-card:       #ffffff;
+$border:        rgba(15, 23, 42, 0.1);
+$text-primary:  #0f172a;
+$text-secondary:#64748b;
+$error:         #ef4444;
+
+// ─── Root ─────────────────────────────────────────────────────────────────────
+.gen-page {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.05) 0%, transparent 50%),
+              #f8fafc;
+  color: $text-primary;
+  position: relative;
+  overflow-x: hidden;
+}
+
+// ─── Background Orbs ──────────────────────────────────────────────────────────
+.bg-orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.orb {
+  position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.07;
+  &--1 { width: 600px; height: 600px; background: $primary-start; top: -15%; left: -15%; animation: float 10s ease-in-out infinite; }
+  &--2 { width: 400px; height: 400px; background: $primary-end; bottom: 10%; right: -10%; animation: float 13s ease-in-out infinite reverse; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-24px) scale(1.04); }
+}
+
+// ─── Nav ──────────────────────────────────────────────────────────────────────
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid $border;
+  background: rgba(248,250,252,0.92);
+}
+.nav-inner {
+  max-width: 1320px; margin: 0 auto; padding: 1rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+}
+.nav-left {
+  display: flex; align-items: center; gap: 0; flex-shrink: 0;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 0.25rem; margin-left: 1.25rem;
+}
+.nav-right { display: flex; align-items: center; gap: 0.75rem; }
+.nav-link {
+  padding: 0.5rem 0.9rem; border-radius: 0.65rem; font-size: 0.9rem;
+  font-weight: 500; color: $text-secondary; text-decoration: none;
+  transition: color 0.2s, background 0.2s;
+  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
+  &--active { color: $primary-start; font-weight: 600; }
+}
+.burger {
+  display: none; flex-direction: column; justify-content: center; gap: 4px;
+  width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
+  span { display: block; height: 2px; background: $text-primary; border-radius: 2px; }
+}
+.mobile-menu {
+  border-top: 1px solid $border; padding: 1rem 1.25rem 1.25rem;
+  display: flex; flex-direction: column; gap: 0.25rem;
+  background: rgba(248,250,252,0.98);
+}
+.mobile-link {
+  padding: 0.65rem 0.75rem; border-radius: 0.65rem; font-size: 0.95rem;
+  font-weight: 500; color: $text-secondary; text-decoration: none;
+  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
+}
+.mobile-cta { margin-top: 0.5rem; text-align: center; }
+
+// ─── Logo ─────────────────────────────────────────────────────────────────────
+.logo { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+.logo-icon {
+  width: 36px; height: 36px; background: linear-gradient(135deg, $primary-start, $primary-end);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 1rem; color: #fff; box-shadow: 0 4px 15px rgba(99,102,241,0.4); flex-shrink: 0;
+  &--sm { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 8px; }
+}
+.logo-text { font-size: 1.2rem; font-weight: 700; color: $text-primary; letter-spacing: -0.02em; white-space: nowrap; }
+
+// ─── Buttons ──────────────────────────────────────────────────────────────────
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.6rem 1.25rem; background: linear-gradient(135deg, $primary-start, $primary-end);
+  border: none; border-radius: 0.75rem; color: #fff; font-size: 0.875rem; font-weight: 600;
+  text-decoration: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s;
+  box-shadow: 0 4px 20px rgba(99,102,241,0.3); white-space: nowrap;
+  svg { width: 15px; height: 15px; }
+  &:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  &:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+}
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.55rem 1.25rem; background: transparent; border: 1px solid $border;
+  border-radius: 0.75rem; color: $text-secondary; font-size: 0.9rem; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
+  &:hover { border-color: rgba(15,23,42,0.2); color: $text-primary; background: rgba(15,23,42,0.04); }
+}
+.btn-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.6rem 1.25rem; background: rgba(15,23,42,0.04); border: 1px solid $border;
+  border-radius: 0.75rem; color: $text-secondary; font-size: 0.875rem; font-weight: 500;
+  cursor: pointer; transition: background 0.2s, color 0.2s; white-space: nowrap;
+  svg { width: 15px; height: 15px; }
+  &:hover:not(:disabled) { background: rgba(15,23,42,0.08); color: $text-primary; }
+  &:disabled { opacity: 0.55; cursor: not-allowed; }
+}
+
+// ─── Alerts ───────────────────────────────────────────────────────────────────
+.alert {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  border-radius: 0.875rem; padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+  font-size: 0.9rem; line-height: 1.55;
+  svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px; }
+  a { font-weight: 600; text-decoration: none; &:hover { text-decoration: underline; } }
+  strong { font-weight: 700; }
+  &--limit { background: rgba(234,88,12,0.07); border: 1px solid rgba(234,88,12,0.25); color: #9a3412; a { color: #ea580c; } }
+  &--error { background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.25); color: #b91c1c; }
+  &--success { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); color: #065f46; svg { color: #059669; } }
+}
+
+// ─── Page content ─────────────────────────────────────────────────────────────
+.gen-content {
+  position: relative; z-index: 1; max-width: 1320px; margin: 0 auto; padding: 2rem 2.5rem 4rem;
+}
+
+// ─── 2-column grid ────────────────────────────────────────────────────────────
+.gen-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "absender   briefinhalt"
+    "empfaenger briefinhalt";
+  gap: 1.25rem;
+  align-items: start;
+}
+.gen-absender   { grid-area: absender; }
+.gen-empfaenger { grid-area: empfaenger; }
+.gen-briefinhalt { grid-area: briefinhalt; }
+
+// ─── Form sections (match profiles/contacts exactly) ──────────────────────────
+.form-section {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+
+  &--brief {
+    // Briefinhalt stretches to fill both rows
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.section-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $text-secondary;
+  margin-bottom: 1.25rem;
+}
+
+// ─── Type picker (identical to profiles/contacts) ──────────────────────────────
+.type-picker {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.type-card {
+  display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1rem;
+  background: $bg-card; border: 2px solid $border; border-radius: 1rem;
+  cursor: pointer; text-align: left; transition: border-color 0.2s, background 0.2s;
+  &:hover { border-color: rgba($primary-start, 0.4); background: rgba($primary-start, 0.04); }
+  &--active { border-color: $primary-start; background: rgba($primary-start, 0.08); }
+}
+.type-card-icon {
+  width: 38px; height: 38px; border-radius: 10px; background: rgba(15,23,42,0.04);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  svg { width: 20px; height: 20px; color: $text-secondary; }
+  .type-card--active & { background: rgba($primary-start, 0.15); svg { color: $primary-start; } }
+}
+.type-card-text { flex: 1; display: flex; flex-direction: column; gap: 0.15rem; }
+.type-card-title { font-size: 0.875rem; font-weight: 600; color: $text-primary; }
+.type-card-check {
+  width: 20px; height: 20px; border-radius: 50%; background: $primary-start;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  svg { width: 10px; height: 10px; color: #fff; }
+}
+
+// ─── Form rows & groups (match profiles/contacts) ──────────────────────────────
+.form-row {
+  display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.875rem;
+  &:last-of-type { margin-bottom: 0; }
+}
+.address-grid {
+  display: grid; grid-template-columns: 1fr 80px 80px 1fr;
+  &__land { grid-column: 1 / -1; }
+}
+.form-group {
+  display: flex; flex-direction: column; gap: 0.35rem; flex: 1; min-width: 100px;
+  label { font-size: 0.8rem; font-weight: 500; color: $text-secondary; }
+  input[type="text"], input[type="date"], select {
+    padding: 0.6rem 0.875rem; background: rgba(15,23,42,0.04); border: 1px solid $border;
+    border-radius: 0.625rem; color: $text-primary; font-size: 0.875rem; font-family: inherit;
+    outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box;
+    &::placeholder { color: rgba($text-secondary, 0.5); }
+    &:focus { border-color: rgba($primary-start, 0.5); }
+    &.invalid { border-color: $error; }
+  }
+  &--narrow { flex: 0 0 100px; min-width: 0; }
+  &--grow   { flex: 2; }
+  &--date   { flex: 0 0 150px; min-width: 0; }
+}
+.req   { color: $error; }
+.field-error { font-size: 0.76rem; color: $error; }
+
+// ─── Briefinhalt specific ─────────────────────────────────────────────────────
+.brief-textarea {
+  flex: 1;
+  padding: 0.6rem 0.875rem; background: rgba(15,23,42,0.04); border: 1px solid $border;
+  border-radius: 0.625rem; color: $text-primary; font-size: 0.875rem; font-family: inherit;
+  outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box;
+  resize: vertical; min-height: 300px; line-height: 1.65;
+  &::placeholder { color: rgba($text-secondary, 0.5); }
+  &:focus { border-color: rgba($primary-start, 0.5); }
+  &.invalid { border-color: $error; }
+}
+.form-section--brief .form-group:has(.brief-textarea) {
+  flex: 1;
+  margin-top: 0.875rem;
+}
+
+// ─── Template row ─────────────────────────────────────────────────────────────
+.template-row {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid $border;
+}
+.template-chip {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.3rem 0.75rem; background: rgba($primary-start, 0.1); border: 1px solid rgba($primary-start, 0.25);
+  border-radius: 2rem; font-size: 0.78rem; font-weight: 600; color: $primary-start;
+  svg { width: 13px; height: 13px; }
+}
+.template-hint {
+  font-size: 0.82rem; color: $text-secondary;
+  a { color: $primary-start; text-decoration: none; font-weight: 600; &:hover { text-decoration: underline; } }
+}
+
+// ─── Briefinhalt action buttons ───────────────────────────────────────────────
+.brief-actions {
+  display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+// ─── Guest info strip ─────────────────────────────────────────────────────────
+.guest-info {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  margin-top: 1rem; padding-top: 1rem; border-top: 1px solid $border;
+  font-size: 0.82rem; color: $text-secondary; line-height: 1.5;
+  svg { width: 15px; height: 15px; flex-shrink: 0; margin-top: 1px; color: $primary-start; }
+  a { color: $primary-start; text-decoration: none; font-weight: 600; &:hover { text-decoration: underline; } }
+}
+
+// ─── Spinner ──────────────────────────────────────────────────────────────────
+.spinner {
+  width: 14px; height: 14px; border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block;
+  &--modal {
+    width: 28px; height: 28px; border-color: $border; border-top-color: $primary-start;
+  }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+// ─── PDF preview modal ────────────────────────────────────────────────────────
+.preview-modal {
+  position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+  display: flex; align-items: center; justify-content: center;
+  animation: fadeInModal 0.15s ease;
+}
+.preview-modal-box {
+  width: 1100px; height: 92vh; max-width: calc(100vw - 48px);
+  background: #ffffff; border: 1px solid $border;
+  border-radius: 1.25rem; overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.6);
+}
+.preview-modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 18px; border-bottom: 1px solid $border;
+  background: rgba(15,23,42,0.02); flex-shrink: 0;
+}
+.preview-modal-title {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 0.875rem; color: $text-primary;
+  svg { width: 16px; height: 16px; }
+}
+.preview-modal-close {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 0.5rem;
+  background: transparent; border: 1px solid $border;
+  cursor: pointer; color: $text-secondary; transition: background 0.2s, color 0.2s;
+  svg { width: 16px; height: 16px; }
+  &:hover { background: rgba(15,23,42,0.07); color: $text-primary; }
+}
+.preview-spinner {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 12px; color: $text-secondary; font-size: 0.85rem;
+}
+.preview-iframe { flex: 1; width: 100%; border: none; background: #fff; }
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+.footer { position: relative; z-index: 1; border-top: 1px solid $border; margin-top: 2rem; }
+.footer-inner {
+  max-width: 1320px; margin: 0 auto; padding: 1.75rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy { font-size: 0.85rem; color: $text-secondary; margin: 0; }
+.footer-links {
+  display: flex; gap: 1.5rem;
+  a { font-size: 0.85rem; color: $text-secondary; text-decoration: none; &:hover { color: $text-primary; } }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 900px) {
+  .gen-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "absender"
+      "empfaenger"
+      "briefinhalt";
+  }
+  .brief-textarea { min-height: 240px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .nav-right { display: none; }
+  .burger { display: flex; }
+}
+
+@media (max-width: 600px) {
+  .nav-inner { padding: 0.75rem 1rem; }
+  .gen-content { padding: 1.5rem 1rem 3rem; }
+  .address-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; padding: 1.25rem 1rem; }
+}

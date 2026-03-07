@@ -36,6 +36,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/landing/landing').then(m => m.Landing)
   },
   {
+    path: 'ueber-uns',
+    loadComponent: () => import('./pages/ueber-uns/ueber-uns').then(m => m.UeberUns)
+  },
+  {
+    path: 'erstellen',
+    loadComponent: () => import('./pages/generate/generate').then(m => m.Generate)
+  },
+  {
     path: 'login',
     loadComponent: () => import('./pages/login/login').then(m => m.Login)
   },

@@ -1,18 +1,18 @@
 $primary-start: #6366f1;
 $primary-end: #8b5cf6;
-$bg-dark: #0d0d1a;
-$bg-card: rgba(255, 255, 255, 0.04);
-$border: rgba(255, 255, 255, 0.08);
-$text-primary: #f1f5f9;
-$text-secondary: #94a3b8;
+$bg-dark: #f8fafc;
+$bg-card: #ffffff;
+$border: rgba(15, 23, 42, 0.1);
+$text-primary: #0f172a;
+$text-secondary: #64748b;
 
 .auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+  background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
               $bg-dark;
   padding: 1.5rem;
   position: relative;
@@ -25,11 +25,11 @@ $text-secondary: #94a3b8;
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.4;
+  opacity: 0.07;
 
   &--1 { width: 400px; height: 400px; background: $primary-start; top: -10%; left: -10%; animation: float 8s ease-in-out infinite; }
   &--2 { width: 300px; height: 300px; background: $primary-end; bottom: -5%; right: -5%; animation: float 10s ease-in-out infinite reverse; }
-  &--3 { width: 200px; height: 200px; background: #06b6d4; top: 50%; right: 20%; animation: float 6s ease-in-out infinite 2s; }
+  &--3 { width: 200px; height: 200px; background: #0ea5e9; top: 50%; right: 20%; animation: float 6s ease-in-out infinite 2s; }
 }
 
 @keyframes float {
@@ -49,7 +49,7 @@ $text-secondary: #94a3b8;
   position: relative;
   z-index: 1;
   text-align: center;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.05);
 }
 
 .logo {
@@ -85,16 +85,16 @@ $text-secondary: #94a3b8;
 
   svg { width: 32px; height: 32px; }
 
-  &.loading { background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); }
-  &.success { background: rgba(52, 211, 153, 0.15); border: 1px solid rgba(52, 211, 153, 0.3); svg { color: #34d399; } }
-  &.error { background: rgba(248, 113, 113, 0.15); border: 1px solid rgba(248, 113, 113, 0.3); svg { color: #f87171; } }
+  &.loading { background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.25); }
+  &.success { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); svg { color: #059669; } }
+  &.error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); svg { color: #ef4444; } }
 }
 
 .spinner-large {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(99, 102, 241, 0.3);
-  border-top-color: #818cf8;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  border-top-color: #6366f1;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }

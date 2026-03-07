@@ -143,6 +143,7 @@ export class Letters implements OnInit {
     recipientLastName:      [''],
     recipientCompany:       [''],
     recipientContactPerson: [''],
+    recipientDepartment:    [''],
     recipientStreet:        [''],
     recipientStreetNumber:  [''],
     recipientPostalCode:    [''],
@@ -202,7 +203,7 @@ export class Letters implements OnInit {
       if (type === 'ORGANIZATION') {
         this.form.patchValue({ recipientFirstName: '', recipientLastName: '' });
       } else {
-        this.form.patchValue({ recipientCompany: '', recipientContactPerson: '' });
+        this.form.patchValue({ recipientCompany: '', recipientContactPerson: '', recipientDepartment: '' });
       }
     });
   }
@@ -493,11 +494,13 @@ export class Letters implements OnInit {
       contactId: isContact && v.contactId ? v.contactId : undefined,
       // Manual recipient fields: only included when not using a stored contact.
       // Empty strings are coerced to undefined to prevent the API from receiving blank values.
+      recipientEntityType:    !isContact ? v.recipientEntityType    || undefined : undefined,
       recipientSalutation:    !isContact ? v.recipientSalutation    || undefined : undefined,
       recipientFirstName:     !isContact ? v.recipientFirstName     || undefined : undefined,
       recipientLastName:      !isContact ? v.recipientLastName      || undefined : undefined,
       recipientCompany:       !isContact ? v.recipientCompany       || undefined : undefined,
       recipientContactPerson: !isContact ? v.recipientContactPerson || undefined : undefined,
+      recipientDepartment:    !isContact ? v.recipientDepartment    || undefined : undefined,
       recipientStreet:        !isContact ? v.recipientStreet        || undefined : undefined,
       recipientStreetNumber:  !isContact ? v.recipientStreetNumber  || undefined : undefined,
       recipientPostalCode:    !isContact ? v.recipientPostalCode    || undefined : undefined,
