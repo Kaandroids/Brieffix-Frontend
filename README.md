@@ -1,59 +1,92 @@
-# Frontend
+# Briefix — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+Angular frontend for [Brief-Fix](https://www.brief-fix.de), a German letter creation web app.
 
-## Development server
+**Live Demo:** [www.brief-fix.de](https://www.brief-fix.de) Generates professionally formatted DIN 5008 letters as PDFs compatible with DIN-A4 window envelopes.
 
-To start a local development server, run:
+## Tech Stack
 
-```bash
-ng serve
+- **Angular 17+** — standalone components, signals
+- **SCSS** — custom design system
+- **Web Speech API** — voice input for letter content
+- **Nginx** — serves the production build inside Docker
+- **Docker** → deployed on **Google Cloud Run**
+
+## Features
+
+- Landing page with feature overview
+- Email/password and Google OAuth sign-in & registration
+- Email verification flow
+- Dashboard with letter, contact, and profile management
+- Letter creation form with live PDF preview (iframe) or direct download on mobile
+- Multiple letter template styles (classic, professional)
+- AI letter generation ("Mit KI erstellen") via backend Gemini integration
+- Voice input for letter body (mic button, hidden if unsupported)
+- Sender profile management (individual & organization)
+- Recipient contact management
+- Public letter builder at `/erstellen` (no login required, rate-limited)
+
+## Project Structure
+
+```
+src/app/
+├── components/
+│   ├── navbar/        # Shared navigation bar
+│   └── footer/        # Shared footer
+├── pages/
+│   ├── landing/       # Public landing page
+│   ├── generate/      # Public letter builder (/erstellen)
+│   ├── ueber-uns/     # About page
+│   ├── login/         # Login
+│   ├── register/      # Registration
+│   ├── verify-email/  # Email verification
+│   ├── check-email/   # Post-registration prompt
+│   ├── dashboard/     # Authenticated dashboard shell
+│   ├── dashboard-home/# Dashboard home
+│   ├── letters/       # Letter creation & management
+│   ├── contacts/      # Contact management
+│   ├── profiles/      # Sender profile management
+│   └── settings/      # User settings
+└── services/          # HTTP services (auth, letters, contacts, profiles, AI)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started
 
-## Code scaffolding
+### Prerequisites
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js 20+
+- npm
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Install Dependencies
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
-
-To build the project run:
+### Development Server
 
 ```bash
-ng build
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The app will be available at `http://localhost:4200`. It proxies API requests to the backend at `http://localhost:8080` by default.
 
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Build
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+Output is placed in `dist/`.
 
-For end-to-end (e2e) testing, run:
+### Run with Docker
 
 ```bash
-ng e2e
+docker build -t briefix-frontend .
+docker run -p 80:80 briefix-frontend
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Mobile Behavior
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- PDF preview iframe is replaced with a direct download button on screens `<= 768px`
+- Dashboard sidebar becomes a hamburger slide-in drawer on mobile
