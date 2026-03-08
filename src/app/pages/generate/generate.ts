@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PublicLetterService } from '../../services/public-letter';
 import { Navbar } from '../../components/navbar/navbar';
+import { Footer } from '../../components/footer/footer';
 
 @Component({
   selector: 'app-generate',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, Navbar],
+  imports: [ReactiveFormsModule, RouterLink, Navbar, Footer],
   templateUrl: './generate.html',
   styleUrl: './generate.scss'
 })

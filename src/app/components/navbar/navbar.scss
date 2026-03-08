@@ -71,12 +71,12 @@ $text-secondary:#64748b;
 }
 
 .mobile-drawer {
-  position: fixed; top: 0; left: 0; bottom: 0; z-index: 201;
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 201;
   width: 270px; background: $bg;
-  border-right: 1px solid $border;
+  border-left: 1px solid $border;
   padding: 1.25rem 1rem;
   display: flex; flex-direction: column;
-  transform: translateX(-100%);
+  transform: translateX(100%);
   transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
 
   &--open { transform: translateX(0); }

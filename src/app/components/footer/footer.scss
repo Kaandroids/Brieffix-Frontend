@@ -1,0 +1,48 @@
+@use 'sass:color';
+
+$primary:        #6366f1;
+$primary-end:    #8b5cf6;
+$text-primary:   #1e1b4b;
+$text-secondary: #6b7280;
+$border:         #e5e7eb;
+
+.footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid $border;
+  margin-top: 4rem;
+}
+
+.footer-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-size: 0.85rem;
+  color: $text-secondary;
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+
+  a {
+    font-size: 0.85rem;
+    color: $text-secondary;
+    text-decoration: none;
+
+    &:hover { color: $text-primary; }
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-inner { flex-direction: column; align-items: flex-start; padding: 1.5rem 1.25rem; }
+}

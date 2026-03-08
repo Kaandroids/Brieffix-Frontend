@@ -320,17 +320,6 @@ $error:         #ef4444;
   to   { opacity: 1; }
 }
 
-// ─── Footer ───────────────────────────────────────────────────────────────────
-.footer { position: relative; z-index: 1; border-top: 1px solid $border; margin-top: 2rem; }
-.footer-inner {
-  max-width: 1320px; margin: 0 auto; padding: 1.75rem 2.5rem;
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-}
-.footer-copy { font-size: 0.85rem; color: $text-secondary; margin: 0; }
-.footer-links {
-  display: flex; gap: 1.5rem;
-  a { font-size: 0.85rem; color: $text-secondary; text-decoration: none; &:hover { color: $text-primary; } }
-}
 
 // ─── Responsive ───────────────────────────────────────────────────────────────
 @media (max-width: 900px) {
@@ -350,8 +339,42 @@ $error:         #ef4444;
 }
 
 @media (max-width: 600px) {
-  .nav-inner { padding: 0.75rem 1rem; }
+  .nav-inner   { padding: 0.75rem 1rem; }
   .gen-content { padding: 1.5rem 1rem 3rem; }
+
+  .form-section { padding: 1.25rem 1rem; }
+
+  // Compact type-picker cards so they don't overflow the viewport
+  .type-picker { gap: 0.5rem; }
+  .type-card {
+    padding: 0.625rem 0.75rem;
+    gap: 0.5rem;
+    min-width: 0; // allow grid item to shrink below content size
+  }
+  .type-card-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    svg { width: 16px; height: 16px; }
+  }
+  .type-card-text { min-width: 0; overflow: hidden; }
+  .type-card-title {
+    font-size: 0.78rem;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .type-card-check {
+    width: 16px; height: 16px; flex-shrink: 0;
+    svg { width: 9px; height: 9px; }
+  }
+
   .address-grid { grid-template-columns: 1fr 1fr; }
-  .footer-inner { flex-direction: column; align-items: flex-start; padding: 1.25rem 1rem; }
+
+  // Stack date below title on narrow screens
+  .form-group--date { flex: 1 1 100%; min-width: 0; }
+
+  // Stack action buttons vertically
+  .brief-actions {
+    flex-direction: column;
+    .btn-primary,
+    .btn-secondary { width: 100%; justify-content: center; }
+  }
+
 }
