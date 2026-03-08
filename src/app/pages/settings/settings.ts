@@ -1,5 +1,25 @@
+/**
+ * @file settings.ts
+ * @description Standalone placeholder component for the user settings page.
+ *
+ * Currently renders a "Coming soon" notice while the settings feature set
+ * (e.g. account details, password change, plan management, notification
+ * preferences) is under development. The route `/dashboard/settings` is
+ * registered and guarded by `authGuard` to ensure the URL is valid and
+ * accessible to authenticated users from the dashboard navigation.
+ *
+ * When settings are implemented, this component should be replaced with a
+ * full reactive form backed by the appropriate API endpoints and service layer.
+ */
+
 import { Component } from '@angular/core';
 
+/**
+ * Standalone settings page placeholder component.
+ *
+ * Uses an inline template to avoid creating empty external template and
+ * style files for a feature that is not yet implemented.
+ */
 @Component({
   selector: 'app-settings',
   standalone: true,
