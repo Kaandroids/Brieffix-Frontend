@@ -9,6 +9,7 @@ dist/
 .angular/
 
 # IDE
+.editorconfig
 .idea/
 .vscode/
 *.suo
