@@ -15,6 +15,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Navbar } from '../../components/navbar/navbar';
 import { Footer } from '../../components/footer/footer';
+import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 /**
  * Standalone public-facing "About" page component.
@@ -25,7 +26,7 @@ import { Footer } from '../../components/footer/footer';
 @Component({
   selector: 'app-ueber-uns',
   standalone: true,
-  imports: [RouterLink, Navbar, Footer],
+  imports: [RouterLink, Navbar, Footer, BgOrbs],
   templateUrl: './ueber-uns.html',
   styleUrl: './ueber-uns.scss'
 })

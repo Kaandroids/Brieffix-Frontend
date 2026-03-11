@@ -25,6 +25,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { PublicLetterService } from '../../services/public-letter';
 import { Navbar } from '../../components/navbar/navbar';
 import { Footer } from '../../components/footer/footer';
+import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 /**
  * Standalone public letter builder page component.
@@ -35,7 +36,7 @@ import { Footer } from '../../components/footer/footer';
 @Component({
   selector: 'app-generate',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, Navbar, Footer],
+  imports: [ReactiveFormsModule, RouterLink, Navbar, Footer, BgOrbs],
   templateUrl: './generate.html',
   styleUrl: './generate.scss'
 })

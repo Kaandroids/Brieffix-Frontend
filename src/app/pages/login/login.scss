@@ -323,32 +323,29 @@ input {
   }
 }
 
-// ─── Forgot Link ──────────────────────────────────────────────────────────────
-.forgot-link {
-  text-align: right;
-  margin-top: -0.5rem;
-
-  a {
-    font-size: 0.8rem;
-    color: $text-secondary;
-    text-decoration: none;
-    &:hover { color: #6366f1; }
-  }
+// ─── Bottom Links Row ─────────────────────────────────────────────────────────
+.links-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  font-size: 0.8rem;
 }
 
-// ─── Switch Link ──────────────────────────────────────────────────────────────
 .switch-link {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
   color: $text-secondary;
 
   a {
     color: #6366f1;
     text-decoration: none;
     font-weight: 500;
-    margin-left: 0.25rem;
-
+    margin-left: 0.2rem;
     &:hover { text-decoration: underline; }
   }
+}
+
+.forgot-link {
+  color: $text-secondary;
+  text-decoration: none;
+  &:hover { color: #6366f1; }
 }

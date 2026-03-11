@@ -18,6 +18,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth';
+import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 /**
  * Standalone page component that completes the email verification flow.
@@ -29,7 +30,7 @@ import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-verify-email',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, BgOrbs],
   templateUrl: './verify-email.html',
   styleUrl: './verify-email.scss'
 })

@@ -17,6 +17,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth';
+import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 /**
  * Standalone page component that guides the user through the post-registration
@@ -29,7 +30,7 @@ import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-check-email',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, BgOrbs],
   templateUrl: './check-email.html',
   styleUrl: './check-email.scss'
 })

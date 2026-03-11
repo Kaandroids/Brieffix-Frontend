@@ -13,6 +13,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 /**
  * Layout shell component rendered for every route under `/dashboard`.
@@ -24,7 +25,7 @@ import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, BgOrbs],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'
 })

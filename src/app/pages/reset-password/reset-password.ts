@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 function passwordsMatch(group: AbstractControl): ValidationErrors | null {
   const pw = group.get('newPassword')?.value;
@@ -12,7 +13,7 @@ function passwordsMatch(group: AbstractControl): ValidationErrors | null {
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, BgOrbs],
   templateUrl: './reset-password.html',
   styleUrl: './reset-password.scss'
 })

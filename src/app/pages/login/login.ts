@@ -16,6 +16,7 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { AuthService } from '../../services/auth';
+import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 const GOOGLE_CLIENT_ID = '919868109325-309ch5gbdf10onbpatqabulqbc7gc22a.apps.googleusercontent.com';
 
@@ -28,7 +29,7 @@ const GOOGLE_CLIENT_ID = '919868109325-309ch5gbdf10onbpatqabulqbc7gc22a.apps.goo
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, BgOrbs],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })

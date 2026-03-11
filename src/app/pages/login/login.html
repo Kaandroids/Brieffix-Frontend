@@ -1,9 +1,5 @@
 <div class="auth-page">
-  <div class="bg-orbs">
-    <div class="orb orb--1"></div>
-    <div class="orb orb--2"></div>
-    <div class="orb orb--3"></div>
-  </div>
+  <app-bg-orbs />
 
   <div class="auth-card">
     <div class="card-header">
@@ -74,10 +70,6 @@
         }
       </div>
 
-      <div class="forgot-link">
-        <a routerLink="/forgot-password">Passwort vergessen?</a>
-      </div>
-
       @if (errorMessage()) {
         <div class="server-error">{{ errorMessage() }}</div>
       }
@@ -107,9 +99,9 @@
       Mit Google anmelden
     </button>
 
-    <p class="switch-link">
-      Noch kein Konto?
-      <a routerLink="/register">Jetzt registrieren</a>
-    </p>
+    <div class="links-row">
+      <span class="switch-link">Noch kein Konto? <a routerLink="/register">Jetzt registrieren</a></span>
+      <a class="forgot-link" routerLink="/forgot-password">Passwort vergessen?</a>
+    </div>
   </div>
 </div>
