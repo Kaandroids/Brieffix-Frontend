@@ -323,6 +323,19 @@ input {
   }
 }
 
+// ─── Forgot Link ──────────────────────────────────────────────────────────────
+.forgot-link {
+  text-align: right;
+  margin-top: -0.5rem;
+
+  a {
+    font-size: 0.8rem;
+    color: $text-secondary;
+    text-decoration: none;
+    &:hover { color: #6366f1; }
+  }
+}
+
 // ─── Switch Link ──────────────────────────────────────────────────────────────
 .switch-link {
   text-align: center;

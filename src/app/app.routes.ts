@@ -60,6 +60,14 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/verify-email/verify-email').then(m => m.VerifyEmail)
   },
   {
+    path: 'forgot-password',
+    loadComponent: () => import('./pages/forgot-password/forgot-password').then(m => m.ForgotPassword)
+  },
+  {
+    path: 'reset-password',
+    loadComponent: () => import('./pages/reset-password/reset-password').then(m => m.ResetPassword)
+  },
+  {
     path: 'dashboard',
     loadComponent: () => import('./pages/dashboard/dashboard').then(m => m.Dashboard),
     /** Prevents access to the dashboard subtree for unauthenticated users. */

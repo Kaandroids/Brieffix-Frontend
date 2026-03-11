@@ -1,0 +1,151 @@
+<div class="settings-page">
+
+  <div class="page-header">
+    <h1>Einstellungen</h1>
+    <p class="subtitle">Konto, Passwort und Rechnungsadresse verwalten</p>
+  </div>
+
+  <!-- ── Konto ── -->
+  <section class="settings-card">
+    <h2 class="card-title">Konto</h2>
+
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" novalidate>
+      <div class="form-row">
+        <div class="form-group form-group--grow">
+          <label for="fullName">Vollständiger Name</label>
+          <input id="fullName" type="text" formControlName="fullName" placeholder="Max Mustermann" />
+          @if (profileForm.get('fullName')?.invalid && profileForm.get('fullName')?.touched) {
+            <span class="field-error">Name ist erforderlich</span>
+          }
+        </div>
+        <div class="form-group form-group--grow">
+          <label for="phone">Telefon (optional)</label>
+          <input id="phone" type="text" formControlName="phone" placeholder="+49 123 456789" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-Mail</label>
+        <div class="readonly-field">
+          {{ user()?.email }}
+          <span class="readonly-badge">Nicht änderbar</span>
+        </div>
+      </div>
+
+      @if (profileError()) {
+        <p class="alert alert--error">{{ profileError() }}</p>
+      }
+      @if (profileSuccess()) {
+        <p class="alert alert--success">Gespeichert.</p>
+      }
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="profileSaving() || profileForm.invalid">
+          @if (profileSaving()) { Wird gespeichert… } @else { Speichern }
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ── Passwort ── -->
+  <section class="settings-card">
+    <h2 class="card-title">Passwort ändern</h2>
+
+    @if (user()?.provider !== 'LOCAL') {
+      <p class="oauth-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Du hast dich mit Google angemeldet. Eine Passwortänderung ist nicht möglich.
+      </p>
+    } @else {
+      <form [formGroup]="passwordForm" (ngSubmit)="savePassword()" novalidate>
+        <div class="form-group">
+          <label for="currentPassword">Aktuelles Passwort</label>
+          <input id="currentPassword" type="password" formControlName="currentPassword" placeholder="••••••••" />
+        </div>
+        <div class="form-row">
+          <div class="form-group form-group--grow">
+            <label for="newPassword">Neues Passwort</label>
+            <input id="newPassword" type="password" formControlName="newPassword" placeholder="Mindestens 8 Zeichen" />
+            @if (passwordForm.get('newPassword')?.errors?.['minlength'] && passwordForm.get('newPassword')?.touched) {
+              <span class="field-error">Mindestens 8 Zeichen</span>
+            }
+          </div>
+          <div class="form-group form-group--grow">
+            <label for="confirmPassword">Passwort bestätigen</label>
+            <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="••••••••" />
+            @if (passwordForm.errors?.['mismatch'] && passwordForm.get('confirmPassword')?.touched) {
+              <span class="field-error">Passwörter stimmen nicht überein</span>
+            }
+          </div>
+        </div>
+
+        @if (passwordError()) {
+          <p class="alert alert--error">{{ passwordError() }}</p>
+        }
+        @if (passwordSuccess()) {
+          <p class="alert alert--success">Passwort wurde geändert.</p>
+        }
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" [disabled]="passwordSaving() || passwordForm.invalid">
+            @if (passwordSaving()) { Wird gespeichert… } @else { Passwort ändern }
+          </button>
+        </div>
+      </form>
+    }
+  </section>
+
+  <!-- ── Rechnungsadresse ── -->
+  <section class="settings-card">
+    <h2 class="card-title">Rechnungsadresse</h2>
+
+    <form [formGroup]="billingForm" (ngSubmit)="saveBilling()" novalidate>
+      <div class="form-group">
+        <label for="billingName">Name / Firma</label>
+        <input id="billingName" type="text" formControlName="billingName" placeholder="Max Mustermann oder Musterfirma GmbH" />
+      </div>
+      <div class="form-row">
+        <div class="form-group form-group--grow">
+          <label for="billingStreet">Straße</label>
+          <input id="billingStreet" type="text" formControlName="billingStreet" placeholder="Musterstraße" />
+        </div>
+        <div class="form-group form-group--narrow">
+          <label for="billingStreetNo">Nr.</label>
+          <input id="billingStreetNo" type="text" formControlName="billingStreetNo" placeholder="1" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group form-group--narrow">
+          <label for="billingZip">PLZ</label>
+          <input id="billingZip" type="text" formControlName="billingZip" placeholder="12345" />
+        </div>
+        <div class="form-group form-group--grow">
+          <label for="billingCity">Stadt</label>
+          <input id="billingCity" type="text" formControlName="billingCity" placeholder="Berlin" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="billingCountry">Land</label>
+        <input id="billingCountry" type="text" formControlName="billingCountry" placeholder="Deutschland" />
+      </div>
+
+      @if (billingError()) {
+        <p class="alert alert--error">{{ billingError() }}</p>
+      }
+      @if (billingSuccess()) {
+        <p class="alert alert--success">Gespeichert.</p>
+      }
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary" [disabled]="billingSaving()">
+          @if (billingSaving()) { Wird gespeichert… } @else { Speichern }
+        </button>
+      </div>
+    </form>
+  </section>
+
+</div>

@@ -144,6 +144,14 @@ export class AuthService {
     return this.http.post<void>(`${this.base}/resend-verification`, { email }, { responseType: 'text' as 'json' });
   }
 
+  forgotPassword(email: string): Observable<void> {
+    return this.http.post<void>(`${this.base}/forgot-password`, { email }, { responseType: 'text' as 'json' });
+  }
+
+  resetPassword(token: string, newPassword: string): Observable<void> {
+    return this.http.post<void>(`${this.base}/reset-password`, { token, newPassword }, { responseType: 'text' as 'json' });
+  }
+
   /**
    * Authenticates an existing user and persists the returned token pair on success.
    *

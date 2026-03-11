@@ -13,6 +13,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
+export type AuthProvider = 'LOCAL' | 'GOOGLE' | 'APPLE';
+
 /**
  * Subscription tier discriminator for the user account.
  *
@@ -37,11 +39,18 @@ export type UserPlan = 'STANDARD' | 'PREMIUM';
 export interface UserDto {
   id: string;
   email: string;
+  provider: AuthProvider;
   fullName: string;
   phone?: string;
   plan: UserPlan;
   isEmailVerified: boolean;
   createdAt: string;
+  billingName?: string;
+  billingStreet?: string;
+  billingStreetNo?: string;
+  billingZip?: string;
+  billingCity?: string;
+  billingCountry?: string;
 }
 
 /**
@@ -77,6 +86,25 @@ export class UserService {
    */
   loadMe(): Observable<UserDto> {
     return this.http.get<UserDto>(`${this.base}/me`).pipe(
+      tap(u => this.me.set(u))
+    );
+  }
+
+  updateProfile(data: { fullName: string; phone?: string }): Observable<UserDto> {
+    return this.http.put<UserDto>(`${this.base}/me/profile`, data).pipe(
+      tap(u => this.me.set(u))
+    );
+  }
+
+  updatePassword(data: { currentPassword: string; newPassword: string }): Observable<void> {
+    return this.http.put<void>(`${this.base}/me/password`, data);
+  }
+
+  updateBilling(data: {
+    billingName?: string; billingStreet?: string; billingStreetNo?: string;
+    billingZip?: string; billingCity?: string; billingCountry?: string;
+  }): Observable<UserDto> {
+    return this.http.put<UserDto>(`${this.base}/me/billing`, data).pipe(
       tap(u => this.me.set(u))
     );
   }

@@ -24,6 +24,35 @@ $border:         #e5e7eb;
   gap: 1rem;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, $primary, $primary-end);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+  flex-shrink: 0;
+}
+
+.logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $text-primary;
+  letter-spacing: -0.02em;
+}
+
 .footer-copy {
   font-size: 0.85rem;
   color: $text-secondary;
