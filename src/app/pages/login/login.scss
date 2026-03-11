@@ -313,7 +313,6 @@ input {
   justify-content: center;
   gap: 0.6rem;
   transition: background 0.2s, border-color 0.2s;
-  margin-bottom: 0.5rem;
 
   svg { width: 18px; height: 18px; flex-shrink: 0; }
 
@@ -328,8 +327,8 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1rem;
-  font-size: 0.8rem;
+  margin-top: -0.75rem;
+  font-size: 0.75rem;
 }
 
 .switch-link {

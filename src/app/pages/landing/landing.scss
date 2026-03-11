@@ -283,7 +283,7 @@ $text-secondary: #64748b;
   z-index: 1;
   max-width: 1320px;
   margin: 0 auto;
-  padding: 8rem 2.5rem 6rem;
+  padding: 8rem 2.5rem 7rem;
 }
 
 .hero-badge {
@@ -339,9 +339,14 @@ $text-secondary: #64748b;
 .features {
   position: relative;
   z-index: 1;
+  padding: 5rem 2.5rem 6rem;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+}
+
+.features-inner {
   max-width: 1320px;
   margin: 0 auto;
-  padding: 4rem 2.5rem 6rem;
 }
 
 .section-label {
@@ -417,7 +422,10 @@ $text-secondary: #64748b;
 .ai-spotlight {
   position: relative;
   z-index: 1;
-  padding: 0 2.5rem 5rem;
+  padding: 5rem 2.5rem;
+  background: #faf9ff;
+  border-top: 1px solid rgba(99, 102, 241, 0.1);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
 }
 
 .ai-spotlight-inner {
@@ -596,7 +604,9 @@ $text-secondary: #64748b;
 .cta-banner {
   position: relative;
   z-index: 1;
-  padding: 4rem 2.5rem;
+  padding: 5rem 2.5rem;
+  background: #f5f3ff;
+  border-top: 1px solid rgba(99, 102, 241, 0.12);
 }
 
 .cta-banner-inner {
@@ -634,12 +644,12 @@ $text-secondary: #64748b;
   .nav-inner { padding: 0.75rem 1rem; }
   .hero { padding: 5rem 1.25rem 4rem; }
   .features { padding: 3rem 1.25rem 4rem; }
-  .ai-spotlight { padding: 0 1.25rem 3.5rem; }
+  .ai-spotlight { padding: 3rem 1.25rem; }
   .ai-spotlight-inner { padding: 2rem 1.25rem; }
   .spotlight-steps { flex-direction: column; align-items: center; }
   .spotlight-arrow { padding-top: 0; transform: rotate(90deg); }
   .spotlight-step { max-width: 100%; }
-  .cta-banner { padding: 1rem 1.25rem; }
+  .cta-banner { padding: 3rem 1.25rem; }
   .cta-banner-inner { padding: 2rem 1.5rem; }
   .features-grid { grid-template-columns: 1fr; }
 }

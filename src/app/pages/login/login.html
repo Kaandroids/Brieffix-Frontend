@@ -70,6 +70,11 @@
         }
       </div>
 
+      <div class="links-row">
+        <span class="switch-link">Noch kein Konto? <a routerLink="/register">Jetzt registrieren</a></span>
+        <a class="forgot-link" routerLink="/forgot-password">Passwort vergessen?</a>
+      </div>
+
       @if (errorMessage()) {
         <div class="server-error">{{ errorMessage() }}</div>
       }
@@ -99,9 +104,5 @@
       Mit Google anmelden
     </button>
 
-    <div class="links-row">
-      <span class="switch-link">Noch kein Konto? <a routerLink="/register">Jetzt registrieren</a></span>
-      <a class="forgot-link" routerLink="/forgot-password">Passwort vergessen?</a>
-    </div>
   </div>
 </div>
