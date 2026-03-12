@@ -1,0 +1,506 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+$primary-start: #6366f1;
+$primary-end:   #8b5cf6;
+$bg-card:       #ffffff;
+$border:        rgba(15, 23, 42, 0.1);
+$text-primary:  #0f172a;
+$text-secondary:#64748b;
+
+// ─── Page Layout ──────────────────────────────────────────────────────────────
+.admin-page {
+  padding: 2.5rem;
+  max-width: 1100px;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle {
+    color: $text-secondary;
+    font-size: 0.875rem;
+  }
+}
+
+// ─── Filter Bar ───────────────────────────────────────────────────────────────
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 380px;
+
+  > svg {
+    position: absolute;
+    left: 0.875rem;
+    width: 16px;
+    height: 16px;
+    color: $text-secondary;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.6rem 2.5rem 0.6rem 2.5rem;
+    background: $bg-card;
+    border: 1px solid $border;
+    border-radius: 0.75rem;
+    color: $text-primary;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+
+    &::placeholder { color: rgba($text-secondary, 0.55); }
+    &:focus {
+      border-color: rgba($primary-start, 0.5);
+      box-shadow: 0 0 0 3px rgba($primary-start, 0.08);
+    }
+  }
+}
+
+.search-clear {
+  position: absolute;
+  right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $text-secondary;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+
+  svg { width: 14px; height: 14px; }
+  &:hover { opacity: 1; }
+}
+
+.result-count {
+  font-size: 0.8rem;
+  color: $text-secondary;
+  margin-left: auto;
+}
+
+// ─── Table ────────────────────────────────────────────────────────────────────
+.table-wrap {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  min-height: 120px;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  thead tr {
+    border-bottom: 1px solid $border;
+    background: rgba(15, 23, 42, 0.025);
+  }
+
+  th {
+    padding: 0.85rem 1.25rem;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $text-secondary;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $border;
+    transition: background 0.15s;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background: rgba(15, 23, 42, 0.02); }
+  }
+
+  td {
+    padding: 0.9rem 1.25rem;
+    color: $text-primary;
+    vertical-align: middle;
+  }
+}
+
+.td-name   { font-weight: 600; }
+.td-email  { color: $text-secondary; font-size: 0.83rem; }
+.td-date   { color: $text-secondary; font-size: 0.8rem; white-space: nowrap; }
+.td-provider { font-size: 0.8rem; color: $text-secondary; text-transform: lowercase; }
+
+// ─── Badges ───────────────────────────────────────────────────────────────────
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  background: rgba(15, 23, 42, 0.07);
+  color: $text-secondary;
+
+  &--user {
+    background: rgba(99, 102, 241, 0.12);
+    color: #6366f1;
+  }
+
+  &--support {
+    background: rgba(234, 179, 8, 0.15);
+    color: #a16207;
+  }
+
+  &--admin {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626;
+  }
+
+  &--premium {
+    background: rgba(168, 85, 247, 0.15);
+    color: #7c3aed;
+  }
+}
+
+// ─── Icons ────────────────────────────────────────────────────────────────────
+.icon-check {
+  width: 16px;
+  height: 16px;
+  color: #22c55e;
+}
+
+.icon-x {
+  width: 16px;
+  height: 16px;
+  color: #ef4444;
+  opacity: 0.6;
+}
+
+// ─── Loading / Empty ──────────────────────────────────────────────────────────
+.table-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 3.5rem;
+  color: $text-secondary;
+  font-size: 0.875rem;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid $border;
+  border-top-color: $primary-start;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  color: $text-secondary;
+  text-align: center;
+
+  svg { width: 48px; height: 48px; opacity: 0.35; }
+  p   { font-size: 0.95rem; margin: 0; }
+}
+
+// ─── Pagination ───────────────────────────────────────────────────────────────
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 1.5rem;
+}
+
+.page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 0.5rem;
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: 0.625rem;
+  color: $text-secondary;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  svg { width: 14px; height: 14px; }
+
+  &:hover:not(:disabled):not(.page-btn--active) {
+    background: rgba(15, 23, 42, 0.05);
+    color: $text-primary;
+  }
+
+  &--active {
+    background: linear-gradient(135deg, $primary-start, $primary-end);
+    border-color: transparent;
+    color: #fff;
+    cursor: default;
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+}
+
+.page-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 36px;
+  color: $text-secondary;
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+// ─── Edit Button ──────────────────────────────────────────────────────────────
+.td-actions { width: 48px; text-align: right; }
+
+.btn-edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid $border;
+  border-radius: 0.5rem;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  svg { width: 14px; height: 14px; }
+
+  &:hover {
+    background: rgba($primary-start, 0.08);
+    border-color: rgba($primary-start, 0.3);
+    color: $primary-start;
+  }
+}
+
+// ─── Shared Buttons ───────────────────────────────────────────────────────────
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, $primary-start, $primary-end);
+  border: none;
+  border-radius: 0.75rem;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+
+  &:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid $border;
+  border-radius: 0.75rem;
+  color: $text-secondary;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover { background: rgba(15, 23, 42, 0.07); color: $text-primary; }
+}
+
+// ─── Modal ────────────────────────────────────────────────────────────────────
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  animation: fadeIn 0.15s ease;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 1.5rem;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.14);
+  animation: slideUp 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 12px)); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.75rem 0;
+
+  h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $text-primary;
+    letter-spacing: -0.02em;
+  }
+}
+
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $text-secondary;
+  border-radius: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+
+  svg { width: 16px; height: 16px; }
+  &:hover { background: rgba(15, 23, 42, 0.06); color: $text-primary; }
+}
+
+.modal-user-info {
+  padding: 0.875rem 1.75rem 0;
+}
+
+.modal-user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.modal-user-email {
+  font-size: 0.8rem;
+  color: $text-secondary;
+  margin-top: 0.1rem;
+}
+
+.modal-body {
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $text-secondary;
+  }
+}
+
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.75rem 1rem;
+  background: rgba(15, 23, 42, 0.025);
+  border: 2px solid transparent;
+  border-radius: 0.875rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+
+  &:hover { background: rgba(15, 23, 42, 0.04); }
+
+  &--active {
+    border-color: $primary-start;
+    background: rgba($primary-start, 0.06);
+  }
+}
+
+.option-desc {
+  font-size: 0.8rem;
+  color: $text-secondary;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0 1.75rem 1.5rem;
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .admin-page { padding: 1.25rem; }
+
+  .users-table {
+    th:nth-child(5),
+    td:nth-child(5),
+    th:nth-child(7),
+    td:nth-child(7) { display: none; }
+  }
+
+  .filter-bar { flex-wrap: wrap; }
+  .search-box { max-width: 100%; }
+  .result-count { margin-left: 0; }
+}

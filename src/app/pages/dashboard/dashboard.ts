@@ -10,9 +10,10 @@
  * and `RouterLinkActive`.
  */
 
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { UserService } from '../../services/user';
 import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 
 /**
@@ -31,6 +32,9 @@ import { BgOrbs } from '../../components/bg-orbs/bg-orbs';
 })
 export class Dashboard {
   private authService = inject(AuthService);
+  private userService = inject(UserService);
+
+  isAdmin = computed(() => this.userService.me()?.role === 'ROLE_ADMIN');
 
   menuOpen = false;
 

@@ -100,6 +100,16 @@
           <span>Einstellungen</span>
         </a>
       </li>
+      @if (isAdmin()) {
+        <li>
+          <a class="nav-link" routerLink="/dashboard/admin" routerLinkActive="nav-link--active" (click)="closeMenu()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span>Administrator</span>
+          </a>
+        </li>
+      }
     </ul>
     <div class="mobile-drawer-footer">
       <button class="btn-logout btn-logout--drawer" (click)="logout()">
@@ -159,6 +169,16 @@
             <span>Briefe</span>
           </a>
         </li>
+        @if (isAdmin()) {
+          <li>
+            <a class="nav-link" routerLink="/dashboard/admin" routerLinkActive="nav-link--active">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>Administrator</span>
+            </a>
+          </li>
+        }
       </ul>
       <ul class="nav-list nav-list--bottom">
         <li>

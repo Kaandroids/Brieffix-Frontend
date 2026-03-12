@@ -92,6 +92,10 @@ export const routes: Routes = [
       {
         path: 'settings',
         loadComponent: () => import('./pages/settings/settings').then(m => m.Settings)
+      },
+      {
+        path: 'admin',
+        loadComponent: () => import('./pages/admin/admin').then(m => m.Admin)
       }
     ]
   },

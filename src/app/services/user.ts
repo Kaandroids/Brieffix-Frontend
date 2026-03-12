@@ -23,6 +23,7 @@ export type AuthProvider = 'LOCAL' | 'GOOGLE' | 'APPLE';
  *                and increased usage limits.
  */
 export type UserPlan = 'STANDARD' | 'PREMIUM';
+export type UserRole = 'ROLE_USER' | 'ROLE_SUPPORT' | 'ROLE_ADMIN';
 
 /**
  * Data Transfer Object representing the authenticated user as returned by the API.
@@ -43,6 +44,7 @@ export interface UserDto {
   fullName: string;
   phone?: string;
   plan: UserPlan;
+  role: UserRole;
   isEmailVerified: boolean;
   createdAt: string;
   billingName?: string;
