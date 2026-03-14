@@ -363,11 +363,14 @@
   // Stack date below title on narrow screens
   .form-group--date { flex: 1 1 100%; min-width: 0; }
 
+  // Hide PDF preview button and modal on mobile
+  .btn-secondary { display: none; }
+  .preview-modal { display: none; }
+
   // Stack action buttons vertically
   .brief-actions {
     flex-direction: column;
-    .btn-primary,
-    .btn-secondary { width: 100%; justify-content: center; }
+    .btn-primary { width: 100%; justify-content: center; }
   }
 
 }
