@@ -1,21 +1,20 @@
-<svg width="200" height="200" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="1024" height="1024" rx="280" fill="#7b61ff" />
+<svg width="36" height="36" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+    <defs>
+        <linearGradient id="logoGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+        </linearGradient>
+    </defs>
 
-    <g transform="translate(212, 312)">
-        <rect x="0" y="0" width="600" height="400" rx="40" fill="white" />
+    <rect x="0" y="0" width="1024" height="1024" rx="280" fill="url(#logoGrad)" />
 
-        <path d="M0 40 L300 240 L600 40"
+    <g transform="translate(287, 362)">
+        <rect x="0" y="0" width="450" height="300" rx="40" fill="white" />
+
+        <path d="M0 0 L225 170 L450 0"
               fill="none"
-              stroke="#7b61ff"
-              stroke-width="24"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              opacity="0.2" />
-
-        <path d="M0 0 L300 210 L600 0"
-              fill="none"
-              stroke="#7b61ff"
-              stroke-width="24"
+              stroke="#6366f1"
+              stroke-width="32"
               stroke-linecap="round"
               stroke-linejoin="round" />
     </g>

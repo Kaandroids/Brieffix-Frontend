@@ -93,6 +93,7 @@ $sidebar-width: 220px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
   flex-shrink: 0;
+  image-rendering: crisp-edges;
 }
 
 .logo-text {
@@ -265,7 +266,7 @@ $sidebar-width: 220px;
   display: flex; align-items: center; gap: 0.5rem;
   .logo-icon {
     width: 44px; height: 44px; border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(99,102,241,0.4); flex-shrink: 0;
+    box-shadow: 0 4px 15px rgba(99,102,241,0.4); flex-shrink: 0; image-rendering: crisp-edges;
   }
   .logo-text { font-size: 1.2rem; font-weight: 700; color: $text-primary; letter-spacing: -0.02em; }
 }

@@ -101,6 +101,7 @@ $input-focus: rgba(99, 102, 241, 0.06);
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
   flex-shrink: 0;
+  image-rendering: crisp-edges;
 }
 
 .logo-text {
