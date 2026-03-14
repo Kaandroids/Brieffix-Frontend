@@ -1,10 +1,5 @@
 @use 'sass:color';
-
-$primary:        #6366f1;
-$primary-end:    #8b5cf6;
-$text-primary:   #1e1b4b;
-$text-secondary: #6b7280;
-$border:         #e5e7eb;
+@use 'variables' as *;
 
 .footer {
   position: relative;

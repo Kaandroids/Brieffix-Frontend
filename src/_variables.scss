@@ -1,0 +1,115 @@
+// =============================================================================
+// Design Tokens — single source of truth for all design decisions.
+// Import in any component SCSS with:  @use 'variables' as *;
+// =============================================================================
+
+// ── Primitive Color Palette ───────────────────────────────────────────────────
+// Raw color values. Prefer semantic tokens below for actual usage.
+$color-indigo-500:  #6366f1;
+$color-violet-500:  #8b5cf6;
+$color-sky-500:     #0ea5e9;
+$color-red-500:     #ef4444;
+$color-emerald-500: #10b981;
+$color-amber-700:   #b8860b;
+$color-slate-950:   #0f172a;
+$color-slate-500:   #64748b;
+$color-slate-50:    #f8fafc;
+$color-slate-100:   #f1f5f9;
+$color-white:       #ffffff;
+
+// ── Semantic Color Tokens ─────────────────────────────────────────────────────
+
+// Brand
+$primary:        $color-indigo-500;
+$primary-start:  $primary;            // gradient alias (kept for compatibility)
+$primary-end:    $color-violet-500;
+$primary-light:  rgba(99, 102, 241, 0.08);
+$accent:         $color-sky-500;
+$gold:           $color-amber-700;
+
+// Backgrounds
+$bg-page:   $color-slate-50;
+$bg-dark:   $bg-page;                 // alias (kept for compatibility)
+$bg:        $bg-page;                 // alias (kept for compatibility)
+$bg-subtle: $color-slate-100;
+$bg-darker: $bg-subtle;               // alias (kept for compatibility)
+$bg-card:   $color-white;
+
+// Text
+$text-primary:   $color-slate-950;
+$text-secondary: $color-slate-500;
+
+// Borders & Inputs
+$border:      rgba(15, 23, 42, 0.1);
+$input-bg:    rgba(15, 23, 42, 0.04);
+$input-focus: rgba(99, 102, 241, 0.06);
+
+// Feedback
+$error:   $color-red-500;
+$danger:  $error;                     // alias (kept for compatibility)
+$success: $color-emerald-500;
+
+// ── Typography ────────────────────────────────────────────────────────────────
+$font-family:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-size-base: 16px;
+
+// Font size scale
+$text-xs:   0.75rem;    // 12px
+$text-sm:   0.875rem;   // 14px
+$text-base: 1rem;       // 16px
+$text-lg:   1.125rem;   // 18px
+$text-xl:   1.25rem;    // 20px
+$text-2xl:  1.5rem;     // 24px
+$text-3xl:  1.875rem;   // 30px
+$text-4xl:  2.25rem;    // 36px
+
+// Font weight scale
+$font-normal:    400;
+$font-medium:    500;
+$font-semibold:  600;
+$font-bold:      700;
+$font-extrabold: 800;
+
+// ── Spacing Scale ─────────────────────────────────────────────────────────────
+// Named after multiples of 4px base unit
+$space-1:  0.25rem;   //  4px
+$space-2:  0.5rem;    //  8px
+$space-3:  0.75rem;   // 12px
+$space-4:  1rem;      // 16px
+$space-5:  1.25rem;   // 20px
+$space-6:  1.5rem;    // 24px
+$space-8:  2rem;      // 32px
+$space-10: 2.5rem;    // 40px
+$space-12: 3rem;      // 48px
+$space-16: 4rem;      // 64px
+$space-20: 5rem;      // 80px
+
+// ── Border Radius ─────────────────────────────────────────────────────────────
+$radius-sm:   0.375rem;   //  6px
+$radius-md:   0.625rem;   // 10px
+$radius-lg:   0.75rem;    // 12px
+$radius-xl:   1rem;       // 16px
+$radius-2xl:  1.25rem;    // 20px
+$radius-3xl:  1.5rem;     // 24px
+$radius-full: 9999px;
+
+// ── Shadows ───────────────────────────────────────────────────────────────────
+$shadow-card:  0 4px 24px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.05);
+$shadow-btn:   0 4px 20px rgba(99, 102, 241, 0.35);
+$shadow-logo:  0 4px 15px rgba(99, 102, 241, 0.4);
+$shadow-modal: 0 32px 64px rgba(0, 0, 0, 0.6);
+
+// ── Breakpoints ───────────────────────────────────────────────────────────────
+$bp-mobile:  600px;
+$bp-tablet:  768px;
+$bp-desktop: 900px;
+
+// ── Layout ────────────────────────────────────────────────────────────────────
+$sidebar-width:      220px;
+$content-max-width:  1320px;
+
+// ── Z-Index Scale ─────────────────────────────────────────────────────────────
+$z-nav:      100;
+$z-drawer:   201;
+$z-modal:    1000;
+$z-backdrop:  40;

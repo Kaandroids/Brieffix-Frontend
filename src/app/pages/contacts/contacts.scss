@@ -1,10 +1,4 @@
-// ─── Variables ────────────────────────────────────────────────────────────────
-$primary-start: #6366f1;
-$primary-end: #8b5cf6;
-$bg-card: #ffffff;
-$border: rgba(15, 23, 42, 0.1);
-$text-primary: #0f172a;
-$text-secondary: #64748b;
+@use 'variables' as *;
 
 // ─── Shared Buttons ───────────────────────────────────────────────────────────
 .btn-primary {

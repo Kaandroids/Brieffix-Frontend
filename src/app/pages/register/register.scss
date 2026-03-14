@@ -1,14 +1,4 @@
-// Same design tokens as login, extracted here for component encapsulation
-$primary-start: #6366f1;
-$primary-end: #8b5cf6;
-$bg-dark: #f8fafc;
-$bg-card: #ffffff;
-$border: rgba(15, 23, 42, 0.1);
-$text-primary: #0f172a;
-$text-secondary: #64748b;
-$error: #ef4444;
-$input-bg: rgba(15, 23, 42, 0.04);
-$input-focus: rgba(99, 102, 241, 0.06);
+@use 'variables' as *;
 
 .auth-page {
   min-height: 100vh;

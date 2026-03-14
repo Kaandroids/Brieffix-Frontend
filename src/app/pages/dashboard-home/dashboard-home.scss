@@ -1,9 +1,4 @@
-$text-primary: #0f172a;
-$text-secondary: #64748b;
-$bg-card: #ffffff;
-$border: rgba(15, 23, 42, 0.1);
-$primary: #6366f1;
-$primary-light: #6366f1;
+@use 'variables' as *;
 
 .home-content {
   padding: 2.5rem;
