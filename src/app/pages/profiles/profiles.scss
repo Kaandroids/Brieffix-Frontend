@@ -26,7 +26,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.6rem 1.25rem;
-  background: rgba(15, 23, 42, 0.04);
+  background: rgba($text-primary, 0.04);
   border: 1px solid $border;
   border-radius: 0.75rem;
   color: $text-secondary;
@@ -35,7 +35,7 @@
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 
-  &:hover { background: rgba(15, 23, 42, 0.07); color: $text-primary; }
+  &:hover { background: rgba($text-primary, 0.07); color: $text-primary; }
 }
 
 .btn-icon {
@@ -52,12 +52,12 @@
 
   svg { width: 14px; height: 14px; }
 
-  &:hover { background: rgba(15, 23, 42, 0.06); color: $text-primary; }
+  &:hover { background: rgba($text-primary, 0.06); color: $text-primary; }
 
   &--danger:hover {
-    background: rgba(248, 113, 113, 0.12);
-    border-color: rgba(248, 113, 113, 0.3);
-    color: #ef4444;
+    background: rgba($error-soft, 0.12);
+    border-color: rgba($error-soft, 0.3);
+    color: $error;
   }
 }
 
@@ -97,7 +97,7 @@
   backdrop-filter: blur(16px);
   transition: border-color 0.2s, transform 0.2s;
 
-  &:hover { border-color: rgba(15,23,42,0.14); transform: translateY(-2px); }
+  &:hover { border-color: rgba($text-primary,0.14); transform: translateY(-2px); }
 }
 
 .card-header {
@@ -110,13 +110,13 @@
 .card-avatar {
   width: 44px; height: 44px;
   border-radius: 12px;
-  background: rgba(99, 102, 241, 0.15);
+  background: rgba($primary, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #6366f1;
+  color: $primary;
   svg { width: 22px; height: 22px; }
-  &--org { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
+  &--org { background: rgba($primary-end, 0.15); color: $violet; }
 }
 
 .card-actions { display: flex; gap: 0.35rem; }
@@ -132,10 +132,10 @@
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.03em;
-  background: rgba(99, 102, 241, 0.15);
-  color: #6366f1;
-  &--org     { background: rgba(139, 92, 246, 0.15); color: #7c3aed; }
-  &--default { background: rgba(6, 182, 212, 0.15);  color: #0891b2; }
+  background: rgba($primary, 0.15);
+  color: $primary;
+  &--org     { background: rgba($primary-end, 0.15); color: $violet; }
+  &--default { background: rgba($cyan, 0.15);  color: $cyan-dark; }
 }
 
 .card-name {
@@ -253,7 +253,7 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: rgba(15, 23, 42, 0.04);
+  background: rgba($text-primary, 0.04);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -267,7 +267,7 @@
 
   .type-card--active & {
     background: rgba($primary-start, 0.15);
-    svg { color: #6366f1; }
+    svg { color: $primary; }
   }
 }
 
@@ -358,7 +358,7 @@
   input[type="text"],
   select {
     padding: 0.6rem 0.875rem;
-    background: rgba(15,23,42,0.04);
+    background: rgba($text-primary,0.04);
     border: 1px solid $border;
     border-radius: 0.625rem;
     color: $text-primary;
@@ -429,7 +429,7 @@
 
 // ─── Logo Upload ───────────────────────────────────────────────────────────────
 .type-badge--logo {
-  background: rgba(34, 197, 94, 0.15);
+  background: rgba($success, 0.15);
   color: #4ade80;
 }
 
@@ -450,7 +450,7 @@
     max-width: 180px;
     border-radius: 0.625rem;
     border: 1px solid $border;
-    background: rgba(15, 23, 42, 0.02);
+    background: rgba($text-primary, 0.02);
     object-fit: contain;
   }
 

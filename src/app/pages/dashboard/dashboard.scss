@@ -3,8 +3,8 @@
 // ─── Layout ───────────────────────────────────────────────────────────────────
 .dashboard-layout {
   min-height: 100vh;
-  background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+  background: radial-gradient(ellipse at 20% 50%, rgba($primary, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba($primary-end, 0.05) 0%, transparent 50%),
               $bg-dark;
   position: relative;
   overflow: hidden;
@@ -46,7 +46,7 @@
   &--3 {
     width: 250px;
     height: 250px;
-    background: #06b6d4;
+    background: $cyan;
     top: 40%;
     right: 25%;
     animation: float 6s ease-in-out infinite 2s;
@@ -67,7 +67,7 @@
   justify-content: space-between;
   padding: 1.25rem 2rem;
   border-bottom: 1px solid $border;
-  background: rgba(248, 250, 252, 0.92);
+  background: rgba($bg-page, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   flex-shrink: 0;
@@ -83,7 +83,7 @@
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 15px rgba($primary, 0.4);
   flex-shrink: 0;
   image-rendering: crisp-edges;
 }
@@ -100,7 +100,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.55rem 1rem;
-  background: rgba(15, 23, 42, 0.04);
+  background: rgba($text-primary, 0.04);
   border: 1px solid $border;
   border-radius: 0.75rem;
   color: $text-secondary;
@@ -115,9 +115,9 @@
   }
 
   &:hover {
-    background: rgba(248, 113, 113, 0.1);
-    border-color: rgba(248, 113, 113, 0.3);
-    color: #f87171;
+    background: rgba($error-soft, 0.1);
+    border-color: rgba($error-soft, 0.3);
+    color: $error-soft;
   }
 }
 
@@ -134,7 +134,7 @@
   width: $sidebar-width;
   flex-shrink: 0;
   border-right: 1px solid $border;
-  background: rgba(248, 250, 252, 0.8);
+  background: rgba($bg-page, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   padding: 1.5rem 1rem;
@@ -176,13 +176,13 @@
   }
 
   &:hover {
-    background: rgba(15, 23, 42, 0.05);
+    background: rgba($text-primary, 0.05);
     color: $text-primary;
   }
 
   &--active {
-    background: rgba(99, 102, 241, 0.1);
-    color: #6366f1;
+    background: rgba($primary, 0.1);
+    color: $primary;
   }
 }
 
@@ -199,7 +199,7 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  background: rgba(15, 23, 42, 0.04);
+  background: rgba($text-primary, 0.04);
   border: 1px solid $border;
   border-radius: 0.75rem;
   color: $text-secondary;
@@ -212,7 +212,7 @@
   }
 
   &:hover {
-    background: rgba(15, 23, 42, 0.08);
+    background: rgba($text-primary, 0.08);
     color: $text-primary;
   }
 }
@@ -234,7 +234,7 @@
   bottom: 0;
   z-index: 50;
   width: 270px;
-  background: #f8fafc;
+  background: $bg-page;
   border-left: 1px solid $border;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -258,7 +258,7 @@
   display: flex; align-items: center; gap: 0.5rem;
   .logo-icon {
     width: 44px; height: 44px; border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(99,102,241,0.4); flex-shrink: 0; image-rendering: crisp-edges;
+    box-shadow: 0 4px 15px rgba($primary,0.4); flex-shrink: 0; image-rendering: crisp-edges;
   }
   .logo-text { font-size: 1.2rem; font-weight: 700; color: $text-primary; letter-spacing: -0.02em; }
 }
@@ -268,7 +268,7 @@
   color: $text-secondary; border-radius: 0.5rem;
   transition: background 0.2s, color 0.2s;
   svg { width: 18px; height: 18px; }
-  &:hover { background: rgba(15,23,42,0.06); color: $text-primary; }
+  &:hover { background: rgba($text-primary,0.06); color: $text-primary; }
 }
 
 .mobile-drawer .nav-link {

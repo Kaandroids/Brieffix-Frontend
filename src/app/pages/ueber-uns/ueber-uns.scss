@@ -3,8 +3,8 @@
 // ─── Root ─────────────────────────────────────────────────────────────────────
 .public-page {
   min-height: 100vh;
-  background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.05) 0%, transparent 50%),
+  background: radial-gradient(ellipse at 20% 50%, rgba($primary,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba($primary-end,0.05) 0%, transparent 50%),
               $bg;
   color: $text-primary;
   position: relative;
@@ -28,7 +28,7 @@
   position: sticky; top: 0; z-index: 100;
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid $border;
-  background: rgba(248,250,252,0.92);
+  background: rgba($bg-page,0.92);
 }
 .nav-inner {
   max-width: 1320px; margin: 0 auto; padding: 1rem 2.5rem;
@@ -45,7 +45,7 @@
   padding: 0.5rem 0.9rem; border-radius: 0.65rem; font-size: 0.9rem;
   font-weight: 500; color: $text-secondary; text-decoration: none;
   transition: color 0.2s, background 0.2s;
-  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
+  &:hover { color: $text-primary; background: rgba($text-primary,0.05); }
   &--active { color: $primary-start; font-weight: 600; }
 }
 .burger {
@@ -56,13 +56,13 @@
 .mobile-menu {
   border-top: 1px solid $border; padding: 1rem 1.25rem 1.25rem;
   display: flex; flex-direction: column; gap: 0.25rem;
-  background: rgba(248,250,252,0.98);
+  background: rgba($bg-page,0.98);
 }
 .mobile-link {
   padding: 0.65rem 0.75rem; border-radius: 0.65rem; font-size: 0.95rem;
   font-weight: 500; color: $text-secondary; text-decoration: none;
   transition: color 0.2s, background 0.2s;
-  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
+  &:hover { color: $text-primary; background: rgba($text-primary,0.05); }
 }
 .mobile-cta { margin-top: 0.5rem; text-align: center; }
 
@@ -71,7 +71,7 @@
 .logo-icon {
   width: 36px; height: 36px; background: linear-gradient(135deg, $primary-start, $primary-end);
   border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 1rem; color: #fff; box-shadow: 0 4px 15px rgba(99,102,241,0.4); flex-shrink: 0;
+  font-weight: 700; font-size: 1rem; color: #fff; box-shadow: 0 4px 15px rgba($primary,0.4); flex-shrink: 0;
   &--sm { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 8px; }
 }
 .logo-text { font-size: 1.2rem; font-weight: 700; color: $text-primary; letter-spacing: -0.02em; white-space: nowrap; }
@@ -82,8 +82,8 @@
   padding: 0.55rem 1.25rem; background: linear-gradient(135deg, $primary-start, $primary-end);
   border: none; border-radius: 0.75rem; color: #fff; font-size: 0.9rem; font-weight: 600;
   text-decoration: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(99,102,241,0.35);
-  &:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 25px rgba(99,102,241,0.45); }
+  box-shadow: 0 4px 20px rgba($primary,0.35);
+  &:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 25px rgba($primary,0.45); }
   &.btn-lg { padding: 0.85rem 2rem; font-size: 1rem; border-radius: 0.875rem; }
 }
 .btn-ghost {
@@ -91,7 +91,7 @@
   padding: 0.55rem 1.25rem; background: transparent; border: 1px solid $border;
   border-radius: 0.75rem; color: $text-secondary; font-size: 0.9rem; font-weight: 500;
   text-decoration: none; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
-  &:hover { border-color: rgba(15,23,42,0.2); color: $text-primary; background: rgba(15,23,42,0.04); }
+  &:hover { border-color: rgba($text-primary,0.2); color: $text-primary; background: rgba($text-primary,0.04); }
   &.btn-lg { padding: 0.85rem 2rem; font-size: 1rem; border-radius: 0.875rem; }
 }
 
@@ -106,14 +106,14 @@
 }
 .section-label {
   font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
-  text-transform: uppercase; color: #6366f1; margin-bottom: 0.75rem;
+  text-transform: uppercase; color: $primary; margin-bottom: 0.75rem;
 }
 h1 {
   font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; line-height: 1.15;
   letter-spacing: -0.04em; color: $text-primary; margin-bottom: 1.25rem;
 }
 .gradient-text {
-  background: linear-gradient(135deg, $primary-start, $primary-end, #06b6d4);
+  background: linear-gradient(135deg, $primary-start, $primary-end, $cyan);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .page-intro {
@@ -128,10 +128,10 @@ h1 {
 .content-card {
   background: #fff; border: 1px solid $border; border-radius: 1.25rem; padding: 2rem;
   transition: border-color 0.25s, background 0.25s, transform 0.25s;
-  &:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-3px); }
+  &:hover { border-color: rgba($primary,0.3); transform: translateY(-3px); }
   &--featured {
-    border-color: rgba(99,102,241,0.25);
-    background: rgba(99,102,241,0.03);
+    border-color: rgba($primary,0.25);
+    background: rgba($primary,0.03);
     grid-column: span 2;
   }
   h2 { font-size: 1.15rem; font-weight: 700; color: $text-primary; margin: 1rem 0 0.75rem; }
@@ -141,10 +141,10 @@ h1 {
   width: 48px; height: 48px; border-radius: 0.875rem;
   display: flex; align-items: center; justify-content: center;
   svg { width: 22px; height: 22px; }
-  &--mission { background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25); color: #6366f1; }
-  &--product { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2); color: #0891b2; }
-  &--values  { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); color: #059669; }
-  &--tech    { background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); color: #7c3aed; }
+  &--mission { background: rgba($primary,0.12); border: 1px solid rgba($primary,0.25); color: $primary; }
+  &--product { background: rgba($cyan,0.1); border: 1px solid rgba($cyan,0.2); color: $cyan-dark; }
+  &--values  { background: rgba($success,0.1); border: 1px solid rgba($success,0.2); color: $success-dark; }
+  &--tech    { background: rgba($primary-end,0.1); border: 1px solid rgba($primary-end,0.2); color: $violet; }
 }
 
 // ─── Values list ──────────────────────────────────────────────────────────────
@@ -163,7 +163,7 @@ h1 {
   margin-bottom: 3rem;
 }
 .contact-inner {
-  background: rgba(99,102,241,0.04); border: 1px solid rgba(99,102,241,0.18);
+  background: rgba($primary,0.04); border: 1px solid rgba($primary,0.18);
   border-radius: 1.25rem; padding: 2.5rem;
   h2 { font-size: 1.3rem; font-weight: 700; color: $text-primary; margin-bottom: 0.75rem; }
   p { font-size: 0.95rem; color: $text-secondary; margin-bottom: 1.5rem; }
@@ -172,15 +172,15 @@ h1 {
 // ─── CTA section ──────────────────────────────────────────────────────────────
 .cta-section { margin-bottom: 2rem; }
 .cta-inner {
-  background: rgba(99,102,241,0.04); border: 1px solid rgba(99,102,241,0.18);
+  background: rgba($primary,0.04); border: 1px solid rgba($primary,0.18);
   border-radius: 1.5rem; padding: 2.5rem 3rem;
   h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; letter-spacing: -0.03em; color: $text-primary; margin-bottom: 0.75rem; }
   p { font-size: 1rem; color: $text-secondary; margin-bottom: 1.75rem; }
 }
 .cta-badge {
   display: inline-flex; align-items: center; gap: 0.4rem;
-  padding: 0.3rem 0.9rem; background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);
-  border-radius: 2rem; color: #6366f1; font-size: 0.78rem; font-weight: 600; margin-bottom: 1.25rem;
+  padding: 0.3rem 0.9rem; background: rgba($primary,0.15); border: 1px solid rgba($primary,0.3);
+  border-radius: 2rem; color: $primary; font-size: 0.78rem; font-weight: 600; margin-bottom: 1.25rem;
   svg { width: 13px; height: 13px; }
 }
 .cta-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }

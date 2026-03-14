@@ -3,8 +3,8 @@
 // ─── Root ─────────────────────────────────────────────────────────────────────
 .landing {
   min-height: 100vh;
-  background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+  background: radial-gradient(ellipse at 20% 50%, rgba($primary, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba($primary-end, 0.05) 0%, transparent 50%),
               $bg-dark;
   color: $text-primary;
   font-family: inherit;
@@ -47,7 +47,7 @@
   &--3 {
     width: 300px;
     height: 300px;
-    background: #06b6d4;
+    background: $cyan;
     top: 40%;
     right: 25%;
     animation: float 8s ease-in-out infinite 2s;
@@ -67,7 +67,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid $border;
-  background: rgba(248, 250, 252, 0.92);
+  background: rgba($bg-page, 0.92);
 }
 
 .nav-inner {
@@ -105,7 +105,7 @@
 
   &:hover {
     color: $text-primary;
-    background: rgba(15, 23, 42, 0.05);
+    background: rgba($text-primary, 0.05);
   }
 
   &--active {
@@ -150,7 +150,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background: rgba(248, 250, 252, 0.98);
+  background: rgba($bg-page, 0.98);
 }
 
 .mobile-link {
@@ -164,7 +164,7 @@
 
   &:hover {
     color: $text-primary;
-    background: rgba(15, 23, 42, 0.05);
+    background: rgba($text-primary, 0.05);
   }
 }
 
@@ -192,7 +192,7 @@
   font-weight: 700;
   font-size: 1rem;
   color: #fff;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 15px rgba($primary, 0.4);
   flex-shrink: 0;
 
   &--sm {
@@ -226,12 +226,12 @@
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 20px rgba($primary, 0.35);
 
   &:hover {
     opacity: 0.9;
     transform: translateY(-1px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
+    box-shadow: 0 8px 25px rgba($primary, 0.45);
   }
 
   &:active { transform: translateY(0); }
@@ -259,9 +259,9 @@
   transition: border-color 0.2s, color 0.2s, background 0.2s;
 
   &:hover {
-    border-color: rgba(15, 23, 42, 0.2);
+    border-color: rgba($text-primary, 0.2);
     color: $text-primary;
-    background: rgba(15, 23, 42, 0.04);
+    background: rgba($text-primary, 0.04);
   }
 
   &.btn-lg {
@@ -285,10 +285,10 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 1rem;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba($primary, 0.15);
+  border: 1px solid rgba($primary, 0.3);
   border-radius: 2rem;
-  color: #6366f1;
+  color: $primary;
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -307,7 +307,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, $primary-start, $primary-end, #06b6d4);
+  background: linear-gradient(135deg, $primary-start, $primary-end, $cyan);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -335,7 +335,7 @@
   z-index: 1;
   padding: 5rem 2.5rem 6rem;
   background: #ffffff;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.07);
+  border-bottom: 1px solid rgba($text-primary, 0.07);
 }
 
 .features-inner {
@@ -348,7 +348,7 @@
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #6366f1;
+  color: $primary;
   margin-bottom: 0.75rem;
 }
 
@@ -375,8 +375,8 @@
   transition: border-color 0.25s, background 0.25s, transform 0.25s;
 
   &:hover {
-    border-color: rgba(99, 102, 241, 0.35);
-    background: rgba(99, 102, 241, 0.05);
+    border-color: rgba($primary, 0.35);
+    background: rgba($primary, 0.05);
     transform: translateY(-3px);
   }
 
@@ -398,8 +398,8 @@
 .feature-icon {
   width: 44px;
   height: 44px;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.25);
+  background: rgba($primary, 0.15);
+  border: 1px solid rgba($primary, 0.25);
   border-radius: 0.75rem;
   display: flex;
   align-items: center;
@@ -408,7 +408,7 @@
   svg {
     width: 20px;
     height: 20px;
-    color: #6366f1;
+    color: $primary;
   }
 }
 
@@ -418,15 +418,15 @@
   z-index: 1;
   padding: 5rem 2.5rem;
   background: #faf9ff;
-  border-top: 1px solid rgba(99, 102, 241, 0.1);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+  border-top: 1px solid rgba($primary, 0.1);
+  border-bottom: 1px solid rgba($primary, 0.1);
 }
 
 .ai-spotlight-inner {
   max-width: 1320px;
   margin: 0 auto;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.04));
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: linear-gradient(135deg, rgba($primary, 0.05), rgba($primary-end, 0.04));
+  border: 1px solid rgba($primary, 0.3);
   border-radius: 1.75rem;
   padding: 3.5rem;
   text-align: center;
@@ -437,10 +437,10 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.35rem 1rem;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba($primary, 0.15);
+  border: 1px solid rgba($primary, 0.3);
   border-radius: 2rem;
-  color: #6366f1;
+  color: $primary;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -498,7 +498,7 @@
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #6366f1;
+  color: $primary;
   margin-bottom: 0.75rem;
 }
 
@@ -514,21 +514,21 @@
   svg { width: 24px; height: 24px; }
 
   &--mic {
-    background: rgba(6, 182, 212, 0.1);
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    color: #0891b2;
+    background: rgba($cyan, 0.1);
+    border: 1px solid rgba($cyan, 0.2);
+    color: $cyan-dark;
   }
 
   &--ai {
-    background: rgba(99, 102, 241, 0.1);
-    border: 1px solid rgba(99, 102, 241, 0.25);
-    color: #6366f1;
+    background: rgba($primary, 0.1);
+    border: 1px solid rgba($primary, 0.25);
+    color: $primary;
   }
 
   &--pdf {
-    background: rgba(139, 92, 246, 0.1);
-    border: 1px solid rgba(139, 92, 246, 0.2);
-    color: #7c3aed;
+    background: rgba($primary-end, 0.1);
+    border: 1px solid rgba($primary-end, 0.2);
+    color: $violet;
   }
 }
 
@@ -536,20 +536,20 @@
   display: flex;
   align-items: center;
   padding-top: 1.5rem;
-  color: rgba(15, 23, 42, 0.2);
+  color: rgba($text-primary, 0.2);
 
   svg { width: 20px; height: 20px; }
 }
 
 // ─── Feature card variants ─────────────────────────────────────────────────────
 .feature-card--highlight {
-  border-color: rgba(99, 102, 241, 0.3);
-  background: rgba(99, 102, 241, 0.06);
+  border-color: rgba($primary, 0.3);
+  background: rgba($primary, 0.06);
   position: relative;
 
   &:hover {
-    border-color: rgba(99, 102, 241, 0.5);
-    background: rgba(99, 102, 241, 0.1);
+    border-color: rgba($primary, 0.5);
+    background: rgba($primary, 0.1);
   }
 }
 
@@ -566,14 +566,14 @@
 }
 
 .feature-icon--ai {
-  background: rgba(99, 102, 241, 0.2);
-  border-color: rgba(99, 102, 241, 0.4);
-  svg { color: #6366f1; }
+  background: rgba($primary, 0.2);
+  border-color: rgba($primary, 0.4);
+  svg { color: $primary; }
 }
 
 .feature-icon--voice {
-  background: rgba(6, 182, 212, 0.12);
-  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba($cyan, 0.12);
+  border-color: rgba($cyan, 0.3);
   svg { color: #22d3ee; }
 }
 
@@ -583,10 +583,10 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.3rem 0.9rem;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  background: rgba($primary, 0.15);
+  border: 1px solid rgba($primary, 0.3);
   border-radius: 2rem;
-  color: #6366f1;
+  color: $primary;
   font-size: 0.78rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
@@ -600,14 +600,14 @@
   z-index: 1;
   padding: 5rem 2.5rem;
   background: #f5f3ff;
-  border-top: 1px solid rgba(99, 102, 241, 0.12);
+  border-top: 1px solid rgba($primary, 0.12);
 }
 
 .cta-banner-inner {
   max-width: 1320px;
   margin: 0 auto;
-  background: rgba(99, 102, 241, 0.04);
-  border: 1px solid rgba(99, 102, 241, 0.18);
+  background: rgba($primary, 0.04);
+  border: 1px solid rgba($primary, 0.18);
   border-radius: 1.5rem;
   padding: 2.5rem 3rem;
 

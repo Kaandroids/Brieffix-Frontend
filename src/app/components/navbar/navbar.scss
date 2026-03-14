@@ -5,7 +5,7 @@
   position: sticky; top: 0; z-index: 100;
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid $border;
-  background: rgba(248,250,252,0.92);
+  background: rgba($bg-page,0.92);
 }
 .nav-inner {
   max-width: 1320px; margin: 0 auto; padding: 1rem 2.5rem;
@@ -22,7 +22,7 @@
 .logo { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
 .logo-icon {
   width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
-  box-shadow: 0 4px 15px rgba(99,102,241,0.4); image-rendering: crisp-edges;
+  box-shadow: 0 4px 15px rgba($primary,0.4); image-rendering: crisp-edges;
 }
 .logo-text { font-size: 1.2rem; font-weight: 700; color: $text-primary; letter-spacing: -0.02em; white-space: nowrap; }
 
@@ -30,7 +30,7 @@
   padding: 0.5rem 0.9rem; border-radius: 0.65rem; font-size: 0.9rem;
   font-weight: 500; color: $text-secondary; text-decoration: none;
   transition: color 0.2s, background 0.2s;
-  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
+  &:hover { color: $text-primary; background: rgba($text-primary,0.05); }
   &--active { color: $primary-start; font-weight: 600; }
 }
 
@@ -39,15 +39,15 @@
   padding: 0.55rem 1.25rem; background: linear-gradient(135deg, $primary-start, $primary-end);
   border: none; border-radius: 0.75rem; color: #fff; font-size: 0.9rem; font-weight: 600;
   text-decoration: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(99,102,241,0.35);
-  &:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 25px rgba(99,102,241,0.45); }
+  box-shadow: 0 4px 20px rgba($primary,0.35);
+  &:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 25px rgba($primary,0.45); }
 }
 .btn-ghost {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 0.55rem 1.25rem; background: transparent; border: 1px solid $border;
   border-radius: 0.75rem; color: $text-secondary; font-size: 0.9rem; font-weight: 500;
   text-decoration: none; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
-  &:hover { border-color: rgba(15,23,42,0.2); color: $text-primary; background: rgba(15,23,42,0.04); }
+  &:hover { border-color: rgba($text-primary,0.2); color: $text-primary; background: rgba($text-primary,0.04); }
 }
 
 .burger {
@@ -88,7 +88,7 @@
   color: $text-secondary; border-radius: 0.5rem;
   transition: background 0.2s, color 0.2s;
   svg { width: 18px; height: 18px; }
-  &:hover { background: rgba(15,23,42,0.06); color: $text-primary; }
+  &:hover { background: rgba($text-primary,0.06); color: $text-primary; }
 }
 
 .drawer-links {
@@ -103,9 +103,9 @@
   font-size: 0.95rem; font-weight: 500; color: $text-secondary; text-decoration: none;
   transition: background 0.2s, color 0.2s;
   svg { width: 20px; height: 20px; flex-shrink: 0; }
-  &:hover { background: rgba(15,23,42,0.05); color: $text-primary; }
+  &:hover { background: rgba($text-primary,0.05); color: $text-primary; }
   &--active {
-    background: rgba(99,102,241,0.1);
+    background: rgba($primary,0.1);
     color: $primary-start;
     font-weight: 600;
   }

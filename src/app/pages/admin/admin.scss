@@ -108,7 +108,7 @@
 
   thead tr {
     border-bottom: 1px solid $border;
-    background: rgba(15, 23, 42, 0.025);
+    background: rgba($text-primary, 0.025);
   }
 
   th {
@@ -127,7 +127,7 @@
     transition: background 0.15s;
 
     &:last-child { border-bottom: none; }
-    &:hover { background: rgba(15, 23, 42, 0.02); }
+    &:hover { background: rgba($text-primary, 0.02); }
   }
 
   td {
@@ -150,27 +150,27 @@
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.03em;
-  background: rgba(15, 23, 42, 0.07);
+  background: rgba($text-primary, 0.07);
   color: $text-secondary;
 
   &--user {
-    background: rgba(99, 102, 241, 0.12);
-    color: #6366f1;
+    background: rgba($primary, 0.12);
+    color: $primary;
   }
 
   &--support {
-    background: rgba(234, 179, 8, 0.15);
+    background: rgba($gold, 0.15);
     color: #a16207;
   }
 
   &--admin {
-    background: rgba(239, 68, 68, 0.12);
+    background: rgba($error, 0.12);
     color: #dc2626;
   }
 
   &--premium {
     background: rgba(168, 85, 247, 0.15);
-    color: #7c3aed;
+    color: $violet;
   }
 }
 
@@ -178,13 +178,13 @@
 .icon-check {
   width: 16px;
   height: 16px;
-  color: #22c55e;
+  color: $success;
 }
 
 .icon-x {
   width: 16px;
   height: 16px;
-  color: #ef4444;
+  color: $error;
   opacity: 0.6;
 }
 
@@ -254,7 +254,7 @@
   svg { width: 14px; height: 14px; }
 
   &:hover:not(:disabled):not(.page-btn--active) {
-    background: rgba(15, 23, 42, 0.05);
+    background: rgba($text-primary, 0.05);
     color: $text-primary;
   }
 
@@ -330,7 +330,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.6rem 1.25rem;
-  background: rgba(15, 23, 42, 0.04);
+  background: rgba($text-primary, 0.04);
   border: 1px solid $border;
   border-radius: 0.75rem;
   color: $text-secondary;
@@ -339,14 +339,14 @@
   cursor: pointer;
   transition: background 0.2s, color 0.2s;
 
-  &:hover { background: rgba(15, 23, 42, 0.07); color: $text-primary; }
+  &:hover { background: rgba($text-primary, 0.07); color: $text-primary; }
 }
 
 // ─── Modal ────────────────────────────────────────────────────────────────────
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.35);
+  background: rgba($text-primary, 0.35);
   backdrop-filter: blur(4px);
   z-index: 100;
   animation: fadeIn 0.15s ease;
@@ -363,7 +363,7 @@
   background: #fff;
   border: 1px solid $border;
   border-radius: 1.5rem;
-  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.14);
+  box-shadow: 0 24px 64px rgba($text-primary, 0.14);
   animation: slideUp 0.2s ease;
 }
 
@@ -405,7 +405,7 @@
   transition: background 0.2s, color 0.2s;
 
   svg { width: 16px; height: 16px; }
-  &:hover { background: rgba(15, 23, 42, 0.06); color: $text-primary; }
+  &:hover { background: rgba($text-primary, 0.06); color: $text-primary; }
 }
 
 .modal-user-info {
@@ -456,14 +456,14 @@
   align-items: center;
   gap: 0.875rem;
   padding: 0.75rem 1rem;
-  background: rgba(15, 23, 42, 0.025);
+  background: rgba($text-primary, 0.025);
   border: 2px solid transparent;
   border-radius: 0.875rem;
   cursor: pointer;
   text-align: left;
   transition: border-color 0.15s, background 0.15s;
 
-  &:hover { background: rgba(15, 23, 42, 0.04); }
+  &:hover { background: rgba($text-primary, 0.04); }
 
   &--active {
     border-color: $primary-start;

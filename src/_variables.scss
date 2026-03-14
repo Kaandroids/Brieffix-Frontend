@@ -7,9 +7,14 @@
 // Raw color values. Prefer semantic tokens below for actual usage.
 $color-indigo-500:  #6366f1;
 $color-violet-500:  #8b5cf6;
+$color-violet-600:  #7c3aed;
 $color-sky-500:     #0ea5e9;
+$color-cyan-500:    #06b6d4;
+$color-cyan-600:    #0891b2;
+$color-red-400:     #f87171;
 $color-red-500:     #ef4444;
 $color-emerald-500: #10b981;
+$color-emerald-600: #059669;
 $color-amber-700:   #b8860b;
 $color-slate-950:   #0f172a;
 $color-slate-500:   #64748b;
@@ -44,10 +49,17 @@ $border:      rgba(15, 23, 42, 0.1);
 $input-bg:    rgba(15, 23, 42, 0.04);
 $input-focus: rgba(99, 102, 241, 0.06);
 
+// Accents
+$violet:     $color-violet-600;      // org-type badges, purple accent
+$cyan:       $color-cyan-500;        // voice/mic icon, spotlight
+$cyan-dark:  $color-cyan-600;        // darker cyan for text/icons
+
 // Feedback
-$error:   $color-red-500;
-$danger:  $error;                     // alias (kept for compatibility)
-$success: $color-emerald-500;
+$error:       $color-red-500;
+$error-soft:  $color-red-400;        // lighter red for focus rings / soft borders
+$danger:      $error;                // alias (kept for compatibility)
+$success:     $color-emerald-500;
+$success-dark: $color-emerald-600;   // darker green for text on light bg
 
 // ── Typography ────────────────────────────────────────────────────────────────
 $font-family:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;

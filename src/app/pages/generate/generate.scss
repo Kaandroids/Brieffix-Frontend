@@ -3,9 +3,9 @@
 // ─── Root ─────────────────────────────────────────────────────────────────────
 .gen-page {
   min-height: 100vh;
-  background: radial-gradient(ellipse at 20% 50%, rgba(99,102,241,0.06) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.05) 0%, transparent 50%),
-              #f8fafc;
+  background: radial-gradient(ellipse at 20% 50%, rgba($primary,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba($primary-end,0.05) 0%, transparent 50%),
+              $bg-page;
   color: $text-primary;
   position: relative;
   overflow-x: hidden;
@@ -28,7 +28,7 @@
   position: sticky; top: 0; z-index: 100;
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid $border;
-  background: rgba(248,250,252,0.92);
+  background: rgba($bg-page,0.92);
 }
 .nav-inner {
   max-width: 1320px; margin: 0 auto; padding: 1rem 2.5rem;
@@ -45,7 +45,7 @@
   padding: 0.5rem 0.9rem; border-radius: 0.65rem; font-size: 0.9rem;
   font-weight: 500; color: $text-secondary; text-decoration: none;
   transition: color 0.2s, background 0.2s;
-  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
+  &:hover { color: $text-primary; background: rgba($text-primary,0.05); }
   &--active { color: $primary-start; font-weight: 600; }
 }
 .burger {
@@ -56,12 +56,12 @@
 .mobile-menu {
   border-top: 1px solid $border; padding: 1rem 1.25rem 1.25rem;
   display: flex; flex-direction: column; gap: 0.25rem;
-  background: rgba(248,250,252,0.98);
+  background: rgba($bg-page,0.98);
 }
 .mobile-link {
   padding: 0.65rem 0.75rem; border-radius: 0.65rem; font-size: 0.95rem;
   font-weight: 500; color: $text-secondary; text-decoration: none;
-  &:hover { color: $text-primary; background: rgba(15,23,42,0.05); }
+  &:hover { color: $text-primary; background: rgba($text-primary,0.05); }
 }
 .mobile-cta { margin-top: 0.5rem; text-align: center; }
 
@@ -70,7 +70,7 @@
 .logo-icon {
   width: 36px; height: 36px; background: linear-gradient(135deg, $primary-start, $primary-end);
   border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 1rem; color: #fff; box-shadow: 0 4px 15px rgba(99,102,241,0.4); flex-shrink: 0;
+  font-weight: 700; font-size: 1rem; color: #fff; box-shadow: 0 4px 15px rgba($primary,0.4); flex-shrink: 0;
   &--sm { width: 28px; height: 28px; font-size: 0.85rem; border-radius: 8px; }
 }
 .logo-text { font-size: 1.2rem; font-weight: 700; color: $text-primary; letter-spacing: -0.02em; white-space: nowrap; }
@@ -81,7 +81,7 @@
   padding: 0.6rem 1.25rem; background: linear-gradient(135deg, $primary-start, $primary-end);
   border: none; border-radius: 0.75rem; color: #fff; font-size: 0.875rem; font-weight: 600;
   text-decoration: none; cursor: pointer; transition: opacity 0.2s, transform 0.15s;
-  box-shadow: 0 4px 20px rgba(99,102,241,0.3); white-space: nowrap;
+  box-shadow: 0 4px 20px rgba($primary,0.3); white-space: nowrap;
   svg { width: 15px; height: 15px; }
   &:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
   &:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
@@ -91,15 +91,15 @@
   padding: 0.55rem 1.25rem; background: transparent; border: 1px solid $border;
   border-radius: 0.75rem; color: $text-secondary; font-size: 0.9rem; font-weight: 500;
   text-decoration: none; cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
-  &:hover { border-color: rgba(15,23,42,0.2); color: $text-primary; background: rgba(15,23,42,0.04); }
+  &:hover { border-color: rgba($text-primary,0.2); color: $text-primary; background: rgba($text-primary,0.04); }
 }
 .btn-secondary {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-  padding: 0.6rem 1.25rem; background: rgba(15,23,42,0.04); border: 1px solid $border;
+  padding: 0.6rem 1.25rem; background: rgba($text-primary,0.04); border: 1px solid $border;
   border-radius: 0.75rem; color: $text-secondary; font-size: 0.875rem; font-weight: 500;
   cursor: pointer; transition: background 0.2s, color 0.2s; white-space: nowrap;
   svg { width: 15px; height: 15px; }
-  &:hover:not(:disabled) { background: rgba(15,23,42,0.08); color: $text-primary; }
+  &:hover:not(:disabled) { background: rgba($text-primary,0.08); color: $text-primary; }
   &:disabled { opacity: 0.55; cursor: not-allowed; }
 }
 
@@ -112,8 +112,8 @@
   a { font-weight: 600; text-decoration: none; &:hover { text-decoration: underline; } }
   strong { font-weight: 700; }
   &--limit { background: rgba(234,88,12,0.07); border: 1px solid rgba(234,88,12,0.25); color: #9a3412; a { color: #ea580c; } }
-  &--error { background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.25); color: #b91c1c; }
-  &--success { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); color: #065f46; svg { color: #059669; } }
+  &--error { background: rgba($error,0.07); border: 1px solid rgba($error,0.25); color: #b91c1c; }
+  &--success { background: rgba($success,0.08); border: 1px solid rgba($success,0.25); color: #065f46; svg { color: $success-dark; } }
 }
 
 // ─── Page content ─────────────────────────────────────────────────────────────
@@ -174,7 +174,7 @@
   &--active { border-color: $primary-start; background: rgba($primary-start, 0.08); }
 }
 .type-card-icon {
-  width: 38px; height: 38px; border-radius: 10px; background: rgba(15,23,42,0.04);
+  width: 38px; height: 38px; border-radius: 10px; background: rgba($text-primary,0.04);
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   svg { width: 20px; height: 20px; color: $text-secondary; }
   .type-card--active & { background: rgba($primary-start, 0.15); svg { color: $primary-start; } }
@@ -200,7 +200,7 @@
   display: flex; flex-direction: column; gap: 0.35rem; flex: 1; min-width: 100px;
   label { font-size: 0.8rem; font-weight: 500; color: $text-secondary; }
   input[type="text"], input[type="date"], select {
-    padding: 0.6rem 0.875rem; background: rgba(15,23,42,0.04); border: 1px solid $border;
+    padding: 0.6rem 0.875rem; background: rgba($text-primary,0.04); border: 1px solid $border;
     border-radius: 0.625rem; color: $text-primary; font-size: 0.875rem; font-family: inherit;
     outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box;
     &::placeholder { color: rgba($text-secondary, 0.5); }
@@ -217,7 +217,7 @@
 // ─── Briefinhalt specific ─────────────────────────────────────────────────────
 .brief-textarea {
   flex: 1;
-  padding: 0.6rem 0.875rem; background: rgba(15,23,42,0.04); border: 1px solid $border;
+  padding: 0.6rem 0.875rem; background: rgba($text-primary,0.04); border: 1px solid $border;
   border-radius: 0.625rem; color: $text-primary; font-size: 0.875rem; font-family: inherit;
   outline: none; transition: border-color 0.2s; width: 100%; box-sizing: border-box;
   resize: vertical; min-height: 300px; line-height: 1.65;
@@ -288,7 +288,7 @@
 .preview-modal-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 18px; border-bottom: 1px solid $border;
-  background: rgba(15,23,42,0.02); flex-shrink: 0;
+  background: rgba($text-primary,0.02); flex-shrink: 0;
 }
 .preview-modal-title {
   display: flex; align-items: center; gap: 8px;
@@ -301,7 +301,7 @@
   background: transparent; border: 1px solid $border;
   cursor: pointer; color: $text-secondary; transition: background 0.2s, color 0.2s;
   svg { width: 16px; height: 16px; }
-  &:hover { background: rgba(15,23,42,0.07); color: $text-primary; }
+  &:hover { background: rgba($text-primary,0.07); color: $text-primary; }
 }
 .preview-spinner {
   flex: 1; display: flex; flex-direction: column; align-items: center;

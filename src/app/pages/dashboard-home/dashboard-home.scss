@@ -18,7 +18,7 @@
   }
 
   .name {
-    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    background: linear-gradient(135deg, $primary, $primary-end);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -117,14 +117,14 @@
   border-radius: 0.75rem;
   transition: background 0.15s;
 
-  &:hover { background: rgba(15, 23, 42, 0.04); }
+  &:hover { background: rgba($text-primary, 0.04); }
 }
 
 .letter-icon {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(99, 102, 241, 0.12);
+  background: rgba($primary, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -187,15 +187,15 @@
   border-radius: 0.75rem;
   transition: background 0.15s;
 
-  &:hover { background: rgba(15, 23, 42, 0.04); }
+  &:hover { background: rgba($text-primary, 0.04); }
 }
 
 .profile-avatar {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(139, 92, 246, 0.3));
-  border: 1px solid rgba(99, 102, 241, 0.25);
+  background: linear-gradient(135deg, rgba($primary, 0.3), rgba($primary-end, 0.3));
+  border: 1px solid rgba($primary, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,15 +235,15 @@
   font-weight: 600;
   padding: 0.2rem 0.55rem;
   border-radius: 2rem;
-  background: rgba(6, 182, 212, 0.1);
-  color: #0891b2;
-  border: 1px solid rgba(6, 182, 212, 0.2);
+  background: rgba($cyan, 0.1);
+  color: $cyan-dark;
+  border: 1px solid rgba($cyan, 0.2);
   flex-shrink: 0;
 
   &.badge--org {
-    background: rgba(139, 92, 246, 0.1);
-    color: #7c3aed;
-    border-color: rgba(139, 92, 246, 0.2);
+    background: rgba($primary-end, 0.1);
+    color: $violet;
+    border-color: rgba($primary-end, 0.2);
   }
 }
 

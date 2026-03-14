@@ -26,7 +26,7 @@
   border-radius: 1.25rem;
   backdrop-filter: blur(16px);
   transition: border-color 0.2s, transform 0.2s;
-  &:hover { border-color: rgba(15,23,42,0.14); transform: translateY(-2px); }
+  &:hover { border-color: rgba($text-primary,0.14); transform: translateY(-2px); }
 }
 
 .card-header {
@@ -40,7 +40,7 @@
   display: flex; align-items: center; justify-content: center;
   svg { width: 22px; height: 22px; }
   &--classic      { background: rgba(107,114,128,0.15); color: #9ca3af; }
-  &--modern       { background: rgba(99,102,241,0.15);  color: #6366f1; }
+  &--modern       { background: rgba($primary,0.15);  color: $primary; }
   &--professional { background: rgba(212,175,55,0.15);  color: #d4af37; }
   &--elegant      { background: rgba(167,139,250,0.15); color: #a78bfa; }
 }
@@ -57,7 +57,7 @@
   font-weight: 600;
   letter-spacing: 0.03em;
   margin-bottom: 0.5rem;
-  &--tpl { background: rgba(99,102,241,0.15); color: #6366f1; }
+  &--tpl { background: rgba($primary,0.15); color: $primary; }
 }
 
 .card-name {
@@ -114,7 +114,7 @@
 
 .no-profiles-notice {
   display: flex; align-items: center; gap: 10px;
-  background: rgba(234, 179, 8, 0.1); border: 1px solid rgba(234, 179, 8, 0.3);
+  background: rgba($gold, 0.1); border: 1px solid rgba($gold, 0.3);
   border-radius: 10px; padding: 12px 16px; margin-bottom: 20px;
   font-size: 0.875rem; color: #fbbf24;
   svg { width: 18px; height: 18px; flex-shrink: 0; }
@@ -167,7 +167,7 @@
   margin-bottom: 1.25rem;
 }
 
-.required { color: #ef4444; }
+.required { color: $error; }
 
 .form-group {
   display: flex; flex-direction: column; gap: 0.35rem; flex: 1;
@@ -175,7 +175,7 @@
   label { font-size: 0.8rem; color: $text-secondary; font-weight: 500; }
 
   input, select, textarea {
-    background: rgba(15,23,42,0.04); border: 1px solid $border;
+    background: rgba($text-primary,0.04); border: 1px solid $border;
     border-radius: 0.625rem; color: $text-primary; padding: 0.6rem 0.875rem; font-size: 0.875rem;
     outline: none; width: 100%; box-sizing: border-box; font-family: inherit; transition: border-color 0.2s;
     &:focus { border-color: rgba($primary, 0.5); }
@@ -198,7 +198,7 @@
 
 .profile-preview {
   margin-top: 10px; padding: 10px 14px;
-  background: rgba(99,102,241,0.06); border: 1px solid rgba($primary,0.2); border-radius: 8px;
+  background: rgba($primary,0.06); border: 1px solid rgba($primary,0.2); border-radius: 8px;
 }
 .profile-preview-name { font-size: 0.88rem; font-weight: 600; color: $text-primary; }
 .profile-preview-addr { font-size: 0.78rem; color: $text-secondary; margin-top: 2px; }
@@ -214,7 +214,7 @@
   padding: 7px 18px; background: none; border: none; color: $text-secondary;
   cursor: pointer; font-size: 0.875rem; transition: background 0.2s, color 0.2s;
   &--active { background: $primary; color: #fff; }
-  &:hover:not(.toggle-btn--active) { background: rgba(15,23,42,0.05); color: $text-primary; }
+  &:hover:not(.toggle-btn--active) { background: rgba($text-primary,0.05); color: $text-primary; }
 }
 
 .manual-recipient { margin-top: 14px; display: flex; flex-direction: column; gap: 1rem; }
@@ -225,7 +225,7 @@
 
 .tpl-card {
   display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding: 14px 10px; background: rgba(15,23,42,0.02);
+  padding: 14px 10px; background: rgba($text-primary,0.02);
   border: 1px solid $border; border-radius: 10px; cursor: pointer; color: $text-primary;
   transition: border-color 0.2s, background 0.2s; position: relative;
 
@@ -235,9 +235,9 @@
 }
 
 .tpl-swatch {
-  width: 48px; height: 32px; border-radius: 5px; border: 1px solid rgba(15,23,42,0.08);
+  width: 48px; height: 32px; border-radius: 5px; border: 1px solid rgba($text-primary,0.08);
   &--classic      { background: linear-gradient(135deg, #f9f9f9 50%, #e5e5e5 50%); }
-  &--modern       { background: linear-gradient(180deg, #6366f1 30%, #f3f4f6 30%); }
+  &--modern       { background: linear-gradient(180deg, $primary 30%, #f3f4f6 30%); }
   &--professional { background: linear-gradient(180deg, #0d0d2b 40%, #d4af37 40%); }
   &--elegant      { background: linear-gradient(180deg, #fff 45%, #1c1c1c 45%); }
 }
@@ -275,7 +275,7 @@
 .preview-modal-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 18px; border-bottom: 1px solid $border;
-  background: rgba(15,23,42,0.02); flex-shrink: 0;
+  background: rgba($text-primary,0.02); flex-shrink: 0;
 }
 
 .preview-modal-title {
@@ -290,7 +290,7 @@
   background: transparent; border: 1px solid $border;
   cursor: pointer; color: $text-secondary; transition: background 0.2s, color 0.2s;
   svg { width: 16px; height: 16px; }
-  &:hover { background: rgba(15,23,42,0.07); color: $text-primary; }
+  &:hover { background: rgba($text-primary,0.07); color: $text-primary; }
 }
 
 .preview-spinner {
@@ -327,10 +327,10 @@
 
 .btn-secondary {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: rgba(15,23,42,0.04); color: $text-secondary; border: 1px solid $border;
+  background: rgba($text-primary,0.04); color: $text-secondary; border: 1px solid $border;
   padding: 0.6rem 1.25rem; border-radius: 0.75rem; cursor: pointer; font-size: 0.875rem; font-weight: 500;
   transition: background 0.2s, color 0.2s;
-  &:hover:not(:disabled) { background: rgba(15,23,42,0.07); color: $text-primary; }
+  &:hover:not(:disabled) { background: rgba($text-primary,0.07); color: $text-primary; }
   &:disabled { opacity: 0.5; cursor: not-allowed; }
 }
 
@@ -348,8 +348,8 @@
   background: transparent; border: 1px solid $border; cursor: pointer; color: $text-secondary;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
   svg { width: 14px; height: 14px; }
-  &:hover { background: rgba(15,23,42,0.06); color: $text-primary; }
-  &--danger:hover { background: rgba(248,113,113,0.12); color: #ef4444; border-color: rgba(248,113,113,0.3); }
+  &:hover { background: rgba($text-primary,0.06); color: $text-primary; }
+  &--danger:hover { background: rgba($error-soft,0.12); color: $error; border-color: rgba($error-soft,0.3); }
 }
 
 // ── AI Button ──────────────────────────────────────────────────────────────
@@ -360,7 +360,7 @@
   background: linear-gradient(135deg, rgba($primary, 0.15), rgba($primary-end, 0.15));
   border: 1px solid rgba($primary, 0.4);
   border-radius: 0.75rem;
-  color: #6366f1;
+  color: $primary;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -397,12 +397,12 @@
 .ai-modal-header {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 18px; border-bottom: 1px solid $border;
-  background: rgba(15,23,42,0.02); flex-shrink: 0;
+  background: rgba($text-primary,0.02); flex-shrink: 0;
 }
 
 .ai-modal-title {
   display: flex; align-items: center; gap: 8px;
-  font-weight: 600; font-size: 0.9rem; color: #6366f1;
+  font-weight: 600; font-size: 0.9rem; color: $primary;
   svg { width: 16px; height: 16px; }
 }
 
@@ -426,7 +426,7 @@
 .ai-textarea {
   flex: 1;
   padding: 0.75rem 1rem;
-  background: rgba(15,23,42,0.04); border: 1px solid $border;
+  background: rgba($text-primary,0.04); border: 1px solid $border;
   border-radius: 0.75rem; color: $text-primary; font-size: 0.875rem;
   font-family: inherit; resize: vertical; outline: none;
   transition: border-color 0.2s; line-height: 1.6;
@@ -437,40 +437,40 @@
 .btn-mic {
   flex-shrink: 0;
   width: 44px; height: 44px; border-radius: 50%;
-  background: rgba(15,23,42,0.04); border: 1px solid $border;
+  background: rgba($text-primary,0.04); border: 1px solid $border;
   color: $text-secondary; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
   svg { width: 18px; height: 18px; }
 
-  &:hover { background: rgba(15,23,42,0.08); color: $text-primary; }
+  &:hover { background: rgba($text-primary,0.08); color: $text-primary; }
 
   &--active {
-    background: rgba(239, 68, 68, 0.15);
-    border-color: rgba(239, 68, 68, 0.5);
-    color: #ef4444;
+    background: rgba($error, 0.15);
+    border-color: rgba($error, 0.5);
+    color: $error;
     animation: pulse-mic 1.2s ease-in-out infinite;
   }
 }
 
 @keyframes pulse-mic {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-  50%       { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba($error, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba($error, 0); }
 }
 
 .ai-error {
-  font-size: 0.8rem; color: #ef4444; margin: 0;
+  font-size: 0.8rem; color: $error; margin: 0;
 }
 
 .ai-recording-hint {
-  font-size: 0.78rem; color: #ef4444; margin: 0;
+  font-size: 0.78rem; color: $error; margin: 0;
   display: flex; align-items: center; gap: 0.4rem;
 }
 
 .ai-modal-footer {
   display: flex; gap: 0.75rem; justify-content: flex-end;
   padding: 1rem 1.5rem; border-top: 1px solid $border;
-  background: rgba(15,23,42,0.02);
+  background: rgba($text-primary,0.02);
 }
 
 // ── Responsive ─────────────────────────────────────────────────────────────

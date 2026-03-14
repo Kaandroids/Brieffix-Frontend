@@ -1,18 +1,12 @@
-$primary-start: #6366f1;
-$primary-end: #8b5cf6;
-$bg-dark: #f8fafc;
-$bg-card: #ffffff;
-$border: rgba(15, 23, 42, 0.1);
-$text-primary: #0f172a;
-$text-secondary: #64748b;
+@use 'variables' as *;
 
 .auth-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.06) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+  background: radial-gradient(ellipse at 20% 50%, rgba($primary, 0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba($primary-end, 0.05) 0%, transparent 50%),
               $bg-dark;
   padding: 1.5rem;
   position: relative;
@@ -29,7 +23,7 @@ $text-secondary: #64748b;
 
   &--1 { width: 400px; height: 400px; background: $primary-start; top: -10%; left: -10%; animation: float 8s ease-in-out infinite; }
   &--2 { width: 300px; height: 300px; background: $primary-end; bottom: -5%; right: -5%; animation: float 10s ease-in-out infinite reverse; }
-  &--3 { width: 200px; height: 200px; background: #0ea5e9; top: 50%; right: 20%; animation: float 6s ease-in-out infinite 2s; }
+  &--3 { width: 200px; height: 200px; background: $accent; top: 50%; right: 20%; animation: float 6s ease-in-out infinite 2s; }
 }
 
 @keyframes float {
@@ -49,7 +43,7 @@ $text-secondary: #64748b;
   position: relative;
   z-index: 1;
   text-align: center;
-  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.08), 0 1px 4px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 4px 24px rgba($text-primary, 0.08), 0 1px 4px rgba($text-primary, 0.05);
 }
 
 .logo {
@@ -85,16 +79,16 @@ $text-secondary: #64748b;
 
   svg { width: 32px; height: 32px; }
 
-  &.loading { background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.25); }
-  &.success { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); svg { color: #059669; } }
-  &.error { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); svg { color: #ef4444; } }
+  &.loading { background: rgba($primary, 0.1); border: 1px solid rgba($primary, 0.25); }
+  &.success { background: rgba($success, 0.1); border: 1px solid rgba($success, 0.25); svg { color: $success-dark; } }
+  &.error { background: rgba($error, 0.1); border: 1px solid rgba($error, 0.25); svg { color: $error; } }
 }
 
 .spinner-large {
   width: 32px;
   height: 32px;
-  border: 3px solid rgba(99, 102, 241, 0.2);
-  border-top-color: #6366f1;
+  border: 3px solid rgba($primary, 0.2);
+  border-top-color: $primary;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -120,7 +114,7 @@ h1 { font-size: 1.75rem; font-weight: 700; color: $text-primary; letter-spacing:
   text-decoration: none;
   cursor: pointer;
   transition: opacity 0.2s, transform 0.15s;
-  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+  box-shadow: 0 4px 20px rgba($primary, 0.35);
 
   &:hover { opacity: 0.92; transform: translateY(-1px); }
 }
