@@ -26,9 +26,8 @@ $text-secondary:#64748b;
 
 .logo { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; }
 .logo-icon {
-  width: 36px; height: 36px; background: linear-gradient(135deg, $primary-start, $primary-end);
-  border-radius: 10px; display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 1rem; color: #fff; box-shadow: 0 4px 15px rgba(99,102,241,0.4); flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(99,102,241,0.4);
 }
 .logo-text { font-size: 1.2rem; font-weight: 700; color: $text-primary; letter-spacing: -0.02em; white-space: nowrap; }
 
